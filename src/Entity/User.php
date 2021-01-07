@@ -41,6 +41,16 @@ class User implements UserInterface
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $shopKeeper;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Shop::class, cascade={"persist", "remove"})
+     */
+    private $shop;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,6 +137,30 @@ class User implements UserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getShopKeeper(): ?bool
+    {
+        return $this->shopKeeper;
+    }
+
+    public function setShopKeeper(bool $shopKeeper): self
+    {
+        $this->shopKeeper = $shopKeeper;
+
+        return $this;
+    }
+
+    public function getShop(): ?Shop
+    {
+        return $this->shop;
+    }
+
+    public function setShop(?Shop $shop): self
+    {
+        $this->shop = $shop;
 
         return $this;
     }
