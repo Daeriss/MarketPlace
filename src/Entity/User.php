@@ -51,6 +51,7 @@ class User implements UserInterface
      */
     private $shop;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +162,18 @@ class User implements UserInterface
     public function setShop(?Shop $shop): self
     {
         $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
