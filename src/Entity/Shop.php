@@ -40,6 +40,11 @@ class Shop
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $paiement;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -112,6 +117,18 @@ class Shop
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPaiement(): ?string
+    {
+        return $this->paiement;
+    }
+
+    public function setPaiement(string $paiement): self
+    {
+        $this->paiement = $paiement;
 
         return $this;
     }

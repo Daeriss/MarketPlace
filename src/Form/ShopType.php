@@ -14,6 +14,7 @@ class ShopType extends AbstractType
         $builder
             ->add('name')
             ->add('adress')
+            ->add('paiement')
         ;
     }
 
