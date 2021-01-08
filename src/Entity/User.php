@@ -46,12 +46,7 @@ class User implements UserInterface
      */
     private $shopKeeper;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Shop::class, cascade={"persist", "remove"})
-     */
-    private $shop;
-
-
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -154,17 +149,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getShop(): ?Shop
-    {
-        return $this->shop;
-    }
-
-    public function setShop(?Shop $shop): self
-    {
-        $this->shop = $shop;
-
-        return $this;
-    }
 
     public function getRole(): ?string
     {

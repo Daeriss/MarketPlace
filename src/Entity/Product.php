@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductsRepository;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProductsRepository::class)
+ * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
-class Products
+class Product
 {
     /**
      * @ORM\Id
@@ -38,7 +38,8 @@ class Products
     private $img;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="shopProducts")
+     * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="product")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $shop;
 
@@ -106,4 +107,5 @@ class Products
 
         return $this;
     }
+
 }

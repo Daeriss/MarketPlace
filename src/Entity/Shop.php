@@ -30,13 +30,19 @@ class Shop
     private $adress;
 
     /**
-     * @ORM\OneToMany(targetEntity=Products::class, mappedBy="shop")
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="shop")
      */
-    private $shopProducts;
+    private $product;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
-        $this->shopProducts = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,32 +75,46 @@ class Shop
     }
 
     /**
-     * @return Collection|Products[]
+     * @return Collection|Product[]
      */
-    public function getShopProducts(): Collection
+    public function getProduct(): Collection
     {
-        return $this->shopProducts;
+        return $this->product;
     }
 
-    public function addShopProduct(Products $shopProduct): self
+    public function addProduct(Product $product): self
     {
-        if (!$this->shopProducts->contains($shopProduct)) {
-            $this->shopProducts[] = $shopProduct;
-            $shopProduct->setShop($this);
+        if (!$this->product->contains($product)) {
+            $this->product[] = $product;
+            $product->setShop($this);
         }
 
         return $this;
     }
 
-    public function removeShopProduct(Products $shopProduct): self
+    public function removeProduct(Product $product): self
     {
-        if ($this->shopProducts->removeElement($shopProduct)) {
+        if ($this->product->removeElement($product)) {
             // set the owning side to null (unless already changed)
-            if ($shopProduct->getShop() === $this) {
-                $shopProduct->setShop(null);
+            if ($product->getShop() === $this) {
+                $product->setShop(null);
             }
         }
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+   
 }
