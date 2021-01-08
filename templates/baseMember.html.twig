@@ -10,12 +10,10 @@
     <body>
     <header class="container-fluid p-0 mb-3">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-					<a class="navbar-brand" href="{{path('accueil')}}"> Market Place</a>
-					<a class="nav-link text-white" href="{{ path('app_register') }}">inscription</a>
-                    <a class="nav-link text-white" href="{{ path('app_login') }}">Connexion</a>
-                    
+					<a class="navbar-brand" href="{{path('accueilMember')}}"> Market Place</a>
+                    <a class="nav-link text-white" href="{{ path('shop_index') }}">Shop(admin)</a>
 				</nav>
-		</header>
+			</header>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

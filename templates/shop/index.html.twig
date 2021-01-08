@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseMember.html.twig' %}
 
 {% block title %}Shop index{% endblock %}
 
@@ -21,7 +21,6 @@
                 <td>{{ shop.name }}</td>
                 <td>{{ shop.adress }}</td>
                 <td>
-                    <a href="{{ path('shop_show', {'id': shop.id}) }}">show</a>
                     <a href="{{ path('shop_edit', {'id': shop.id}) }}">edit</a>
                 </td>
             </tr>
@@ -30,8 +29,8 @@
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
+        <a href="{{path('product_index')}}">Mon catalogue </a>
         </tbody>
     </table>
 
-    <a href="{{ path('shop_new') }}">Create new</a>
 {% endblock %}

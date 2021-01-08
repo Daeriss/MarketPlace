@@ -25,5 +25,12 @@ class MarketController extends AbstractController
         return $this->render('market/index.html.twig');
     }
 
+    /**
+     * @Route("/member/accueilMember", name="accueilMember")
+     */
+    public function accueilMember () {
+        return $this->render('market/indexMember.html.twig');
+    }
+
 
 }
