@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\DistrictType;
+use Symfony\Component\HttpFoundation\Request;
 
 class MarketController extends AbstractController
 {
@@ -21,16 +23,29 @@ class MarketController extends AbstractController
     /**
      * @Route("/", name="accueil")
      */
-    public function accueil () {
-        return $this->render('market/index.html.twig');
+    public function accueil(Request $request): Response
+    {
+
+        $form = $this->createForm(DistrictType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        $district = $form->get('Code_Postale')->getData();
+        
+        dump($district);
+        }
+        return $this->render('market/index.html.twig', [
+            'form' => $form->createView(),
+            'district' => $district ?? "13001"
+        ]);
     }
 
     /**
      * @Route("/member/accueilMember", name="accueilMember")
      */
-    public function accueilMember () {
+    public function accueilMember()
+    {
         return $this->render('market/indexMember.html.twig');
     }
-
-
 }

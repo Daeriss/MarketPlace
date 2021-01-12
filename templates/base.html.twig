@@ -11,6 +11,8 @@
 		<body>
 			{% block header %}{% endblock %}
 			{% block body %}{% endblock %}
-			{% block javascripts %}{% endblock %}
+			{% block javascripts %}
+				<script src="{{ asset('assets/js/script.js') }}"></script>
+			{% endblock %}
 		</body>
 	</html>
