@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for shop in shops %}
+        {% if (shop)  %}
             <tr>
                 <td>{{ shop.id }}</td>
                 <td>{{ shop.name }}</td>
@@ -30,7 +30,7 @@
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
-        {% endfor %}
+        {% endif %}
         <a href="{{path('product_index')}}">Mon catalogue </a>
         </tbody>
     </table>
