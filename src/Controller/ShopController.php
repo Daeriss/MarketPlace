@@ -21,8 +21,14 @@ class ShopController extends AbstractController
      */
     public function index(ShopRepository $shopRepository): Response
     {
+        $user = $this->getUser();
+        // $idUser = $user->getId();
+        $shop = $user->getShop();
+        $idShop = $shop->getId();
+        dump ($idShop);
+        
         return $this->render('shop/index.html.twig', [
-            'shops' => $shopRepository->findAll(),
+            'shops' => $shopRepository->findOneBy(['id' => $idShop]),
         ]);
     }
 
