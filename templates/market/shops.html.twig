@@ -1,0 +1,41 @@
+{% extends 'header.html.twig' %}
+
+{% block title %}PAGE shops{% endblock %}
+
+
+{% block stylesheets %}
+<style>
+</style>
+{% endblock %}
+
+{% block body %}
+
+<section class="container-fluid">
+    <h2>MA SECTION POUR AFFICHER LISTE SHOPS</h2>
+    
+     <div class="row">
+        {% for shop in shops %}
+            <articles class="card m-5 col-3">
+                <div class="card-header"> {{ shop.id }}</div>
+                <h3 class="card-title">{{ shop.name }}</h3>
+                <div class="card-body">
+                    <div class="card-text">{{ shop.adress }}</div>
+                    <div class="card-text">{{ shop.paiement }}</div>
+                </div>
+            </articles>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script></script>
+
+{% endblock %}
