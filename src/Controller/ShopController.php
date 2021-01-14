@@ -23,15 +23,15 @@ class ShopController extends AbstractController
     {
         $user = $this->getUser();
         // $idUser = $user->getId();
-        $shop = $user->getShop();
-        $idShop = $shop->getId();
-        $shoptoto = $shopRepository->findOneBy(['id' => $idShop]);
+        $shopUser = $user->getShop();
+        $idShop = $shopUser->getId();
+        $shop = $shopRepository->findOneBy(['id' => $idShop]);
         dump ($idShop);
 
-        dump($shoptoto);
+        dump($shop);
         
         return $this->render('shop/index.html.twig', [
-            'shop' => $shoptoto,
+            'shop' => $shop,
         ]);
     }
 
