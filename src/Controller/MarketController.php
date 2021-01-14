@@ -9,6 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\DistrictType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ShopRepository;
+use App\Entity\Shop;
+use App\Entity\Product;
+use App\Repository\ProductRepository;
 
 class MarketController extends AbstractController
 {
@@ -71,5 +74,22 @@ class MarketController extends AbstractController
         
         return $this->render("market/shops.html.twig", [ 
             'shops' => $listeShops]);
+    }
+
+    /**
+     * @Route("/shops/{id}", name="shop", methods={"GET"})
+     */
+    public function annonce(Shop $shop, ProductRepository $productRepository): Response
+    {
+        $idShop = $shop->getId();
+        $listeProducts = $productRepository->findBy(
+            ['id' => $idShop],
+            []
+        );
+
+        return $this->render('market/shop.html.twig', [
+            'shop' => $shop,
+            'products' => $listeProducts
+        ]);
     }
 }

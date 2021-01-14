@@ -1,6 +1,6 @@
 {% extends 'header.html.twig' %}
 
-{% block title %}PAGE shops{% endblock %}
+{% block title %}PAGE shop{% endblock %}
 
 
 {% block stylesheets %}
@@ -11,17 +11,30 @@
 {% block body %}
 
 <section class="container-fluid">
-    <h2>MA SECTION POUR AFFICHER LISTE SHOPS</h2>
+    <h2>MA SECTION POUR AFFICHER LISTE produits</h2>
     
      <div class="row">
-        {% for shop in shops %}
-            <articles class="card m-5 col-3">
+            <articles class="card m-5 ">
                 <h3 class="card-title">{{ shop.name }}</h3>
                 <div class="card-body">
                     <div class="card-text">{{ shop.adress }}</div>
                     <div class="card-text">{{ shop.paiement }}</div>
                 </div>
                  <h4 class="pt-2 pb-2"><a href="{{ path('shop', { 'id' : shop.id }) }}">{{ shop.name }}</a></h4>
+            </articles>
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+    </div>
+
+    <div class="row">
+        {% for product in products %}
+            <articles class="card m-5 col-3">
+                <h3 class="card-title">{{ product.name }}</h3>
+                <div class="card-body">
+                    <div class="card-text">{{ product.description }}</div>
+                    <div class="card-text">{{ product.price }}</div>
+                </div>
             </articles>
         {% else %}
             <tr>
