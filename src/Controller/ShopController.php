@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Shop;
+use App\Entity\User;
 use App\Form\ShopType;
 use App\Repository\ShopRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,8 +23,8 @@ class ShopController extends AbstractController
     public function index(ShopRepository $shopRepository): Response
     {
         $user = $this->getUser();
-        // $idUser = $user->getId();
         $shopUser = $user->getShop();
+        dump($user);
         $idShop = $shopUser->getId();
         $shop = $shopRepository->findOneBy(['id' => $idShop]);
         dump ($idShop);
@@ -40,11 +41,15 @@ class ShopController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
         $shop = new Shop();
         $form = $this->createForm(ShopType::class, $shop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $user->setRoles(array('ROLE_SHOPKEEPER1'));
+            $shop->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($shop);
             $entityManager->flush();

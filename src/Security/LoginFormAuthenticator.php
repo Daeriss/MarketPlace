@@ -97,11 +97,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $this->security->getUser();
         $routeRedirect = "accueil";
 
-        if(in_array('ROLE_MEMBER', $user->getRoles())) {
-            $routeRedirect = "accueilMember";
+        if(in_array('ROLE_SHOPKEEPER0', $user->getRoles())) {
+            $routeRedirect = "shop_new";
         }
-        elseif(in_array('ROLE_USER', $user->getRoles())) {
-            $routeRedirect = "accueil";
+        elseif(in_array('ROLE_SHOPKEEPER1', $user->getRoles())) {
+            $routeRedirect = "accueilshopKeeper1";
         }
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
