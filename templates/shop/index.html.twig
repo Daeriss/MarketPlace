@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Adress</th>
+                <th>Img</th>
                 <th>Paiement Accepté</th>
                 <th>actions</th>
             </tr>
@@ -21,6 +22,7 @@
                 <td>{{ shop.id }}</td>
                 <td>{{ shop.name }}</td>
                 <td>{{ shop.adress }}</td>
+                <td>{{ shop.img }}</td>
                 <td>{{shop.paiement}}</td>
                 <td>
                     <a href="{{ path('shop_edit', {'id': shop.id}) }}">edit</a>

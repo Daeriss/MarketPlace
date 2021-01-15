@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
 /**
@@ -38,7 +40,7 @@ class ShopController extends AbstractController
     /**
      * @Route("/new", name="shop_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,  SluggerInterface $slugger): Response
     {
         $user = $this->getUser();
         
@@ -48,6 +50,29 @@ class ShopController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
     
+            $img = $form->get('img')->getData();
+            if ($img) {
+                $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $img->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $img->move(
+                        $this->getParameter('photos_directory'),        // NE PAS OUBLIER DE CREER LE DOSSIER
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                   
+                }
+
+                $shop->setImg($newFilename);       // ON ENREGISTRE LE NOM DU FICHIER
+            } 
+            else {
+                $defaultImg = "Asset-1@2x-1.png";
+                $shop->setImg($defaultImg);
+            }
             $shop->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($shop);
