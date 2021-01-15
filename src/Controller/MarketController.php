@@ -79,14 +79,14 @@ class MarketController extends AbstractController
     /**
      * @Route("/shops/{id}", name="shop", methods={"GET"})
      */
-    public function annonce(Shop $shop, ProductRepository $productRepository): Response
+    public function shop(Shop $shop, ProductRepository $productRepository): Response
     {
         $idShop = $shop->getId();
         $listeProducts = $productRepository->findBy(
-            ['id' => $idShop],
+            ['shop' => $shop],
             []
         );
-
+        dump($listeProducts);
         return $this->render('market/shop.html.twig', [
             'shop' => $shop,
             'products' => $listeProducts

@@ -6,6 +6,8 @@ use App\Entity\Shop;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ShopType extends AbstractType
 {
@@ -14,6 +16,20 @@ class ShopType extends AbstractType
         $builder
             ->add('name')
             ->add('adress')
+            ->add('img', FileType::class, [
+                'label' => 'photo à uploader',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '10240k',      // 10 Mo ?
+                        'mimeTypes' => [
+                            'image/*',              // SEULEMENT DES IMAGES
+                        ],
+                        'mimeTypesMessage' => 'SEULEMENT UN FICHIER IMAGE...',
+                    ])
+                ],
+            ])
             ->add('paiement')
         ;
     }

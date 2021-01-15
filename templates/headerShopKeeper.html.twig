@@ -5,6 +5,10 @@
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 			<a class="navbar-brand" href="{{path('accueilshopkeeper')}}">
 				Market Place</a>
+			{% if app.user %}
+			<a class="nav-link text-white" href="{{ path('app_logout') }}">Déconnection</a>
+			{% else %}
+			{% endif %}	
 			<a class="nav-link text-white" href="{{ path('shop_index') }}">Ma boutiques</a>
 			<a class="nav-link text-white" href="{{ path('product_index') }}">Mes produits</a>
 		</nav>

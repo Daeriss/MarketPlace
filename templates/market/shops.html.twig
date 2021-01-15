@@ -1,41 +1,45 @@
 {% extends 'header.html.twig' %}
 
-{% block title %}PAGE shops{% endblock %}
+{% block title %}PAGE shops
+{% endblock %}
 
 
 {% block stylesheets %}
-<style>
-</style>
+	<style></style>
 {% endblock %}
 
 {% block body %}
 
-<section class="container-fluid">
-    <h2>MA SECTION POUR AFFICHER LISTE SHOPS</h2>
-    
-     <div class="row">
-        {% for shop in shops %}
-            <articles class="card m-5 col-3">
-                <h3 class="card-title">{{ shop.name }}</h3>
-                <div class="card-body">
-                    <div class="card-text">{{ shop.adress }}</div>
-                    <div class="card-text">{{ shop.paiement }}</div>
-                </div>
-                 <h4 class="pt-2 pb-2"><a href="{{ path('shop', { 'id' : shop.id }) }}">{{ shop.name }}</a></h4>
-            </articles>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-    </div>
+	<section class="container-fluid">
+		<h2>MA SECTION POUR AFFICHER LISTE SHOPS</h2>
 
-</section>
+		<div class="row">
+			{% for shop in shops %}
+				<div class="card m-5 col-3">
+					<h3 class="card-header text-center">{{ shop.name }}</h3>
+						<div><img class="img-fluid" src="{{ asset('assets/uploads/' ~ shop.img ) }}"></div>
+					<div class="card-body">
+						<p class="card-text">{{ shop.adress }}</p>
+                        <p class="card-text">{{ shop.paiement }}</p>
+					</div>
+					<div class="card-body">
+						<a href="{{ path('shop', { 'id' : shop.id }) }}">Voir la boutique</a>
+					</div>
+				</div>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</div>
+
+
+	</section>
 
 {% endblock %}
 
 {% block javascripts %}
 
-<script></script>
+	<script></script>
 
 {% endblock %}
