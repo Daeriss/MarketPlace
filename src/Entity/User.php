@@ -50,6 +50,11 @@ class User implements UserInterface
     private $shop;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+    
+    /**
      * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
      */
     private $orders;
@@ -173,6 +178,18 @@ class User implements UserInterface
     public function setShop(?Shop $shop): self
     {
         $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
 
         return $this;
     }
