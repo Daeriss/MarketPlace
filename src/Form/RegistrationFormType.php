@@ -20,7 +20,8 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('name')
             ->add ('shopKeeper', CheckboxType::class, [
-                'mapped' => false
+                'mapped' => false,
+                'required' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
