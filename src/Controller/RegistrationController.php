@@ -25,7 +25,9 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            if ( $form->get('shopKeeper') == true ) {
+            $shopkeeper = $form->get('shopkeeper')->getData();
+            dump($shopkeeper);
+            if ( $form->get('shopkeeper')->getData() == true ) {
                 
                 $user->setRoles(array('ROLE_SHOPKEEPER'));
                
@@ -41,17 +43,17 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
+           $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
+             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            );
+                 $authenticator,
+                 'main' // firewall name in security.yaml
+             );
         }
 
         return $this->render('registration/register.html.twig', [
