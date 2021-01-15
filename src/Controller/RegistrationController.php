@@ -33,7 +33,7 @@ class RegistrationController extends AbstractController
                
             }
             else {
-                $user->setRoles(array('ROLE_USER'));
+                $user->setRoles(array('ROLE_MEMBER'));
                 
             }
             $user->setPassword(
