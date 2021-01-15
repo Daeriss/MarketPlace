@@ -34,6 +34,7 @@
                 <div class="card-body">
                     <div class="card-text">{{ product.description }}</div>
                     <div class="card-text">{{ product.price }}</div>
+                    <button onclick="ajouterPanier({{ product.id }},{{ product.name }}, {{ product.price }})">ajouter ce produit au panier!</button>
                 </div>
                 
             </articles>
@@ -50,6 +51,27 @@
 
 {% block javascripts %}
 
-<script></script>
+<script>
+    function ajouterPanier( id, name, price )
+    {
+        var alreadyExistentItem = (sessionStorage.getItem(id));
+         
+        if(alreadyExistentItem==null || alreadyExistentItem==undefined)
+        {
+            var addedItem = ""+id+","+name+","+price+","+ 1;
+            sessionStorage.setItem(id, addedItem);
+            alert('premier ajout');
+        }
+        else{
+            var quantity=alreadyExistentItem.split(",")[3];
+            quantity++;
+             alert(quantity);
+            var addedItem = ""+id+","+name+","+price+","+ quantity;
+            sessionStorage.setItem(id, addedItem);
+        }
+    }
+
+
+</script>
 
 {% endblock %}
