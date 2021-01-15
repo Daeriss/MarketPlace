@@ -1,6 +1,6 @@
 {% extends 'header.html.twig' %}
 
-{% block title %}PAGE ACCUEIL
+{% block title %}Page d'accueil
 {% endblock %}
 
 {% block stylesheets %}
@@ -10,10 +10,11 @@
 
 {% block body %}
 	<section>
-		<h2>code postale</h2>
-		{{ form_start(form) }}
+		<h2>
+			{{ form_start(form) }}
+		</h2>
 		{{ form_widget(form) }}
-		<button class="btn btn-dark" >{{ button_label|default('Rechercher') }}</button>
+		<button class="btn btn-dark">{{ button_label|default('Rechercher') }}</button>
 		{{ form_end(form) }}
 	</section>
 

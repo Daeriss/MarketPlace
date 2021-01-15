@@ -1,17 +1,16 @@
 {% extends 'headerShopKeeper.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Mes produits{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+    <h1>Mes produits</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
-                <th>Price</th>
+                <th>Prix</th>
                 <th>Img</th>
                 <th>actions</th>
             </tr>
@@ -19,14 +18,13 @@
         <tbody>
         {% for product in products %}
             <tr>
-                <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }} €</td>
                 <td>{{ product.img }}</td>
                 <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
+                    <a href="{{ path('product_delete', {'id': product.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_new') }}">Create new</a>
+    <a href="{{ path('product_new') }}">Ajouter un produit</a>
 {% endblock %}

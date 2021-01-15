@@ -13,7 +13,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
- * @Route("/member/product")
+ * @Route("/shopkeeper/product")
  */
 class ProductController extends AbstractController
 {
