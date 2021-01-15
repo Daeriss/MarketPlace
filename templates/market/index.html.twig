@@ -10,11 +10,37 @@
 
 {% block body %}
 	<section>
-		<h2>code postale</h2>
-		{{ form_start(form) }}
-		{{ form_widget(form) }}
-		<button class="btn btn-dark" >{{ button_label|default('Rechercher') }}</button>
-		{{ form_end(form) }}
+		<div class="container-fluid container-acceuil">
+			<div class="row">
+				<div class="col-12 col-md-12">
+					<div class="row">
+						<div class="col-12 flex-center">
+							<h1>Click'N'Collect</h1>
+						</div>
+						<div class="col-12 flex-center">
+							<h2>Trouvez le service qu'il vous faut !</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5 container-rechercher">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<h2>Rechercher un commerce par Code postale</h2>
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					<button class="btn btn-rechercher" >{{ button_label|default('') }} <i class="fas fa-search-location fa-2x"></i></button>
+					{{ form_end(form) }}
+				</div>
+				<div class="col-12 col-md-6">
+					<img src="{{ asset('assets/img/shop.png') }}">
+				</div>
+			</div>
+		</div>
 	</section>
 
 
