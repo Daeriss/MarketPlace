@@ -3,15 +3,14 @@
 {% block title %}Shop index{% endblock %}
 
 {% block body %}
-    <h1>Shop index</h1>
+    <h1>Ma boutique</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Adress</th>
-                <th>Img</th>
+                <th>Nom</th>
+                <th>Arrondissement</th>
+                <th>Photo</th>
                 <th>Paiement Accepté</th>
                 <th>actions</th>
             </tr>
@@ -19,7 +18,6 @@
         <tbody>
         {% if (shop)  %}
             <tr>
-                <td>{{ shop.id }}</td>
                 <td>{{ shop.name }}</td>
                 <td>{{ shop.adress }}</td>
                 <td>{{ shop.img }}</td>
@@ -33,7 +31,7 @@
                 <td colspan="4">no records found</td>
             </tr>
         {% endif %}
-        <a href="{{path('product_index')}}">Mon catalogue </a>
+        
         </tbody>
     </table>
 
