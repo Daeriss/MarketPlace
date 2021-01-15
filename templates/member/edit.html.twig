@@ -20,9 +20,10 @@
 <a href="#" class="btn shadow-1 rounded-1 blue">Modifier le mot de passe</a>
 
 
-{{form(form)}}
-        <button class="btn btn-primary">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
-    {{ form_end(form) }}
+{{form_start(form)}}
+    {{ form_widget(form) }}
+        <h1>fff</h1><button class="btn btn-primary">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
+        {{ form_end(form) }}
 </div>
 
 </div>

@@ -26,15 +26,14 @@ class MemberController extends AbstractController
     {
         $user = $this->getUser();
         $form = $this->createForm(EditProfileType::class, $user);
+        dump($user);
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
             $em->flush();
 
             $this->addFlash('message', 'profil mis à jour');
-            return $this->redirectToRoute('modifier');
+            // return $this->redirectToRoute('modifier');
         }
 
         return $this->render('member/edit.html.twig', [
