@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
+
 	<header class="container-fluid p-0 mb-3">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 			<a class="navbar-brand" href="{{path('accueil')}}">
 			Market Place</a> 
 			{% if app.user %}
 			<a class="nav-link text-white" href="{{ path('app_logout') }}">déconnexion</a>
+			<a class="nav-link text-white" href="{{ path('app_account') }}">Mon Compte</a>
 			{% else %}
 
 			<a class="nav-link text-white" href="{{ path('app_register') }}">inscription</a>
