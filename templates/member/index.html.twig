@@ -1,4 +1,4 @@
-{% extends 'header.html.twig' %}
+{% extends 'user.html.twig' %}
 
 {% block body %}
 <style>
@@ -7,7 +7,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Salut {{ app.user.username }}! ✅</h1>
+    <h1>Salut {{ app.user.name }}! ✅</h1>
 
     <button class="btn btn-warning"> Modifier mes informations </button>
 
