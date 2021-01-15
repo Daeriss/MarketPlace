@@ -11,33 +11,27 @@
 {% block body %}
 
 	<section class="container-fluid">
-		<h2>MA SECTION POUR AFFICHER LISTE produits</h2>
-
-		<div class="row">
-			<articles class="card m-5 ">
-				<h3 class="card-title">{{ shop.name }}</h3>
-				<div class="card-body">
-					<div class="card-text">{{ shop.adress }}</div>
-					<div class="card-text">{{ shop.paiement }}</div>
-				</div>
-				<h4 class="pt-2 pb-2">
-					<a href="{{ path('shop', { 'id' : shop.id }) }}">{{ shop.name }}</a>
-				</h4>
-			</articles>
+		<div class="row m-3">
+				<h3 class="col">{{ shop.name }}</h3>
+				<div class="col">{{ shop.adress }}</div>
+				<div class="col">{{ shop.paiement }}</div>
 		</div>
 
 		<div class="row">
 			{% for product in products %}
-				<articles class="card m-5 col-3">
-					<h3 class="card-title">{{ product.name }}</h3>
+				<div class="card m-5 col-3">
+					<h3 class="card-header text-center">{{ product.name }}</h3>
+						<div class="" style="height: 8rem">
+							<img class="img-fluid" src="{{ asset('assets/uploads/' ~ product.img ) }}">
+						</div>
 					<div class="card-body">
-						<div><img class="img-fluid" src="{{ asset('assets/uploads/' ~ product.img ) }}"></div>
-						<div class="card-text">{{ product.description }}</div>
-						<div class="card-text">{{ product.price }}</div>
+						<p class="card-text">Description : {{ product.description  }}</p>
+                        <p class="card-text">Prix : {{ product.price }} €</p>
+					</div>
+					<div class="card-body">
 						<button onclick="ajouterPanier({{ product.id }},{{ product.name }}, {{ product.price }})">ajouter ce produit au panier!</button>
 					</div>
-
-				</articles>
+				</div>
 			{% else %}
 				<tr>
 					<td colspan="7">no records found</td>
