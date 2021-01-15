@@ -19,6 +19,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email')
             ->add('name')
+            ->add('firstname')
             ->add ('shopkeeper', CheckboxType::class, [
                 'mapped' => false,
                 'required' => false,
