@@ -18,6 +18,7 @@
             <articles class="card m-5 col-3">
                 <h3 class="card-title">{{ shop.name }}</h3>
                 <div class="card-body">
+                <div><img class="img-fluid" src="{{ asset('assets/uploads/' ~ shop.img ) }}"></div>
                     <div class="card-text">{{ shop.adress }}</div>
                     <div class="card-text">{{ shop.paiement }}</div>
                 </div>
