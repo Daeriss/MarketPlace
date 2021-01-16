@@ -1,0 +1,131 @@
+
+.example-wrapper {
+	margin: 1em auto;
+	max-width: 800px;
+	width: 95%;
+	font: 18px / 1.5 sans-serif;
+}
+
+.example-wrapper code {
+	background: #F5F5F5;
+	padding: 2px 6px;
+}
+    
+* {
+    box-sizing: border-box;
+}
+
+#panier {
+	width: 400px;
+	height: 80%;
+	position: sticky;
+	border-radius: 2px;
+}
+
+#NomPanier {
+	font-size: 180%;
+}
+
+.NomArticle,
+#panier {
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+    color: #fff;
+	text-align: center;
+}
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+
+		.btn {
+			border: none;
+			font-family: 'Lato';
+			font-size: inherit;
+			color: inherit;
+			background: none;
+			cursor: pointer;
+			padding: 25px 80px;
+			display: inline-block;
+			margin: 15px 30px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-weight: 700;
+			outline: none;
+			position: relative;
+			-webkit-transition: all 0.3s;
+			-moz-transition: all 0.3s;
+			transition: all 0.3s;
+		}
+
+		.btn:after {
+			content: '';
+			position: absolute;
+			z-index: -1;
+			-webkit-transition: all 0.3s;
+			-moz-transition: all 0.3s;
+			transition: all 0.3s;
+		}
+
+
+		/* Icon separator */
+		.btn-sep {
+			padding: 25px 60px 25px 120px;
+		}
+
+		.btn-sep:before {
+			background: rgba(0, 0, 0, 0.15);
+		}
+
+		/* Button 1 */
+		.btn-1 {
+			background: #3498db;
+			color: #fff;
+		}
+
+		.btn-1:hover {
+			background: #2980b9;
+		}
+
+		.btn-1:active {
+			background: #2980b9;
+			top: 2px;
+		}
+
+		.btn-1:before {
+			position: absolute;
+			height: 100%;
+			left: 0;
+			top: 0;
+			line-height: 3;
+			font-size: 140%;
+			width: 60px;
+		}
+
+		/* Icons */
+
+		.icon-cart:before {
+			content: "\f07a";
+		}
+
+		#checkout-btn {
+			top: 40%;
+		}
+
+
+		#side {
+
+			width: 30%;
+			max-width: 30%;
+			height: 100%;
+			padding-left: 8px;
+			padding-right: 8px;
+			position: relative;
+			background-color: grey;
+			left: 65%;
+            top: 15%;
+            flex: 2 1 auto;
+
+		}

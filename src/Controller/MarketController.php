@@ -92,4 +92,12 @@ class MarketController extends AbstractController
             'products' => $listeProducts
         ]);
     }
+
+    /**
+     * @Route("/cart", name="cart")
+     */
+    public function cart(): Response
+    {
+        return $this->render('market/cart.html.twig');
+    }
 }
