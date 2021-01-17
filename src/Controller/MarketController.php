@@ -96,14 +96,15 @@ class MarketController extends AbstractController
             'shop' => $shop,
             'products' => $listeProducts
         ]);
+
     }
 
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(): Response
+    public function cart(Request $request)
     {
-        return $this->render('market/cart.html.twig') ;
+        return $this->render('market/cart.html.twig');
     }
 
     /**
@@ -111,16 +112,15 @@ class MarketController extends AbstractController
      */
     public function cartValidator(Request $request, OrderRepository $orderRepository)
     {
-        if($request->isXmlHttpRequest()){
+        // if($request->isXmlHttpRequest()){
 
-            $panier = json_decode($request->request->get('a'));
-            dump($panier);
-            return new JsonResponse(json_decode($request->request->get('a')));
+        //     $panier = json_decode($request->request->get('a'));
+        //     dump($panier);
+        //     return new JsonResponse(json_decode($request->request->get('a')));
 
-        } 
+        // } 
 
-        dump($request->isXmlHttpRequest());
-        
+        // dump($request->isXmlHttpRequest());
         
         // $delimiter = '^';
         // $panier = explode($delimiter, $_POST['postArray']);

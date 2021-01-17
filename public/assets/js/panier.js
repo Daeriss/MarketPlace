@@ -1,10 +1,56 @@
 
 
+// function AfficherPanier() {
+
+//     var nbProduitsPanier = 0,
+//     totalPrice = 0,
+//     nbSingleProduitsPanier = 0;
+
+//     for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
+
+//         if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
+
+//             var quantiteCourante = (parseInt(sessionStorage[key].split(',')[1], 10));
+//             nbSingleProduitsPanier++;
+//             nbProduitsPanier += quantiteCourante;
+//             // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
+//             // prix qu'on multiplie par la quantité
+//             totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
+//         }
+//     }
+
+//     var child = document.getElementById("panier");
+//     child.innerHTML += "<p> contenu du Panier :" + nbSingleProduitsPanier + " produits (" + nbProduitsPanier + "differents) </p><ul>";
+//     child.innerHTML += "<br><button onclick=\"resetPanier()\" >Reset le panier </button><br>"
+
+//     for (var key in sessionStorage) {
+
+//         if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
+
+//             var name = sessionStorage[key].split(',')[2];
+//             var prix = sessionStorage[key].split(',')[3];
+//             var quantite = sessionStorage[key].split(',')[1];
+//             child.innerHTML += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + " ";
+
+//             var key2 = "\'" + key + "\'";
+//             var name2 = "\'" + name + "\'";
+//             var prix2 = "\'" + prix + "\'";
+//             child.innerHTML += '<button onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')">+</button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
+//             child.innerHTML += "</li>  ";
+//         }
+
+//     }
+//     child.innerHTML += "<br> Total Price : " + totalPrice + "<ul>";
+
+// }
+
+var nbProduitsPanier = 0,
+total = 0,
+nbSingleProduitsPanier = 0;
+
 function AfficherPanier() {
 
-    var nbProduitsPanier = 0,
-    totalPrice = 0,
-    nbSingleProduitsPanier = 0;
+    
 
     for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
 
@@ -15,13 +61,12 @@ function AfficherPanier() {
             nbProduitsPanier += quantiteCourante;
             // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
             // prix qu'on multiplie par la quantité
-            totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
+            total += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
         }
     }
 
+
     var child = document.getElementById("panier");
-    child.innerHTML += "<p> contenu du Panier :" + nbSingleProduitsPanier + " produits (" + nbProduitsPanier + "differents) </p><ul>";
-    child.innerHTML += "<br><button onclick=\"resetPanier()\" >Reset le panier </button><br>"
 
     for (var key in sessionStorage) {
 
@@ -30,19 +75,19 @@ function AfficherPanier() {
             var name = sessionStorage[key].split(',')[2];
             var prix = sessionStorage[key].split(',')[3];
             var quantite = sessionStorage[key].split(',')[1];
-            child.innerHTML += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + " ";
-
+            
             var key2 = "\'" + key + "\'";
             var name2 = "\'" + name + "\'";
             var prix2 = "\'" + prix + "\'";
-            child.innerHTML += '<button onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')">+</button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
+            child.innerHTML += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '<button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
             child.innerHTML += "</li>  ";
         }
 
     }
-    child.innerHTML += "<br> Total Price : " + totalPrice + "<ul>";
+    child.innerHTML += "<br> Prix total : " + total + "<ul>";
 
 }
+
 
 
 function flushPanier() {
@@ -117,7 +162,7 @@ function getPanier() {
         
     }
 
-    panier [4] = totalPrice;
+    panier [i+1] = totalPrice;
 
     var url = $('#checkout-btn').val();
 
@@ -135,6 +180,7 @@ function getPanier() {
                 alert("Success"); 
           } 
         });
+
 
        
 }

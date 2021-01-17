@@ -3,26 +3,27 @@
 {% block title %}Hello CartController!
 {% endblock %}
 
+
 {% block body %}
 
 
-	<div id="side">
-		<div
-			id="panier" class="rounded-lg border">
-			<!-- il faudrait quand même modif le nom du vendeur ici -->
-			<p class="titrePanier centered">Votre Panier chez Nom du shop</p>
+	<div class="container-fluid col-5 m-3 d-flex flex-direction: row justify-content-center border" id="panier">
 
-			<div>panier</div>
-			<a href="{{ path('cartValidator') }}"><button class="btn btn-primary" id="checkout-btn" value="{{ path('cartValidator') }}" onClick="getPanier()">Valider mon Panier</button></a>
+		<p class="titrePanier text-center">Votre Panier chez Nom du shop</p>
+
+		<h2 class="text-center">Panier</h2>
+		<script src="../public/assets/js/panier.js"></script>
+		<script>
+			AfficherPanier();
+		</script>
+		<div class="container-fluid d-flex justify-content-center">
+			<a href="{{ path('cartValidator') }}">
+				<button class="btn btn-dark m-3" id="checkout-btn" value="{{ path('cartValidator') }}" onclick="getPanier()">Valider mon Panier</button>
+			</a>
+			<button class="btn btn-dark m-3" onclick='resetPanier()'>Reset le panier
+			</button>
 		</div>
 
+
 	</div>
-{% endblock %}
-{% block javascripts %}
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="../public/assets/js/panier.js"></script>
-	<script>
-		AfficherPanier();
-		
-	</script>
 {% endblock %}
