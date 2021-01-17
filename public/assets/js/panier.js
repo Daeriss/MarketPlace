@@ -94,3 +94,48 @@ function resetPanier() {
     flushPanier();
 }
 
+function getPanier() {
+
+    
+   var panier = ["0" , "0", "0"];
+    var totalPrice = 0;
+    var i = 0;
+    for (var key in sessionStorage){
+
+        
+        if(typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
+    
+            var prix = sessionStorage[key].split(',')[3];
+            var quantite = sessionStorage[key].split(',')[1];
+            totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantite);
+            panier [i] = key; 
+            panier [i+1] = quantite; 
+           
+        }
+        i+=2;
+        
+        
+    }
+
+    panier [4] = totalPrice;
+
+    var url = $('#checkout-btn').val();
+
+    console.log(panier);
+    delimiter = '^';
+    var postArray = panier.join(delimiter);
+    jsonpanier = JSON.stringify(panier)
+    xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
+    var a = 3;
+     $.ajax({ 
+         type: "POST", 
+         url: url, 
+         data: { a: a }, 
+         success: function() { 
+                alert("Success"); 
+          } 
+        });
+
+       
+}
+

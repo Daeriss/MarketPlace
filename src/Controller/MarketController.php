@@ -8,10 +8,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\DistrictType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\InputBag;
 use App\Repository\ShopRepository;
 use App\Entity\Shop;
 use App\Entity\Product;
+use App\Entity\Order;
+use App\Form\CartValidatorType;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MarketController extends AbstractController
 {
@@ -98,6 +103,51 @@ class MarketController extends AbstractController
      */
     public function cart(): Response
     {
-        return $this->render('market/cart.html.twig');
+        return $this->render('market/cart.html.twig') ;
+    }
+
+    /**
+     * @Route("/cartValidator", name="cartValidator")
+     */
+    public function cartValidator(Request $request, OrderRepository $orderRepository)
+    {
+        if($request->isXmlHttpRequest()){
+
+            $panier = json_decode($request->request->get('a'));
+            dump($panier);
+            return new JsonResponse(json_decode($request->request->get('a')));
+
+        } 
+
+        dump($request->isXmlHttpRequest());
+        
+        
+        // $delimiter = '^';
+        // $panier = explode($delimiter, $_POST['postArray']);
+
+        $order = new Order();
+
+        $form = $this->createForm(CartValidatorType::class);
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        
+
+        if ( $user != null) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $order->setorderNumber(rand(0, 100));
+                $order->setDate(new \DateTime());
+                $order->setUser($user);
+            }
+        
+            return $this->render('market/cartValidator.html.twig', [
+                'form' => $form->createView(),
+                ]);
+            }
+
+        else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

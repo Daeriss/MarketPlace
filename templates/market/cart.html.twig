@@ -4,26 +4,25 @@
 {% endblock %}
 
 {% block body %}
-	
+
 
 	<div id="side">
 		<div
 			id="panier" class="rounded-lg border">
 			<!-- il faudrait quand même modif le nom du vendeur ici -->
-			<p class="titrePanier centered">Votre Panier chez NomVendeur</p>
+			<p class="titrePanier centered">Votre Panier chez Nom du shop</p>
 
 			<div>panier</div>
-			<button class="btn btn-1 btn-sep icon-cart" id="checkout-btn">Réservez votre achat!</button>
-
+			<a href="{{ path('cartValidator') }}"><button class="btn btn-primary" id="checkout-btn" value="{{ path('cartValidator') }}" onClick="getPanier()">Valider mon Panier</button></a>
 		</div>
 
 	</div>
 {% endblock %}
 {% block javascripts %}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../public/assets/js/panier.js"></script>
 	<script>
 		AfficherPanier();
+		
 	</script>
 {% endblock %}
