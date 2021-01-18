@@ -18,6 +18,13 @@ class MemberController extends AbstractController
         return $this->render('member/index.html.twig');
     }
 
+    /**
+     * @Route("/mon-compte/mes-commandes", name="app_account_orders")
+     */
+    public function commandes(): Response
+    {
+        return $this->render('member/orders.html.twig');
+    }
 
     /**
      * @Route("/mon-compte/modifier", name="app_account_edit" , methods={"GET","POST"})

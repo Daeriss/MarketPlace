@@ -1,0 +1,69 @@
+{% extends 'user.html.twig' %}
+
+{% block body %}
+<style>
+
+    /* TABLES COMMANDE */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+</style>
+
+<div class="example-wrapper container">
+
+
+<h2>Commandes en cours :</h2>
+
+<table>
+  <tr>
+    <th>Magasin</th>
+    <th>Etat de la commande</th>
+    <th>Prix</th>
+  </tr>
+  <tr>
+    <td>Sephora</td>
+    <td>En cours de préparation</td>
+    <td>15,00€</td>
+  </tr>
+  <tr>
+    <td>Sephora</td>
+    <td>Prête</td>
+    <td>35,00€</td>
+  </tr>
+  <tr>
+    <td>Sephora</td>
+    <td>Récupérée</td>
+    <td>30,00€</td>
+  </tr>
+  <tr>
+    <td>Sephora</td>
+    <td>Récupérée</td>
+    <td>64,00€</td>
+  </tr>
+  <tr>
+    <td>Sephora</td>
+    <td>Récupérée</td>
+    <td>60,00€</td>
+  </tr>
+  <tr>
+    <td>Sephora</td>
+    <td>Récupérée</td>
+    <td>12,00€</td>
+  </tr>
+</table>
+
+</div>
+{% endblock %}

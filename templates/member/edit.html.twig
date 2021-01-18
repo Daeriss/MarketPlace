@@ -7,22 +7,9 @@
 <section class="container">
     <h2>Editer mon profil</h2>
 
-<div class="grix xs4 container">
-<div class="col-xs4"> profil de {{ app.user.firstname }} </div>
-  <div class="col-xs1">Nom</div>
-  <div class="col-xs3">{{app.user.name}}</div>
-  <div class="col-xs1">Prenom</div>
-  <div class="col-xs3">{{app.user.firstname}}</div>
-  <div class="col-xs1">Email</div>
-  <div class="col-xs3">{{app.user.email}}</div>
-<div class="col-xs4"> 
-<a href="#" class="btn shadow-1 rounded-1 blue">Modifier le profil</a>
-<a href="#" class="btn shadow-1 rounded-1 blue">Modifier le mot de passe</a>
-
-
 {{form_start(form)}}
     {{ form_widget(form) }}
-        <h1>fff</h1><button class="btn btn-primary">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
+        <button class="btn btn-primary">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
         {{ form_end(form) }}
 </div>
 

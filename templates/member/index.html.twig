@@ -4,55 +4,28 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+
+
 </style>
 
 <div class="example-wrapper">
-    <h1>Salut {{ app.user.name }}! ✅</h1>
+    <h1>Salut {{ app.user.name }}! </h1>
+    <h3> Mon compte </h3>
+<div class="grix xs4 container">
+<div class="col-xs4"> profil de {{ app.user.firstname }} </div>
+  <div class="col-xs1">Nom</div>
+  <div class="col-xs3">{{app.user.name}}</div>
+  <div class="col-xs1">Prenom</div>
+  <div class="col-xs3">{{app.user.firstname}}</div>
+  <div class="col-xs1">Email</div>
+  <div class="col-xs3">{{app.user.email}}</div>
+<div class="col-xs4"> 
+<a href="{{ path('app_account_edit')}}" class="btn shadow-1 rounded-1 blue">Modifier le profil</a>
+<a href="#" class="btn shadow-1 rounded-1 blue">Modifier le mot de passe</a>
 
-    <button class="btn btn-warning"> Modifier mes informations </button>
 
-<h2>Commandes en cours :</h2>
 
-<table>
-  <tr>
-    <th>Magasin</th>
-    <th>Etat de la commande</th>
-    <th>Prix</th>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>En cours de préparation</td>
-    <td>15,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Prête</td>
-    <td>35,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>30,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>64,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>60,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>12,00€</td>
-  </tr>
-</table>
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xamppp/htdocs/MarketPlace/MarketPlace/src/Controller/MemberController.php'|file_link(0) }}">src/Controller/MemberController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xamppp/htdocs/MarketPlace/MarketPlace/templates/member/index.html.twig'|file_link(0) }}">templates/member/index.html.twig</a></code></li>
-    </ul>
+
 </div>
 {% endblock %}
