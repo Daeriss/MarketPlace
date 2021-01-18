@@ -5,6 +5,11 @@
 {% block body %}
 
 <section class="container">
+<div>
+  {% for message in app.flashes('message')%}
+    <div class="p-3 m-2 rounded-2 success"> {{message}} </div>
+</div>
+  {% endfor %}  
     <h2>Editer mon profil</h2>
 
 {{form_start(form)}}
