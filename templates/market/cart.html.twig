@@ -18,19 +18,18 @@
 		<script>
 			AfficherPanier();
 		</script>
-		<div class="container-fluid d-flex justify-content-center">
-			<a href="{{ path('cartValidator') }}">
-			{% set panier = "getPanier()" %}
-				
-				<input type="text" id="input" value=""></input> 
-				<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >Valider mon Panier</button>
-			</a>
+		<div class="container-fluid d-flex flex-row  justify-content-center">
+				 
+			{{ form_start(form) }}
 			
-			<button class="btn btn-dark m-3" onclick='resetPanier()'>Reset le panier
-			</button>
+			{{ form_widget(form) }}
+			<a href="{{ path('cart') }}">
+			<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
+			</a>
+			{{ form_end(form) }}
+			{# <button class="btn btn-dark m-3" onclick='resetPanier()'>Reset le panier
+			</button> #}
 		</div>
-
-
 
 	</div>
 	<script>

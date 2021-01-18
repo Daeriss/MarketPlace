@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\DistrictType;
+use App\Form\CartType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\InputBag;
 use App\Repository\ShopRepository;
@@ -102,9 +103,39 @@ class MarketController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request)
+    public function cart(Request $request,  OrderRepository $orderRepository)
     {
-        return $this->render('market/cart.html.twig');
+        $form = $this->createForm(CartType::class);
+        $form->handleRequest($request);
+
+        $order = new Order();
+
+        $user = $this->getUser();
+
+        if ( $user != null) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $panierString = $form->get('input')->getData();
+                dump($panierString);
+                $delimiter = '^';
+                $panier = explode($delimiter, $panierString);
+                dump($panier);
+                
+                $order->setorderNumber(rand(0, 100));
+                $order->setDate(new \DateTime());
+                $order->setUser($user);
+            }
+        
+            return $this->render('market/cart.html.twig', [
+                'form' => $form->createView(),
+            ]);
+
+            }
+
+        else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     /**
