@@ -30,7 +30,7 @@ Page d'accueil
 	<section class="py-5 container-rechercher">
 		<div class="container">
 			<div class="row">
-				<div class="col-6">
+				<div class="col-12 col-md-6">
 					<h2>Rechercher un commerce par Code postale</h2>
 					{{ form_start(form) }}
 					{{ form_widget(form) }}
@@ -38,7 +38,60 @@ Page d'accueil
 					{{ form_end(form) }}
 				</div>
 				<div class="col-12 col-md-6">
-					<img src="{{ asset('assets/img/shop.png') }}">
+					<img src="{{ asset('assets/img/clickncollect.png') }}">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-5 container-concept">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<h2>Les avantages</h2>
+				</div>
+				<div class="row">
+					<div class="col-6 col-sm-4">
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<i class="fas fa-thumbtack fa-3x"></i>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<p>Soutenez les commerçants locaux.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-6 col-sm-4">
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<i class="fas fa-shopping-basket fa-3x"></i>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<p>Commandez de n'importe où.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-6 col-sm-4">
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<i class="fas fa-store-alt fa-3x"></i>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-12">
+								<p>Facile et rapide d'utilisation.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<img src="{{ asset('assets/img/shop.png') }}" class="img-cnc">
 				</div>
 			</div>
 		</div>
