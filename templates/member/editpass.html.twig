@@ -1,0 +1,38 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Espace Membre{% endblock %}
+
+{% block body %}
+
+<section class="container">
+<div>
+  {% for message in app.flashes('error')%}
+    <div class="p-3 m-2 rounded-2 error"> {{message}} </div>
+</div>
+  {% endfor %}  
+    <h2>Editer mon profil</h2>
+
+        <form method="post"> 
+        <div class="form-field">
+        <label for="pass"> Mot de passe </label>
+        <input type="password" id="pass" name="pass" class="form-control">
+        </div>
+        <div class="form-field">
+        <label for="pass2"> Cofirmer le mot de passe </label>
+        <input type="password" id="pass2" name="pass2" class="form-control">
+        </div>
+        <button class="btn blue"> Valider </button>
+        
+        </form>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+   
+
+{% endblock %}

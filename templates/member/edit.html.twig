@@ -5,12 +5,18 @@
 {% block body %}
 
 <section class="container">
+<div>
+  {% for message in app.flashes('message')%}
+    <div class="p-3 m-2 rounded-2 success"> {{message}} </div>
+</div>
+  {% endfor %}  
     <h2>Editer mon profil</h2>
 
 {{form_start(form)}}
     {{ form_widget(form) }}
         <button class="btn btn-primary">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
-        {{ form_end(form) }}
+        {{ form_end(form) }} <br>
+        Ou <button class="btn btn-primary"> <a style="color: white" href="{{ path('app_account_edit_mdp') }}">Modifier le mot de passe </a></button>
 </div>
 
 </div>
