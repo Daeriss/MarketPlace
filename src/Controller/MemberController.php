@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\EditProfileType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MemberController extends AbstractController
 {
@@ -46,6 +47,32 @@ class MemberController extends AbstractController
         return $this->render('member/edit.html.twig', [
             'form' => $form->createView()
         ]);
+    
+    }
+
+
+/**
+     * @Route("/mon-compte/modifier/motdepasse", name="app_account_edit_mdp" , methods={"GET","POST"})
+     */
+    public function editPass(request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        if($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $this->getUser();
+            // Verification si les deux MDP sont identique -- SECURITE
+            if($request->request->get('pass') == $request->request->get('pass2')){
+                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
+                $em->flush();
+                $this->addFlash('message', 'mot de passe a été mis à jour');
+                return $this->redirectToRoute('app_account_edit');
+            }else{
+                $this->addFlash('error', 'Les deux mots de passe ne sont pas identiques');
+            }
+        }
+
+
+
+        return $this->render('member/editpass.html.twig');
     
     }
 }
