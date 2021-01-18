@@ -142,24 +142,21 @@ function resetPanier() {
 function getPanier() {
 
     
-   var panier = ["0" , "0", "0"];
+   var panier = [];
     var totalPrice = 0;
     var i = 0;
     for (var key in sessionStorage){
 
-        
         if(typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
     
             var prix = sessionStorage[key].split(',')[3];
             var quantite = sessionStorage[key].split(',')[1];
             totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantite);
             panier [i] = key; 
-            panier [i+1] = quantite; 
-           
+            panier [i+1] = quantite;  
+            i+=2;
         }
-        i+=2;
-        
-        
+          
     }
 
     panier [i+1] = totalPrice;
@@ -169,19 +166,46 @@ function getPanier() {
     console.log(panier);
     delimiter = '^';
     var postArray = panier.join(delimiter);
-    jsonpanier = JSON.stringify(panier)
-    xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
-    var a = 3;
-     $.ajax({ 
-         type: "POST", 
-         url: url, 
-         data: { a: a }, 
-         success: function() { 
-                alert("Success"); 
-          } 
-        });
+    //jsonpanier = JSON.stringify(panier)
+    // xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
+    // var a = 3;
+    //  $.ajax({ 
+    //      type: "POST", 
+    //      url: url, 
+    //      data: { a: a }, 
+    //      success: function() { 
+    //             alert("Success"); 
+    //       } 
+    //     });
 
+    // var neSw = {"data": {"ne": ne, "sw": sw}};
+    // $.ajax({
+    //     url: url,
+    //     type: "post",
+    //     data: neSw,
+    //     dataType: 'json'
+    //  })
 
+    return postArray;
+    
        
 }
+$(document).ready(function() {
+    // you may need to change this code if you are not using Bootstrap Datepicker
+    $('.js-datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+});
+
+function setPanier() {
+
+    panier = getPanier();
+    var input = document.getElementById('cart_input');
+    input.setAttribute("value" , panier);
+    input.setAttribute("type" , "hidden");
+
+}
+
+
+
 

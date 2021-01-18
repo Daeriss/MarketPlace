@@ -3,7 +3,9 @@
 {% block title %}Hello CartController!
 {% endblock %}
 
-
+ {% block javascripts %}
+ <script src="../public/assets/js/panier.js"></script> 
+{% endblock %}
 {% block body %}
 
 
@@ -12,18 +14,25 @@
 		<p class="titrePanier text-center">Votre Panier chez Nom du shop</p>
 
 		<h2 class="text-center">Panier</h2>
-		<script src="../public/assets/js/panier.js"></script>
+		 
 		<script>
 			AfficherPanier();
 		</script>
-		<div class="container-fluid d-flex justify-content-center">
-			<a href="{{ path('cartValidator') }}">
-				<button class="btn btn-dark m-3" id="checkout-btn" type ="submit" value="getPanier()">Valider mon Panier</button>
+		<div class="container-fluid d-flex flex-row  justify-content-center">
+				 
+			{{ form_start(form) }}
+			
+			{{ form_widget(form) }}
+			<a href="{{ path('cart') }}">
+			<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
 			</a>
-			<button class="btn btn-dark m-3" onclick='resetPanier()'>Reset le panier
-			</button>
+			{{ form_end(form) }}
+			{# <button class="btn btn-dark m-3" onclick='resetPanier()'>Reset le panier
+			</button> #}
 		</div>
 
-
 	</div>
+	<script>
+	setPanier();
+	</script>
 {% endblock %}

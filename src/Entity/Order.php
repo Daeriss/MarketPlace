@@ -29,7 +29,7 @@ class Order
     private $checkout;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -44,6 +44,12 @@ class Order
      * @ORM\JoinColumn(nullable=false)
      */
     private $shop;
+
+    /**
+     * @ORM\OneToOne(targetEntity=OrderDetails::class, inversedBy="orders", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $orderDetails;
 
     public function getId(): ?int
     {
@@ -106,6 +112,18 @@ class Order
     public function setShop(?Shop $shop): self
     {
         $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getOrderDetails(): ?OrderDetails
+    {
+        return $this->orderDetails;
+    }
+
+    public function setOrderDetails(OrderDetails $orderDetails): self
+    {
+        $this->orderDetails = $orderDetails;
 
         return $this;
     }

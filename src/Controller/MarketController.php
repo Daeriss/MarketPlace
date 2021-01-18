@@ -7,14 +7,17 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\DistrictType;
+use App\Form\CartType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\InputBag;
 use App\Repository\ShopRepository;
 use App\Entity\Shop;
 use App\Entity\Product;
 use App\Entity\Order;
+use App\Entity\OrderDetails;
 use App\Form\CartValidatorType;
 use App\Repository\OrderRepository;
+use App\Repository\OrderDetailsRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -102,9 +105,68 @@ class MarketController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request)
+    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository) : Response
     {
-        return $this->render('market/cart.html.twig');
+        $form = $this->createForm(CartType::class);
+        $form->handleRequest($request);
+
+        $order = new Order();
+        $orderdet = new OrderDetails();
+        
+        $user = $this->getUser();
+
+        if ( $user != null) {
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $panierString = $form->get('input')->getData();
+                $delimiter = '^';
+                $panier = explode($delimiter, $panierString);
+
+                
+                $idproduct = $panier[0];
+                $shopProduct = $productRepository->findOneBy(['id' => $idproduct]);
+                $shop = $shopProduct->getShop();
+
+                $order->setOrderDetails($orderdet);
+                $orderdet->setOrders($order);
+
+                $orderDetails = $order->getOrderDetails();
+                $taillepanier = count($panier);
+                $collectDate = $form->get('collect_date')->getData();
+
+                for ($i=0; $i<$taillepanier; $i+=2 ) {
+
+                    if  (isset($panier[$i]) && $panier[$i]!=null && $panier[$i]!="") {
+
+                        $currentproduct = $productRepository->findOneBy(['id' => $panier[$i]]);
+                        $orderDetails->addProduct($currentproduct);
+                    }
+
+                }
+                $order->setCheckout(end($panier));
+                $order->setorderNumber(rand(0, 100));
+                $order->setDate(new \DateTime());
+                $order->setUser($user);
+                $order->setShop($shop);
+
+                $orderDetails->setCollectDate($collectDate);
+                $orderDetails->setOrderStatus("en Cours");
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($order);
+                $entityManager->flush();
+            }
+        
+            return $this->render('market/cart.html.twig', [
+                'form' => $form->createView(),
+            ]);
+
+            }
+
+        else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 
     /**
@@ -125,29 +187,11 @@ class MarketController extends AbstractController
         // $delimiter = '^';
         // $panier = explode($delimiter, $_POST['postArray']);
 
-        $order = new Order();
+        // $data = json_decode($request->request->get('data'));
+        //    var_dump($data); // Here you can see your vars sent by AJAX
+        //    $dataResponse = array("error" => false); //Here data you can send back
+        //    return new JsonResponse($dataResponse);
 
-        $form = $this->createForm(CartValidatorType::class);
-        $form->handleRequest($request);
-        $user = $this->getUser();
-        
-
-        if ( $user != null) {
-
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                $order->setorderNumber(rand(0, 100));
-                $order->setDate(new \DateTime());
-                $order->setUser($user);
-            }
-        
-            return $this->render('market/cartValidator.html.twig', [
-                'form' => $form->createView(),
-                ]);
-            }
-
-        else {
-            return $this->redirectToRoute('app_login');
-        }
+     
     }
 }
