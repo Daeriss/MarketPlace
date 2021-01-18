@@ -29,10 +29,6 @@ class OrderDetails
      */
     private $CollectDate;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $PaymentMethod;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -85,17 +81,6 @@ class OrderDetails
         return $this;
     }
 
-    public function getPaymentMethod(): ?string
-    {
-        return $this->PaymentMethod;
-    }
-
-    public function setPaymentMethod(string $PaymentMethod): self
-    {
-        $this->PaymentMethod = $PaymentMethod;
-
-        return $this;
-    }
 
     public function getOrderStatus(): ?string
     {
