@@ -159,7 +159,6 @@ class MarketController extends AbstractController
                             $orderDetails->addProduct($currentproduct);
                         }
                     }
-
                 }
                 $order->setCheckout(end($panier));
                 $order->setorderNumber(rand(0, 100));
