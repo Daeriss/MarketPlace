@@ -6,17 +6,18 @@
 			<a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueil')}}">
 				<img src="{{ asset('assets/img/logo2.png') }}" class="img-fluid logo-img">
 			</a> 
-			{% if app.user %}
-			<a class="nav-link text-white" href="{{ path('app_logout') }}">déconnexion</a>
-			<a class="nav-link text-white" href="{{ path('app_account') }}">Mon Compte</a>
-			{% else %}
-
-			<a class="nav-link text-white" href="{{ path('app_register') }}">inscription</a>
-			<a class="nav-link text-white" href="{{ path('app_login') }}">Connexion</a>
-			{% endif %}
-			<a class="nav-link text-white" href="{{ path('cart') }}">Panier</a>
+			
 
 			<div class="flex-center">
+			{% if app.user %}
+			<a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
+			<a class="nav-link" href="{{ path('app_account') }}">Mon Compte</a>
+			{% else %}
+
+			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>
+			<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+			{% endif %}
+			<a class="nav-link" href="{{ path('cart') }}">Panier</a>
 				<a class="nav-link" href="#">Le concept</a>
 			</div>
 		</nav>

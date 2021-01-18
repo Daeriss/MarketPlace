@@ -132,7 +132,28 @@ p + a {
     background-color: white;
 }
 
+.img-cnc{
+    width: 80%;
+}
 
+/* Concept section */
+
+.container-concept {
+    background-color: var(--primary-color);
+}
+
+.container-concept h2{
+    color: var(--secondary-color);
+    font-size: 28px; 
+}
+
+.container-concept p {
+    color: white; 
+}
+
+.container-concept i {
+    color: white; 
+}
 
 
 
