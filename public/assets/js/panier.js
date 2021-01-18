@@ -154,12 +154,9 @@ function getPanier() {
             var quantite = sessionStorage[key].split(',')[1];
             totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantite);
             panier [i] = key; 
-            panier [i+1] = quantite; 
-           
+            panier [i+1] = quantite;  
         }
-        i+=2;
-        
-        
+        i+=2;  
     }
 
     panier [i+1] = totalPrice;
@@ -170,18 +167,38 @@ function getPanier() {
     delimiter = '^';
     var postArray = panier.join(delimiter);
     jsonpanier = JSON.stringify(panier)
-    xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
-    var a = 3;
-     $.ajax({ 
-         type: "POST", 
-         url: url, 
-         data: { a: a }, 
-         success: function() { 
-                alert("Success"); 
-          } 
-        });
+    // xhr.setRequestHeader("X-Requested-With","XMLHttpRequest");
+    // var a = 3;
+    //  $.ajax({ 
+    //      type: "POST", 
+    //      url: url, 
+    //      data: { a: a }, 
+    //      success: function() { 
+    //             alert("Success"); 
+    //       } 
+    //     });
 
+    // var neSw = {"data": {"ne": ne, "sw": sw}};
+    // $.ajax({
+    //     url: url,
+    //     type: "post",
+    //     data: neSw,
+    //     dataType: 'json'
+    //  })
 
+    return postArray;
+    
        
 }
+
+function setPanier() {
+
+    panier = getPanier();
+    var input = document.getElementById('input');
+    input.setAttribute("value" , panier);
+
+}
+
+
+
 

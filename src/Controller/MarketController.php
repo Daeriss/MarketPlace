@@ -110,7 +110,7 @@ class MarketController extends AbstractController
     /**
      * @Route("/cartValidator", name="cartValidator")
      */
-    public function cartValidator(Request $request, OrderRepository $orderRepository)
+    public function cartValidator(Request $request, OrderRepository $orderRepository) : Response
     {
         // if($request->isXmlHttpRequest()){
 
@@ -124,6 +124,11 @@ class MarketController extends AbstractController
         
         // $delimiter = '^';
         // $panier = explode($delimiter, $_POST['postArray']);
+
+        // $data = json_decode($request->request->get('data'));
+        //    var_dump($data); // Here you can see your vars sent by AJAX
+        //    $dataResponse = array("error" => false); //Here data you can send back
+        //    return new JsonResponse($dataResponse);
 
         $order = new Order();
 
