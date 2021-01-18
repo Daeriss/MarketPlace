@@ -14,8 +14,10 @@ use App\Repository\ShopRepository;
 use App\Entity\Shop;
 use App\Entity\Product;
 use App\Entity\Order;
+use App\Entity\OrderDetails;
 use App\Form\CartValidatorType;
 use App\Repository\OrderRepository;
+use App\Repository\OrderDetailsRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -103,13 +105,14 @@ class MarketController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request,  OrderRepository $orderRepository)
+    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository) : Response
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
 
         $order = new Order();
-
+        $orderdet = new OrderDetails();
+        
         $user = $this->getUser();
 
         if ( $user != null) {
@@ -117,14 +120,42 @@ class MarketController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $panierString = $form->get('input')->getData();
-                dump($panierString);
                 $delimiter = '^';
                 $panier = explode($delimiter, $panierString);
-                dump($panier);
+
                 
+                $idproduct = $panier[0];
+                $shopProduct = $productRepository->findOneBy(['id' => $idproduct]);
+                $shop = $shopProduct->getShop();
+
+                $order->setOrderDetails($orderdet);
+                $orderdet->setOrders($order);
+
+                $orderDetails = $order->getOrderDetails();
+                $taillepanier = count($panier);
+                $collectDate = $form->get('collect_date')->getData();
+
+                for ($i=0; $i<$taillepanier; $i+=2 ) {
+
+                    if  (isset($panier[$i]) && $panier[$i]!=null && $panier[$i]!="") {
+
+                        $currentproduct = $productRepository->findOneBy(['id' => $panier[$i]]);
+                        $orderDetails->addProduct($currentproduct);
+                    }
+
+                }
+                $order->setCheckout(end($panier));
                 $order->setorderNumber(rand(0, 100));
                 $order->setDate(new \DateTime());
                 $order->setUser($user);
+                $order->setShop($shop);
+
+                $orderDetails->setCollectDate($collectDate);
+                $orderDetails->setOrderStatus("en Cours");
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($order);
+                $entityManager->flush();
             }
         
             return $this->render('market/cart.html.twig', [
@@ -141,7 +172,7 @@ class MarketController extends AbstractController
     /**
      * @Route("/cartValidator", name="cartValidator")
      */
-    public function cartValidator(Request $request, OrderRepository $orderRepository) : Response
+    public function cartValidator(Request $request, OrderRepository $orderRepository)
     {
         // if($request->isXmlHttpRequest()){
 
@@ -161,29 +192,6 @@ class MarketController extends AbstractController
         //    $dataResponse = array("error" => false); //Here data you can send back
         //    return new JsonResponse($dataResponse);
 
-        $order = new Order();
-
-        $form = $this->createForm(CartValidatorType::class);
-        $form->handleRequest($request);
-        $user = $this->getUser();
-        
-
-        if ( $user != null) {
-
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                $order->setorderNumber(rand(0, 100));
-                $order->setDate(new \DateTime());
-                $order->setUser($user);
-            }
-        
-            return $this->render('market/cartValidator.html.twig', [
-                'form' => $form->createView(),
-                ]);
-            }
-
-        else {
-            return $this->redirectToRoute('app_login');
-        }
+     
     }
 }

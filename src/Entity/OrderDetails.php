@@ -25,7 +25,7 @@ class OrderDetails
     private $product;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $CollectDate;
 
@@ -34,6 +34,11 @@ class OrderDetails
      * @ORM\Column(type="string", length=255)
      */
     private $OrderStatus;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Order::class, mappedBy="orderDetails", cascade={"persist", "remove"})
+     */
+    private $orders;
 
     public function __construct()
     {
@@ -90,6 +95,23 @@ class OrderDetails
     public function setOrderStatus(string $OrderStatus): self
     {
         $this->OrderStatus = $OrderStatus;
+
+        return $this;
+    }
+
+    public function getOrders(): ?Order
+    {
+        return $this->orders;
+    }
+
+    public function setOrders(Order $orders): self
+    {
+        // set the owning side of the relation if necessary
+        if ($orders->getOrderDetails() !== $this) {
+            $orders->setOrderDetails($this);
+        }
+
+        $this->orders = $orders;
 
         return $this;
     }
