@@ -22,7 +22,7 @@ class ProductType extends AbstractType
             ->add('img', FileType::class, [
                 'label' => 'photo à uploader',
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new File([
                         'maxSize' => '10240k',      // 10 Mo ?

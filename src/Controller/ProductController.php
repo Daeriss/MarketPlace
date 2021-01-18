@@ -22,9 +22,17 @@ class ProductController extends AbstractController
      */
     public function index(ProductRepository $productRepository): Response
     {
+        $user = $this->getUser();
+        $shop = $user->getShop();
+        $idShop = $shop->getId();
+
+        $listeProducts = $productRepository->findBy(
+            ['shop' => $shop],
+            []
+        );
+
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
-        ]);
+            'products' => $listeProducts]);
     }
 
     /**
@@ -37,7 +45,7 @@ class ProductController extends AbstractController
 
         $shop = $user->getShop();
         $product->setShop($shop);
-       
+
         dump($user);
         dump($shop);
 
@@ -60,7 +68,6 @@ class ProductController extends AbstractController
                         $newFilename
                     );
                 } catch (FileException $e) {
-                   
                 }
 
                 $product->setImg($newFilename);       // ON ENREGISTRE LE NOM DU FICHIER
@@ -113,7 +120,7 @@ class ProductController extends AbstractController
      */
     public function delete(Request $request, Product $product): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();

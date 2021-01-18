@@ -4,28 +4,32 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
+// pour acceder aux entités
+use App\Entity\Shop;
+use App\Entity\Order;
+
+// création et post-process des formulaires
 use App\Form\DistrictType;
 use App\Form\CartType;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\InputBag;
-use App\Repository\ShopRepository;
-use App\Entity\Shop;
-use App\Entity\Product;
-use App\Entity\Order;
 use App\Entity\OrderDetails;
-use App\Form\CartValidatorType;
+
+// accès aux colomnes des tables dans la BDD
+use App\Repository\ShopRepository;
 use App\Repository\OrderRepository;
-use App\Repository\OrderDetailsRepository;
 use App\Repository\ProductRepository;
-use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class MarketController extends AbstractController
 {
 
     public function __construct(SessionInterface $session)
     {
+        // création de la session
         $this->session = $session;
     }
 
@@ -45,17 +49,15 @@ class MarketController extends AbstractController
     public function accueil(Request $request): Response
     {
         
-
         $form = $this->createForm(DistrictType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-        $district = $form->get('Code_Postale')->getData();
-        $this->session->set('district', $district);
-        dump($district);
-        return $this->redirectToRoute('shops');
-
+            $district = $form->get('Code_Postale')->getData();
+            $this->session->set('district', $district);
+            
+            return $this->redirectToRoute('shops');
         }
         return $this->render('market/index.html.twig', [
             'form' => $form->createView(),
@@ -89,12 +91,11 @@ class MarketController extends AbstractController
      */
     public function shop(Shop $shop, ProductRepository $productRepository): Response
     {
-        $idShop = $shop->getId();
         $listeProducts = $productRepository->findBy(
             ['shop' => $shop],
             []
         );
-        dump($listeProducts);
+       
         return $this->render('market/shop.html.twig', [
             'shop' => $shop,
             'products' => $listeProducts
@@ -110,37 +111,53 @@ class MarketController extends AbstractController
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
 
+        // on créer une ligne order et orderDetails
         $order = new Order();
         $orderdet = new OrderDetails();
         
         $user = $this->getUser();
 
+        //si l'utilisateur est connecté
         if ( $user != null) {
 
             if ($form->isSubmitted() && $form->isValid()) {
 
+                // on récupère le tableau de la session qui a été transformer en string
                 $panierString = $form->get('input')->getData();
                 $delimiter = '^';
-                $panier = explode($delimiter, $panierString);
+                $panier = explode($delimiter, $panierString); //et on recréer un tableau à partir de la  string
 
-                
+                // tous les produits dans le panier proviennent du même shop
                 $idproduct = $panier[0];
+                // grâce à l'id d'un product on peut savoir de quel shop il s'agit
                 $shopProduct = $productRepository->findOneBy(['id' => $idproduct]);
                 $shop = $shopProduct->getShop();
 
+                //on lie l'order et l'orderDetails
                 $order->setOrderDetails($orderdet);
                 $orderdet->setOrders($order);
 
+                //on récupère l'order actuel
                 $orderDetails = $order->getOrderDetails();
-                $taillepanier = count($panier);
-                $collectDate = $form->get('collect_date')->getData();
+                $taillepanier = count($panier); //taille du tableau pour avoir accès au total qui est toujours la dernière cellule
+                $collectDate = $form->get('collect_date')->getData(); // on récupère la date
 
+                // pour affecter les produits on doit récuper les céllules qui contiennent la valeur de l'id du produit
+                //le tableau est constité [id1],[quantité1],[id2][quandtité2].... l'id se trouve donc 1 case sur deux
+                // ce quiexplique le $i+=2 on saute une case
                 for ($i=0; $i<$taillepanier; $i+=2 ) {
 
+                    //si la case n'est pas vide 
                     if  (isset($panier[$i]) && $panier[$i]!=null && $panier[$i]!="") {
-
+                        
+                        $quantité = $panier[$i+1];
+                        //on récupère le produit dans la bdd grace à l'id
                         $currentproduct = $productRepository->findOneBy(['id' => $panier[$i]]);
-                        $orderDetails->addProduct($currentproduct);
+                        // et on l'ajoute dans la BDD
+                        for($j=0; $j<=$quantité; $j++){
+
+                            $orderDetails->addProduct($currentproduct);
+                        }
                     }
 
                 }
@@ -151,8 +168,9 @@ class MarketController extends AbstractController
                 $order->setShop($shop);
 
                 $orderDetails->setCollectDate($collectDate);
-                $orderDetails->setOrderStatus("en Cours");
+                $orderDetails->setOrderStatus("En Cours");
 
+                //on ajoute le tout dans la BDD
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($order);
                 $entityManager->flush();
