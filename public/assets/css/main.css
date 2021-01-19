@@ -228,6 +228,7 @@ p + a {
 .btn-sign-in {
     color: white;
     background-color: var(--primary-color);
+    
 }
 
 .btn-sign-in:hover {
@@ -247,6 +248,7 @@ p + a {
     -o-border-radius: 10%;
     padding: 50px;
     background-color: white;
+    width: 400px;
 }
 
 .input-custom input[type=email] {
@@ -321,5 +323,33 @@ p + a {
     .flex-row-responsive {
         display: flex;
         flex-direction: row;
+    }
+}
+
+/* se connecter */
+
+@media (min-width: 1350px) and (max-width: 2000px) {
+    .border-form {
+        width: 400px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1350px) {
+    .border-form {
+        width: 350px;
+        max-height: 400px;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 1000px) {
+    .border-form {
+        width: 300px;
+        max-height: 300px;
+        padding: 10px;
+    }
+    .btn-sign-in {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
     }
 }
