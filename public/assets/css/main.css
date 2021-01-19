@@ -187,3 +187,23 @@ p + a {
     justify-content: space-evenly;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+/* alignement text */
+
+.text-center {
+    text-align: center;
+}
