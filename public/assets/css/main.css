@@ -155,7 +155,15 @@ p + a {
     color: white; 
 }
 
+/* section avantages */
 
+.color-avantages i:hover {
+    color: var(--secondary-color);
+}
+
+.color-avantages p:hover {
+    color: var(--secondary-color);
+}
 
 
 
