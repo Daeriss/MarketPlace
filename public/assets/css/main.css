@@ -7,12 +7,17 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.img-test {
+    object-fit: cover;
+    width: 600px;
+    height: 600px;
+}
 /* header css  */
 header{
     background-color: var(--primary-color);
     padding: 50px 0px 50px 0px;
     margin-bottom: 0px;
+
 }
 
 header img {
@@ -81,6 +86,21 @@ p + a {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.sub-acceuil {
+    background: #f8f5f2;
+    bottom: -1px;
+    bottom: 0;
+    clip-path: polygon(100% 100%,0 100%,100% 0,100% 0);
+    -webkit-clip-path: polygon(100% 100%,100% 0,100% 0,0 100%);
+    position: absolute;
+    width: 100%;
+    height: 8vw;
+    overflow: hidden;
+    clip-path: polygon(180% 0, 100% 100%, 100% 200%, 0 100%);
+    background: linear-gradient(rgb(255, 192, 57) 0%, rgb(18, 18, 88) 95%);
 }
 
 .container-acceuil h1 {
@@ -102,6 +122,7 @@ p + a {
     font-style: normal;
     margin-top: 47px;
     color: var(--primary-color);
+    text-align: center;
 }
 
 .dev-app img {
@@ -165,6 +186,25 @@ p + a {
     color: var(--secondary-color);
 }
 
+.background-vecteur{
+    border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
+    -webkit-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
+    -moz-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
+    -ms-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
+    -o-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
+    background-color: var(--secondary-color);
+}
+
+.card-avantages {
+    border: 3px solid white;
+    border-radius: 25%;
+    -webkit-border-radius: 25%;
+    -moz-border-radius: 25%;
+    -ms-border-radius: 25%;
+    -o-border-radius: 25%;
+    background-color: transparent;
+    padding: 20px;
+}
 
 
 /* flex css */
@@ -214,4 +254,16 @@ p + a {
 
 .text-center {
     text-align: center;
+}
+
+/* responsive index */
+
+@media (min-width:280px) and (max-width: 800px) {
+    .margin-responsive {
+        margin: 20px;
+    }
+    .flex-row-responsive {
+        display: flex;
+        flex-direction: row;
+    }
 }
