@@ -5,13 +5,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use App\Repository\ShopRepository;
 
 class ShopKeeperController extends AbstractController
 {
-    
+
 
     /**
      * @Route("/shopkeeper", name="accueilshopkeeper")
@@ -22,29 +23,37 @@ class ShopKeeperController extends AbstractController
     }
 
     /**
-     * @Route("/orders", name="shopkeeperorders")
+     * @Route("/orders/", name="shopkeeperorders", methods={"GET"})
      */
-    public function shopkeeperorders(OrderRepository $orderRepository)
+    public function shopkeeperorders(OrderRepository $orderRepository, Request $request)
     {
-        
 
         $user = $this->getUser();
         $shop = $user->getShop();
 
-        $order = $shop->getOrders();
 
-        dump($order);
-       
+        $request = Request::createFromGlobals();
+        $request->query->get('statut');
+
+        if ($request->query->get('statut') != null) {
+
+           
+            $order = $shop->getOrders()->getValues();
+            $details = $order[0]->getOrderDetails();
+            $details->setOrderStatus($request->query->get('statut'));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($details);
+            $entityManager->flush();
+        }
 
         $listecommande = $orderRepository->findBy(
             ['shop' => $shop],
             []
         );
 
-        dump($listecommande);
-
         return $this->render('shop_keeper/shopkeeperorders.html.twig', [
-            'orders' => $listecommande]);
-        
+            'orders' => $listecommande
+        ]);
     }
 }
