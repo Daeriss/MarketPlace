@@ -11,8 +11,11 @@
 {% block body %}
 
 <section>
-<h1> Aya Nakamura valide </h1>
-<h2> PNL non par contre </h2>
+<h1> Ma boutique </h1>
+<div class="container"> <img class="img-test" src="../../public/assets/uploads/{{ app.user.shop.img }}"> </div>
+<label> Nom : </label> <input disabled type="text" placeholder=" {{ app.user.shop.name }} "> 
+<label> Code postal : </label> <input disabled type="text" placeholder=" {{ app.user.shop.adress }} "> 
+<label> Moyen de paiement : </label> <input disabled type="text" placeholder=" {{ app.user.shop.paiement }} "> 
 </section>
 
 {% endblock %}
