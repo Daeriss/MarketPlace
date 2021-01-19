@@ -30,13 +30,14 @@ class ShopKeeperController extends AbstractController
 
         $user = $this->getUser();
         $shop = $user->getShop();
-        $order = $shop->getOrders();
 
-        dump($order);
+       // $order = $shop->getOrders();
 
-        $client = $order->getCheckout();
+       // dump($order);
 
-        dump($client);
+       // $client = $order->getCheckout();
+
+       // dump($client);
 
         //$clientName = $client->getName();
         
@@ -46,6 +47,8 @@ class ShopKeeperController extends AbstractController
             ['shop' => $shop],
             []
         );
+
+        dump($listecommande);
 
         return $this->render('shop_keeper/shopkeeperorders.html.twig', [
             'orders' => $listecommande]);
