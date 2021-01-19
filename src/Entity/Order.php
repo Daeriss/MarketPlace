@@ -40,7 +40,7 @@ class Order
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="orders", fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      */
     private $shop;

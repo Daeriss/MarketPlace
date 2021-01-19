@@ -31,17 +31,10 @@ class ShopKeeperController extends AbstractController
         $user = $this->getUser();
         $shop = $user->getShop();
 
-       // $order = $shop->getOrders();
+        $order = $shop->getOrders();
 
-       // dump($order);
-
-       // $client = $order->getCheckout();
-
-       // dump($client);
-
-        //$clientName = $client->getName();
-        
-        
+        dump($order);
+       
 
         $listecommande = $orderRepository->findBy(
             ['shop' => $shop],

@@ -60,6 +60,7 @@ class Shop
     public function __construct()
     {
         $this->product = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,7 +123,7 @@ class Shop
     }
 
     /**
-     * @return Collection|Order[]
+     * @return Collection
      */
     public function getOrders(): Collection
     {
