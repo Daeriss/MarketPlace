@@ -43,39 +43,23 @@ table {
 <table>
   <tr>
     <th>Magasin</th>
+    <th>Numéro de Commande</th>
     <th>Etat de la commande</th>
     <th>Prix</th>
   </tr>
+  {% for order in orders %}
   <tr>
-    <td>Sephora</td>
-    <td>En cours de préparation</td>
-    <td>15,00€</td>
+  <td>{{ order.shop.name }}</td>
+  <td>{{ order.orderNumber }}</td>
+  <td>{{ order.orderDetails.orderStatus }}</td>
+  <td>{{ order.checkout }}</td>
   </tr>
+  {% else %}
   <tr>
-    <td>Sephora</td>
-    <td>Prête</td>
-    <td>35,00€</td>
+  <td colspan="6"> Pas encore de commandes</td>
   </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>30,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>64,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>60,00€</td>
-  </tr>
-  <tr>
-    <td>Sephora</td>
-    <td>Récupérée</td>
-    <td>12,00€</td>
-  </tr>
+  {% endfor %}
+
 </table>
 
 </div>
