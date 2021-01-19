@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\EditProfileType;
+use App\Repository\OrderRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MemberController extends AbstractController
@@ -22,9 +23,16 @@ class MemberController extends AbstractController
     /**
      * @Route("/mon-compte/mes-commandes", name="app_account_orders")
      */
-    public function commandes(): Response
+    public function commandes(OrderRepository $orderRepository): Response
     {
-        return $this->render('member/orders.html.twig');
+        $user = $this->getUser();
+        $listeCommandes = $orderRepository->findBy(
+            ['user' => $user],
+            []
+        );
+        return $this->render('member/orders.html.twig', [
+            'orders' => $listeCommandes
+        ]);
     }
 
     /**
