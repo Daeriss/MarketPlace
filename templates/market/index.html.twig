@@ -5,87 +5,89 @@ Page d'accueil
 {% endblock %}
 
 {% block stylesheets %}
-	<style></style>
+<style></style>
 {% endblock %}
 
 
 {% block body %}
-	<section>
-		<div class="container-fluid container-acceuil">
-			<div class="row">
-				<div class="col-12 col-md-12">
-					<div class="row">
-						<div class="col-12 flex-center">
-							<h1>Click'N'Collect</h1>
-						</div>
-						<div class="col-12 flex-center">
-							<h2>Trouvez le service qu'il vous faut !</h2>
-						</div>
+<section>
+	<div class="container-fluid container-acceuil">
+		<div class="row">
+			<div class="col-12 col-md-12">
+				<div class="row">
+					<div class="col-12 flex-center">
+						<h1>Click'N'Collect</h1>
+					</div>
+					<div class="col-12 flex-center">
+						<h2>Trouvez le service qu'il vous faut !</h2>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<section class="py-5 container-rechercher">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<h2>Rechercher un commerce par Code postale</h2>
-					{{ form_start(form) }}
-					{{ form_widget(form) }}
-					<button class="btn btn-rechercher" >{{ button_label|default('') }} <i class="fas fa-search-location fa-2x"></i></button>
-					{{ form_end(form) }}
-				</div>
-				<div class="col-12 col-md-6">
-					<img src="{{ asset('assets/img/clickncollect.png') }}">
-				</div>
+<section class="py-5 container-rechercher">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<h2>Rechercher un commerce par Code postale</h2>
+				{{ form_start(form) }}
+				{{ form_widget(form) }}
+				<button class="btn btn-rechercher">{{ button_label|default('') }} <i
+						class="fas fa-search-location fa-2x"></i></button>
+				{{ form_end(form) }}
+			</div>
+			<div class="col-12 col-md-6">
+				<img src="{{ asset('assets/img/clickncollect.png') }}">
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<section class="py-5 container-concept">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<h2>Les avantages</h2>
-				</div>
-				<div class="row">
+<section class="py-5 container-concept">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<h2>Les avantages</h2>
+			</div>
+			<div class="row flex-reverse flex-center">
+				<div class="col-md-6 col-12">
 					<div class="col-6 col-sm-4">
 						<div class="row">
-							<div class="col-12 col-sm-12">
+							<div class="col-12 col-sm-12 flex-center">
 								<i class="fas fa-thumbtack fa-3x"></i>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-12 col-sm-12">
-								<p>Soutenez les commerçants locaux.</p>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-6 col-sm-4">
-						<div class="row">
-							<div class="col-12 col-sm-12">
-								<i class="fas fa-shopping-basket fa-3x"></i>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 col-sm-12">
-								<p>Commandez de n'importe où.</p>
+							<div class="col-12 col-sm-12 flex-center py-3">
+								<p class="text-center">Soutenez les commerçants locaux.</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-6 col-sm-4">
 						<div class="row">
-							<div class="col-12 col-sm-12">
+							<div class="col-12 col-sm-12 flex-center">
+								<i class="fas fa-shopping-basket fa-3x"></i>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-12 flex-center py-3">
+								<p class="text-center">Commandez de n'importe où.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-6 col-sm-4">
+						<div class="row">
+							<div class="col-12 col-sm-12 flex-center">
 								<i class="fas fa-store-alt fa-3x"></i>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-12 col-sm-12">
-								<p>Facile et rapide d'utilisation.</p>
+							<div class="col-12 col-sm-12 flex-center py-3">
+								<p class="text-center">Facile et rapide d'utilisation.</p>
 							</div>
 						</div>
 					</div>
@@ -95,5 +97,6 @@ Page d'accueil
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 {% endblock %}
