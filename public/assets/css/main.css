@@ -16,7 +16,8 @@ body {
 header{
     background-color: var(--primary-color);
     padding: 50px 0px 50px 0px;
-    margin-bottom: 0px;
+    margin-bottom: 1px;
+
 }
 
 header img {
