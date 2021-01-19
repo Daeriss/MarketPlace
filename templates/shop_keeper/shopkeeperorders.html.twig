@@ -5,6 +5,7 @@
 
 {% block stylesheets %}
 <style>
+    
 </style>
 {% endblock %}
 
@@ -27,12 +28,20 @@
             <tr>
                 <td>{{ order.orderNumber }}</td>
                 <td>{{ order.user.name }}</td>
-                {# <td>{{ order.orderDetails.collectDate }}</td> #}
-                <td>{{ order.checkout }}</td>
-                <td>{{ order.orderDetails.orderStatus }}</td>
-                    
-                </td>
+                <td>{{ order.orderDetails.collectDate |date("j / m / Y") }}</td>
+                <td>{{ order.checkout }}€</td>  
+                <td class="dropdown" id="example-dropdown" data-ax="dropdown">
+                    <button id="button" type="button" class="btn shadow-1 rounded-1 dropdown-trigger">
+                        {{ order.orderDetails.orderStatus }}
+                    </button>
+                    <div class="dropdown-content white shadow-1 rounded-1">
+                        <a class="dropdown-item" onclick="toggle('yellow')" href="{{ path('shopkeeperorders', {statut: "En Cours"}) }}">En Cours</a>
+                        <a class="dropdown-item" onclick="toggle('green')"  href="{{ path('shopkeeperorders', {statut: "Terminé"}) }}">Terminé</a>
+                        <a class="dropdown-item" onclick="toggle('blue')" href="{{ path('shopkeeperorders', {statut: "Récupéré"}) }}">Récupéré</a>
+                    </div>
+                </td> 
             </tr>
+            
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
@@ -45,6 +54,14 @@
 
 {% block javascripts %}
 
-<script></script>
+<script>
+function toggle(color){
+
+    var button = document.getElementById("button");
+    button.removeAttribute("class");
+    button.setAttribute("class", color);
+    button.setAttribute("class","btn shadow-1 rounded-1 dropdown-trigger");
+}
+</script>
 
 {% endblock %}
