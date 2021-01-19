@@ -255,6 +255,22 @@ p + a {
     border: 2px solid  var(--primary-color);
 }
 
+
+
+/* inscription page */
+
+.container-inscription {
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../img/tel-shop.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
 /* flex css */
 .flex-end {
     justify-content: flex-end;
