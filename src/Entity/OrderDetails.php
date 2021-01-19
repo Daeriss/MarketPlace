@@ -19,10 +19,10 @@ class OrderDetails
      */
     private $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="orderDetails")
-     */
-    private $product;
+     /**
+      * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="orderDetails")
+      */
+     private $product;
 
     /**
      * @ORM\Column(type="datetime")
@@ -40,9 +40,13 @@ class OrderDetails
      */
     private $orders;
 
+    
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
+        $this->jointures = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -50,29 +54,29 @@ class OrderDetails
         return $this->id;
     }
 
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProduct(): Collection
-    {
-        return $this->product;
-    }
+     /**
+      * @return Collection|Product[]
+      */
+     public function getProduct(): Collection
+     {
+         return $this->product;
+     }
 
-    public function addProduct(Product $product): self
-    {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-        }
+     public function addProduct(Product $product): self
+     {
+         if (!$this->product->contains($product)) {
+             $this->product[] = $product;
+         }
 
-        return $this;
-    }
+         return $this;
+     }
 
-    public function removeProduct(Product $product): self
-    {
-        $this->product->removeElement($product);
+     public function removeProduct(Product $product): self
+     {
+         $this->product->removeElement($product);
 
-        return $this;
-    }
+         return $this;
+     }
 
     public function getCollectDate(): ?\DateTimeInterface
     {
@@ -115,4 +119,7 @@ class OrderDetails
 
         return $this;
     }
+
+    
+    
 }
