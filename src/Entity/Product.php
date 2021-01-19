@@ -45,10 +45,13 @@ class Product
      */
     private $shop;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=OrderDetails::class, mappedBy="product")
-     */
-    private $orderDetails;
+
+    
+
+     /**
+      * @ORM\ManyToMany(targetEntity=OrderDetails::class, mappedBy="product")
+      */
+     private $orderDetails;
 
     public function __construct()
     {
@@ -120,31 +123,32 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|OrderDetails[]
-     */
-    public function getOrderDetails(): Collection
-    {
-        return $this->orderDetails;
-    }
+     /**
+      * @return Collection|OrderDetails[]
+      */
+     public function getOrderDetails(): Collection
+     {
+         return $this->orderDetails;
+     }
 
-    public function addOrderDetail(OrderDetails $orderDetail): self
-    {
-        if (!$this->orderDetails->contains($orderDetail)) {
-            $this->orderDetails[] = $orderDetail;
-            $orderDetail->addProduct($this);
-        }
+     public function addOrderDetail(OrderDetails $orderDetail): self
+     {
+         if (!$this->orderDetails->contains($orderDetail)) {
+             $this->orderDetails[] = $orderDetail;
+             $orderDetail->addProduct($this);
+         }
 
-        return $this;
-    }
+         return $this;
+     }
 
-    public function removeOrderDetail(OrderDetails $orderDetail): self
-    {
-        if ($this->orderDetails->removeElement($orderDetail)) {
-            $orderDetail->removeProduct($this);
-        }
+     public function removeOrderDetail(OrderDetails $orderDetail): self
+     {
+         if ($this->orderDetails->removeElement($orderDetail)) {
+             $orderDetail->removeProduct($this);
+         }
 
-        return $this;
-    }
+         return $this;
+     }
+
 
 }

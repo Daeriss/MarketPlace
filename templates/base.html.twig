@@ -46,6 +46,7 @@
 			{% elseif is_granted('ROLE_SHOPKEEPER') %}
             <a class="nav-link text-white" href="{{ path('shop_index') }}">Ma boutique</a>
 			<a class="nav-link text-white" href="{{ path('product_index') }}">Mes produits</a>
+			<a class="nav-link text-white" href="{{ path('shopkeeperorders') }}">Mes commandes</a>
             <a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
             {% else %}
 			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>

@@ -64,13 +64,7 @@ class MarketController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/shopkeeper/accueilshopkeeper", name="accueilshopkeeper")
-     */
-    public function accueilshopkeeper()
-    {
-        return $this->render('market/indexshopKeeper.html.twig');
-    }
+    
 
     /**
      * @Route("/shops", name="shops")

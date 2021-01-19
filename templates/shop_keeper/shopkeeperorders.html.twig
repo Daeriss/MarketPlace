@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PAGE ACCUEIL{% endblock %}
+
+
+{% block stylesheets %}
+<style>
+</style>
+{% endblock %}
+
+{% block body %}
+
+<h1>Mes produits</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero de commande</th>
+                <th>Client</th>
+                <th>Prix</th>
+                <th>Img</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.orderNumber }}</td>
+                <td>{{ order.user }}</td>
+                <td>{{ order.checkout }}</td>
+                <td>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script></script>
+
+{% endblock %}

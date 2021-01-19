@@ -159,7 +159,15 @@ p + a {
     color: white; 
 }
 
+/* section avantages */
 
+.color-avantages i:hover {
+    color: var(--secondary-color);
+}
+
+.color-avantages p:hover {
+    color: var(--secondary-color);
+}
 
 
 
@@ -191,3 +199,23 @@ p + a {
     justify-content: space-evenly;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+/* alignement text */
+
+.text-center {
+    text-align: center;
+}
