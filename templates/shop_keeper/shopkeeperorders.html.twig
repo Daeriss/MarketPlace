@@ -17,18 +17,19 @@
             <tr>
                 <th>Numero de commande</th>
                 <th>Client</th>
-                <th>Prix</th>
-                <th>Img</th>
+                <th>Date de collect</th>
                 <th>Total</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
         {% for order in orders %}
             <tr>
                 <td>{{ order.orderNumber }}</td>
-                <td>{{ order.user }}</td>
+                <td>{{ order.user.name }}</td>
+                {# <td>{{ order.orderDetails.collectDate }}</td> #}
                 <td>{{ order.checkout }}</td>
-                <td>
+                <td>{{ order.orderDetails.orderStatus }}</td>
                     
                 </td>
             </tr>
