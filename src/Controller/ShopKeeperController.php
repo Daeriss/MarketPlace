@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\OrderRepository;
+use App\Repository\UserRepository;
+use App\Repository\ShopRepository;
 
 class ShopKeeperController extends AbstractController
 {
@@ -24,9 +26,21 @@ class ShopKeeperController extends AbstractController
      */
     public function shopkeeperorders(OrderRepository $orderRepository)
     {
+        
+
         $user = $this->getUser();
         $shop = $user->getShop();
-        $idShop = $shop->getId();
+        $order = $shop->getOrders();
+
+        dump($order);
+
+        $client = $order->getCheckout();
+
+        dump($client);
+
+        //$clientName = $client->getName();
+        
+        
 
         $listecommande = $orderRepository->findBy(
             ['shop' => $shop],

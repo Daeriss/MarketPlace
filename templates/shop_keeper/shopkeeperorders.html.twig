@@ -16,9 +16,7 @@
         <thead>
             <tr>
                 <th>Numero de commande</th>
-                <th>Client</th>
-                <th>Prix</th>
-                <th>Img</th>
+                 {# <th>Client</th> #}
                 <th>Total</th>
             </tr>
         </thead>
@@ -26,9 +24,8 @@
         {% for order in orders %}
             <tr>
                 <td>{{ order.orderNumber }}</td>
-                <td>{{ order.user }}</td>
+                 {# <td>{{ client }}</td> #}
                 <td>{{ order.checkout }}</td>
-                <td>
                     
                 </td>
             </tr>

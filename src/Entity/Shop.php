@@ -35,10 +35,17 @@ class Shop
     private $product;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Order::class, mappedBy="shop")
+     */
+    private $orders;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy = "shop" , cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -108,6 +115,36 @@ class Shop
             // set the owning side to null (unless already changed)
             if ($product->getShop() === $this) {
                 $product->setShop(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Order[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrders(Order $orders): self
+    {
+        if (!$this->orders->contains($orders)) {
+            $this->orders[] = $orders;
+            $orders->setShop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrders(Order $orders): self
+    {
+        if ($this->orders->removeElement($orders)) {
+            // set the owning side to null (unless already changed)
+            if ($orders->getShop() === $this) {
+                $orders->setShop(null);
             }
         }
 
