@@ -14,10 +14,15 @@ class ShopType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('adress')
+            ->add('name', null, [
+                'label' => 'Nom de votre commerce'
+            ])
+            ->add('adress', null, [
+                'label' => 'Code Postal'
+            ])
             ->add('img', FileType::class, [
-                'label' => 'photo à uploader',
+                'label' => 'photo de profil',
+                'help' => 'Une photo représentant votre travail (ex: plats, réalisations...etc)',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -30,7 +35,10 @@ class ShopType extends AbstractType
                     ])
                 ],
             ])
-            ->add('paiement')
+            ->add('paiement', null, [
+                'label' => 'Moyens de paiements possibles',
+                'help' => 'CB, ESP, CHEQUES, SANS CONTACT',
+            ])
         ;
     }
 
