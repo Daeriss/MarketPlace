@@ -92,10 +92,16 @@ class Shop
      */
     private $Dimanche;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="shop")
+     */
+    private $services;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -303,6 +309,36 @@ class Shop
     public function setDimanche(?string $Dimanche): self
     {
         $this->Dimanche = $Dimanche;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Services[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Services $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->setShop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Services $service): self
+    {
+        if ($this->services->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getShop() === $this) {
+                $service->setShop(null);
+            }
+        }
 
         return $this;
     }
