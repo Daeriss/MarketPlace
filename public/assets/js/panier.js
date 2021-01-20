@@ -48,9 +48,11 @@ var nbProduitsPanier = 0,
 total = 0,
 nbSingleProduitsPanier = 0;
 
-function AfficherPanier() {
 
-    
+
+function getPanierHTML()
+{
+    var contentToAppend="";
 
     for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
 
@@ -66,7 +68,7 @@ function AfficherPanier() {
     }
 
 
-    var child = document.getElementById("panier");
+
 
     for (var key in sessionStorage) {
 
@@ -79,37 +81,72 @@ function AfficherPanier() {
             var key2 = "\'" + key + "\'";
             var name2 = "\'" + name + "\'";
             var prix2 = "\'" + prix + "\'";
-            child.innerHTML += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '<button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
-            child.innerHTML += "</li>  ";
+            contentToAppend += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '<button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
+            contentToAppend += "</li>  ";
         }
 
     }
-    child.innerHTML += "<br> Prix total : " + total + "<ul>";
-
+    contentToAppend += "<br> Prix total : " + total + "<ul>";
+    return contentToAppend;
 }
 
 
+function AfficherPanier(idToDisplayIn) {
+
+    var child = document.getElementById(idToDisplayIn);
+    child.innerHTML+=getPanierHTML();
+
+}
+
+function appendPanierChild(id)
+{
+    var child = document.getElementById(id);
+    var contextCurrent= child.innerHTML;
+    child.innerHTML += getPanierHTML();
+    child.inerHTML +=contextCurrent;
+}
 
 function flushPanier() {
-
-    document.location.reload(); 
+    document.location.reload(); //on rechharge la page
+    DisplayPanierHeader();      //on réaffiche la prévisualisation du panier dans le header 
 }
 
-function ajouterPanier(id,name, price) {
 
-    var alreadyExistentItem = (sessionStorage.getItem(id));
+function ajouterPanierdepuisShop(id,name, price, shopId)
+{
+    if(sessionStorage["CNCShop"]==null || sessionStorage["CNCShop"]==undefined || sessionStorage.getItem("CNCShop")==shopId  )
+    {
+        sessionStorage.setItem("CNCShop", shopId);
+        ajouterPanier(id,name, price );
+    }  
 
-    if (alreadyExistentItem == null || alreadyExistentItem == undefined) {
-        var addedItem = "CNC," + 1 + "," + name + "," + price;
-        sessionStorage.setItem(id, addedItem);
-        alert('premier ajout');
-    } else {
-        var quantity = alreadyExistentItem.split(",")[1];
-        quantity++;
-        var addedItem = "CNC," + quantity + "," + name + "," + price;
-        sessionStorage.setItem(id, addedItem);
+    if(sessionStorage.getItem("CNCShop")!=shopId){
+        if ( confirm( "Etes vous sur de vouloir ajouter ce produit? Vous ne pouvez avoir un panier que dans une seule boutique, le panier sera remis à 0 " ) ) {
+            resetPanier();
+            ajouterPanier(id,name, price );
+        }
     }
-    flushPanier()
+}
+
+//sous fonction - permet d'ajouter a la session et de formater le panier 
+function ajouterPanier(id,name, price ) {
+
+            var alreadyExistentItem = (sessionStorage.getItem(id));
+
+            if (alreadyExistentItem == null || alreadyExistentItem == undefined) {
+                var addedItem = "CNC," + 1 + "," + name + "," + price;
+                sessionStorage.setItem(id, addedItem);
+                alert('premier ajout');
+            } else {
+                var quantity = alreadyExistentItem.split(",")[1];
+                quantity++;
+                var addedItem = "CNC," + quantity + "," + name + "," + price;
+                sessionStorage.setItem(id, addedItem);
+            }
+            flushPanier()
+;
+            //
+
 }
 
 function retirerPanier(id,name, price) {
@@ -125,7 +162,6 @@ function retirerPanier(id,name, price) {
             sessionStorage.removeItem(id);
         }
         else {
-
             var addedItem = "CNC," + quantity + "," + name + "," + price;
             sessionStorage.setItem(id, addedItem);
         }
@@ -140,7 +176,6 @@ function resetPanier() {
 }
 
 function getPanier() {
-
     
    var panier = [];
     var totalPrice = 0;
@@ -156,7 +191,6 @@ function getPanier() {
             panier [i+1] = quantite;  
             i+=2;
         }
-          
     }
 
     panier [i+1] = totalPrice;
@@ -190,12 +224,12 @@ function getPanier() {
     
        
 }
-$(document).ready(function() {
+/*$(document).ready(function() {
     // you may need to change this code if you are not using Bootstrap Datepicker
     $('.js-datepicker').datepicker({
         format: 'yyyy-mm-dd'
     });
-});
+});*/
 
 function setPanier() {
 
@@ -205,6 +239,36 @@ function setPanier() {
     input.setAttribute("type" , "hidden");
 
 }
+
+function getPanierSize()
+{
+    var size = 0;
+    for(var i in sessionStorage)
+    {
+        if (typeof sessionStorage[i] == "string" && sessionStorage[i].split(',')[0] == "CNC")
+         {
+             var quantite = (parseInt(sessionStorage[i].split(',')[1]));
+             size+=quantite;
+         }
+    }
+    return size;
+
+}
+
+
+function PanierInitialise(shopId)
+{
+    sessionStorage["CNCShop"]=shopId;
+}
+
+function DisplayPanierHeader()
+{
+    document.getElementById("cartValue").innerHTML=getPanierSize();
+    console.log(document.getElementById("cartValue").innerHTML+" "+getPanierSize());
+}
+
+
+
 
 
 
