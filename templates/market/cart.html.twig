@@ -4,7 +4,8 @@
 {% endblock %}
 
  {% block javascripts %}
- <script src="../public/assets/js/panier.js"></script> 
+ <script src="../public/assets/js/panier.js"></script>
+  <script src="/assets/js/panier.js"></script> 
 {% endblock %}
 {% block body %}
 
@@ -16,7 +17,7 @@
 		<h2 class="text-center">Panier</h2>
 		 
 		<script>
-			AfficherPanier();
+			AfficherPanier("panier");
 		</script>
 		<div class="container-fluid d-flex flex-row  justify-content-center">
 				 
@@ -32,7 +33,5 @@
 		</div>
 
 	</div>
-	<script>
-	setPanier();
-	</script>
+
 {% endblock %}

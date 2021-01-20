@@ -35,18 +35,26 @@
             <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueilservice')}}">
             {% else %}
             <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueil')}}">
+
+
             {% endif %}
 				<img src="{{ asset('assets/img/logo2.png') }}" class="img-fluid logo-img">
 			</a> 
 			
 
+
 			<div class="flex-center">
 			{% if is_granted('ROLE_MEMBER') %}
 			<a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
-			<a class="nav-link" href="{{ path('app_account') }}">Mon Compte</a>		
-			<a class="nav-link" href="{{ path('cart') }}">Panier</a>	
-
-
+			<a class="nav-link" href="{{ path('app_account') }}">Mon Compte</a>			
+				<div class="dropdown" id="example-dropdown" data-ax="dropdown">
+    				  <div class="navbar-link secondary dropdown-trigger">
+       				   <i id="cartLogo" class="fas fa-shopping-cart"></i> <span id="cartValue" class="badge badge-light"> 0 </span>
+     				 </div>
+     				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1">
+					  	<a class="nav-link"  id="cartLogoLink"  href="{{ path('cart') }}">  Valider le panier  </a>
+					  </div>
+	
 			{% elseif is_granted('ROLE_SHOPKEEPER') %}
             <a class="nav-link text-white" href="{{ path('shop_index') }}">Ma boutique</a>
 			<a class="nav-link text-white" href="{{ path('product_index') }}">Mes produits</a>
@@ -60,7 +68,13 @@
 			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>
 			<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
             <a class="nav-link" href="#">Le concept</a>            
-			<a class="nav-link" href="{{ path('cart') }}">Panier</a>
+							<div class="dropdown" id="example-dropdown" data-ax="dropdown">
+    				  <div class="navbar-link secondary dropdown-trigger">
+       				   <i id="cartLogo" class="fas fa-shopping-cart"></i> <span id="cartValue" class="badge badge-light"> 0 </span>
+     				 </div>
+     				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1">
+					  	<a class="nav-link"  id="cartLogoLink"  href="{{ path('cart') }}">  Valider le panier  </a>
+					  </div>
 			{% endif %}
 			</div>
 		</nav>
@@ -128,10 +142,15 @@
 				<!-- Copyright -->
 			<script src="{{ asset('assets/js/script.js') }}"></script>
 			<script src="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/js/axentix.min.js"></script>
+			<script></script>
 			</footer>
 			<!-- Footer -->
 
-			
-		
+
+				<script>
+		DisplayPanierHeader();
+		appendPanierChild("dropDownContent");
+	</script>
+
 	</html>
 {% endblock %}
