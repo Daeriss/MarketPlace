@@ -12,7 +12,7 @@
 
 <section class="d-flex">
 <h1> Ma boutique </h1>
-<div class=""> <img class="img-test" src="../../public/assets/uploads/{{ app.user.shop.img }}"> 
+<div class=""> <img class="img-test" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}"> 
     <label> Nom : </label> <input disabled type="text" placeholder=" {{ app.user.shop.name }} "> 
     <label> Code postal : </label> <input disabled type="text" placeholder=" {{ app.user.shop.adress }} "> 
     <label> Moyen de paiement : </label> <input disabled type="text" placeholder=" {{ app.user.shop.paiement }} "> 
