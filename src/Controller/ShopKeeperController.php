@@ -34,17 +34,42 @@ class ShopKeeperController extends AbstractController
 
         $request = Request::createFromGlobals();
         $request->query->get('statut');
+        $requestid = Request::createFromGlobals();
+        $orderid = $requestid->query->get('id');
 
         if ($request->query->get('statut') != null) {
 
-           
-            $order = $shop->getOrders()->getValues();
-            $details = $order[0]->getOrderDetails();
-            $details->setOrderStatus($request->query->get('statut'));
+            $orders = $shop->getOrders()->getValues();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($details);
-            $entityManager->flush();
+
+            for ($i = 0; $i < count($orders); $i++) {
+
+                $order = $orders[$i];
+                $details = $order->getOrderDetails();
+                $status = $details->getOrderStatus();
+                dump($orders[$i]);
+
+                if ($orderid == $order->getId()) {
+
+
+                    if ($status != "Récupéré") {
+
+                        if ($request->query->get('statut') == "Terminé") {
+
+                            $details->setOrderStatus("Terminé");
+
+                            $this->getDoctrine()->getManager()->flush();
+                        }
+
+                        if ($request->query->get('statut') == "Récupéré") {
+
+                            $details->setOrderStatus("Récupéré");
+
+                            $this->getDoctrine()->getManager()->flush();
+                        }
+                    }
+                }
+            }
         }
 
         $listecommande = $orderRepository->findBy(

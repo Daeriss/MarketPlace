@@ -19,11 +19,7 @@ class OrderDetails
      */
     private $id;
 
-     /**
-      * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="orderDetails")
-      */
-     private $product;
-
+    
     /**
      * @ORM\Column(type="datetime")
      */
@@ -40,12 +36,18 @@ class OrderDetails
      */
     private $orders;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SubOrder::class, mappedBy="orderDetails",cascade={"persist"})
+     */
+    private $subOrders;
+
     
 
     public function __construct()
     {
         $this->product = new ArrayCollection();
         $this->jointures = new ArrayCollection();
+        $this->subOrders = new ArrayCollection();
        
     }
 
@@ -116,6 +118,36 @@ class OrderDetails
         }
 
         $this->orders = $orders;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SubOrder[]
+     */
+    public function getSubOrders(): Collection
+    {
+        return $this->subOrders;
+    }
+
+    public function addSubOrder(SubOrder $subOrder): self
+    {
+        if (!$this->subOrders->contains($subOrder)) {
+            $this->subOrders[] = $subOrder;
+            $subOrder->setOrderDetails($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubOrder(SubOrder $subOrder): self
+    {
+        if ($this->subOrders->removeElement($subOrder)) {
+            // set the owning side to null (unless already changed)
+            if ($subOrder->getOrderDetails() === $this) {
+                $subOrder->setOrderDetails(null);
+            }
+        }
 
         return $this;
     }
