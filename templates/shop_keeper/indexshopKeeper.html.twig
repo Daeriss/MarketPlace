@@ -10,12 +10,53 @@
 
 {% block body %}
 
-<section>
+<section class="d-flex">
 <h1> Ma boutique </h1>
-<div class="container"> <img class="img-test" src="../../public/assets/uploads/{{ app.user.shop.img }}"> </div>
-<label> Nom : </label> <input disabled type="text" placeholder=" {{ app.user.shop.name }} "> 
-<label> Code postal : </label> <input disabled type="text" placeholder=" {{ app.user.shop.adress }} "> 
-<label> Moyen de paiement : </label> <input disabled type="text" placeholder=" {{ app.user.shop.paiement }} "> 
+<div class=""> <img class="img-test" src="../../public/assets/uploads/{{ app.user.shop.img }}"> 
+    <label> Nom : </label> <input disabled type="text" placeholder=" {{ app.user.shop.name }} "> 
+    <label> Code postal : </label> <input disabled type="text" placeholder=" {{ app.user.shop.adress }} "> 
+    <label> Moyen de paiement : </label> <input disabled type="text" placeholder=" {{ app.user.shop.paiement }} "> 
+    </div>
+
+        {# <form method="post"> 
+        <div class="form-field">
+        <label for="lundi"> Lundi </label>
+        <input type="text" id="lundi" name="lundi" class="form-control"  value="{{ app.user.shop.lundi }}">
+        </div>
+        <div class="form-field">
+        <label for="mardi"> Mardi </label>
+        <input type="text" id="mardi" name="mardi" class="form-control" value="{{ app.user.shop.mardi }}">
+        </div>
+        <div class="form-field">
+        <label for="mercredi"> Mercredi </label>
+        <input type="text" id="mercredi" name="mercredi" class="form-control" value="{{ app.user.shop.mercredi }}">
+        </div>
+        <div class="form-field">
+        <label for="jeudi"> Jeudi </label>
+        <input type="text" id="jeudi" name="jeudi" class="form-control" value="{{ app.user.shop.jeudi }}">
+        </div>
+        <div class="form-field">
+        <label for="vendredi"> Vendredi </label>
+        <input type="text" id="vendredi" name="vendredi" class="form-control" value="{{ app.user.shop.vendredi }}">
+        </div>
+        <div class="form-field">
+        <label for="mardi"> Samedi </label>
+        <input type="text" id="samedi" name="samedi" class="form-control" value="{{ app.user.shop.samedi }}">
+        </div>
+        <div class="form-field">
+        <label for="mardi"> Dimanche </label>
+        <input type="text" id="dimanche" name="dimanche" class="form-control" value="{{ app.user.shop.dimanche }}">
+        </div>
+        <button class="btn blue"> Valider </button> #}
+        
+{{form_start(form)}}
+    {{ form_widget(form) }}
+        <button class="btn btn-primary">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
+        {{ form_end(form) }} <br>
+        </form>
+
+
+
 </section>
 
 {% endblock %}
