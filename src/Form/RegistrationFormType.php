@@ -24,7 +24,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
-            ->add ('Service', CheckboxType::class, [
+            ->add ('service', CheckboxType::class, [
                 'mapped' => false,
                 'required' => false,
             ])

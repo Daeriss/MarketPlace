@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
 /**
- * @Route("/shopkeeper/shop")
+ * @Route("/manager/shop")
  */
 class ShopController extends AbstractController
 {

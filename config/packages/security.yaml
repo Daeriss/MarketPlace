@@ -41,4 +41,5 @@ security:
          - { path: ^/member, roles: [ROLE_MEMBER, ROLE_ADMIN] }
          - { path: ^/shopkeeper, roles: [ROLE_SHOPKEEPER, ROLE_ADMIN] }
          - { path: ^/service, roles: [ROLE_SERVICE, ROLE_ADMIN] }
+         - { path: ^/manager, roles: [ROLE_SERVICE, ROLE_SHOPKEEPER, ROLE_ADMIN] }
         

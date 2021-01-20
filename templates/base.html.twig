@@ -31,6 +31,8 @@
 			<a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueil')}}">
             {% elseif is_granted('ROLE_SHOPKEEPER') %}
             <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueilshopkeeper')}}">
+			{% elseif is_granted('ROLE_SERVICE') %}
+            <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueilservice')}}">
             {% else %}
             <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueil')}}">
             {% endif %}
@@ -50,6 +52,10 @@
 			<a class="nav-link text-white" href="{{ path('product_index') }}">Mes produits</a>
 			<a class="nav-link text-white" href="{{ path('shopkeeperorders') }}">Mes commandes</a>
             <a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
+			{% elseif is_granted('ROLE_SERVICE') %}
+			<a class="nav-link text-white" href="{{ path('shop_index') }}">Ma boutique</a>
+			<a class="nav-link text-white" href="{{ path('appointment') }}">Mes rendez-vous</a>
+			<a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
             {% else %}
 			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>
 			<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>

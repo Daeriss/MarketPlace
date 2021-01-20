@@ -11,9 +11,19 @@ class ServiceController extends AbstractController
     /**
      * @Route("/service", name="accueilservice")
      */
-    public function index(): Response
+    public function accueilservice(): Response
     {
-        return $this->render('service/index.html.twig', [
+        return $this->render('service/accueilservice.html.twig', [
+            'controller_name' => 'ServiceController',
+        ]);
+    }
+
+    /**
+     * @Route("/service/appointment", name="appointment")
+     */
+    public function appointment(): Response
+    {
+        return $this->render('service/appointment.html.twig', [
             'controller_name' => 'ServiceController',
         ]);
     }
