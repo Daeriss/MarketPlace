@@ -1,27 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PAGE ACCUEIL{% endblock %}
+{% block title %}PAGE ACCUEIL
+{% endblock %}
 
 
 {% block stylesheets %}
-<style>
-</style>
+	<style></style>
 {% endblock %}
 
 {% block body %}
 
-<section>
-<h1> Ma boutique </h1>
-<div class="container"> <img class="img-test" src="../../public/assets/uploads/{{ app.user.shop.img }}"> </div>
-<label> Nom : </label> <input disabled type="text" placeholder=" {{ app.user.shop.name }} "> 
-<label> Code postal : </label> <input disabled type="text" placeholder=" {{ app.user.shop.adress }} "> 
-<label> Moyen de paiement : </label> <input disabled type="text" placeholder=" {{ app.user.shop.paiement }} "> 
-</section>
+	<div class="container grix xs2 m-5">
+		<div>
+			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
+		</div>
 
-{% endblock %}
+		<div class="">
 
-{% block javascripts %}
+            
+                {{form_start(form)}}
+                {{ form_widget(form) }}
+                <button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
+                {{ form_end(form) }}
+                
+		</div>
 
-<script></script>
 
-{% endblock %}
+
+        
+
+</div>{% endblock %}{% block javascripts %}
+
+<script></script>{% endblock %}

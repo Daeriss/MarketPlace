@@ -104,7 +104,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             if ($user->getShop() == null) {
                 $routeRedirect = "shop_new";
             } else {
-                $routeRedirect = "shop_index";
+                $routeRedirect = "accueilshopkeeper";
             }
         }
 

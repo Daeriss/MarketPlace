@@ -3,34 +3,36 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+{% for flashError in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+{% endfor %}
 
-    <section class="">
-    <h1>S'inscrire</h1>
+<section>
+    <div class="container-fluid container-inscription">
+        <h1>Créer un compte</h1>
 
-    {{ form_start(registrationForm) }}
+        {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.name, {
-            label:'Nom'
+        label:'Nom'
         }) }}
         {{ form_row(registrationForm.firstname, {
-            label: 'Prénom'
+        label: 'Prénom'
         }) }}
         {{ form_row(registrationForm.email, {
-            label: 'E-mail'
+        label: 'E-mail'
         }) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
+        label: 'Mot de passe'
         }) }}
         {{form_row ( registrationForm.shopkeeper, {
-            label: 'Vendeur'
+        label: 'Vendeur'
         } ) }}
         {{ form_row(registrationForm.agreeTerms, {
-            label: 'Accepter les conditions'
+        label: 'Accepter les conditions'
         }) }}
 
         <button type="submit" class="btn">S'inscrire</button>
-    {{ form_end(registrationForm) }}
-    </section>
+        {{ form_end(registrationForm) }}
+    </div>
+</section>
 {% endblock %}

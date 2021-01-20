@@ -17,7 +17,7 @@ use App\Entity\Order;
 use App\Form\DistrictType;
 use App\Form\CartType;
 use App\Entity\OrderDetails;
-
+use App\Entity\SubOrder;
 // accès aux colomnes des tables dans la BDD
 use App\Repository\ShopRepository;
 use App\Repository\OrderRepository;
@@ -122,7 +122,7 @@ class MarketController extends AbstractController
                 $panier = explode($delimiter, $panierString); //et on recréer un tableau à partir de la  string
 
                 // tous les produits dans le panier proviennent du même shop
-                $idproduct = $panier[0];
+                $idproduct = intval($panier[0]);
                 // grâce à l'id d'un product on peut savoir de quel shop il s'agit
                 $shopProduct = $productRepository->findOneBy(['id' => $idproduct]);
                 $shop = $shopProduct->getShop();
@@ -130,12 +130,15 @@ class MarketController extends AbstractController
                 //on lie l'order et l'orderDetails
                 $order->setOrderDetails($orderdet);
                 $orderdet->setOrders($order);
+               
+               
 
                 //on récupère l'order actuel
                 $orderDetails = $order->getOrderDetails();
                 $taillepanier = count($panier); //taille du tableau pour avoir accès au total qui est toujours la dernière cellule
                 $collectDate = $form->get('collect_date')->getData(); // on récupère la date
-
+                dump($panier);
+                
                 // pour affecter les produits on doit récuper les céllules qui contiennent la valeur de l'id du produit
                 //le tableau est constité [id1],[quantité1],[id2][quandtité2].... l'id se trouve donc 1 case sur deux
                 // ce quiexplique le $i+=2 on saute une case
@@ -144,16 +147,18 @@ class MarketController extends AbstractController
                     //si la case n'est pas vide 
                     if  (isset($panier[$i]) && $panier[$i]!=null && $panier[$i]!="") {
                         
-                        $quantité = $panier[$i+1];
+                        $subOrder = new SubOrder;
+                        $orderdet->addSubOrder($subOrder);
+                        $quantite = intval($panier[$i+1]);
                         //on récupère le produit dans la bdd grace à l'id
                         $currentproduct = $productRepository->findOneBy(['id' => $panier[$i]]);
                         // et on l'ajoute dans la BDD
-                        for($j=0; $j<=$quantité; $j++){
-
-                            $orderDetails->addProduct($currentproduct);
-                        }
+                        $subOrder->setQuantity($quantite);
+                        $currentproduct->addSubOrder($subOrder);
+   
                     }
                 }
+
                 $order->setCheckout(end($panier));
                 $order->setorderNumber(rand(0, 100));
                 $order->setDate(new \DateTime());
@@ -162,6 +167,7 @@ class MarketController extends AbstractController
 
                 $orderDetails->setCollectDate($collectDate);
                 $orderDetails->setOrderStatus("En Cours");
+                
 
                 //on ajoute le tout dans la BDD
                 $entityManager = $this->getDoctrine()->getManager();

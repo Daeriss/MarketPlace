@@ -15,8 +15,20 @@
 	<section class="container-fluid">
 		<div class="row m-3">
 			<h3 class="col">{{ shop.name }}</h3>
-			<div class="col">{{ shop.adress }}</div>
-			<div class="col">{{ shop.paiement }}</div>
+			<div class="col"> Adresse : {{ shop.adress }}</div>
+			<div class="col">Paiements acceptés au retrait : {{ shop.paiement }}</div>
+		</div>
+		<div>
+		<h4> Horaires d'ouverture </h4>
+		<p>
+		Lundi : {{ shop.lundi }} 
+		Mardi : {{ shop.mardi }} 
+		Mercredi : {{ shop.mercredi }} 
+		Jeudi : {{ shop.jeudi }} 
+		Vendredi : {{ shop.vendredi }} 
+		Samedi : {{ shop.samedi }}
+		Dimanche : {{ shop.dimanche }}  
+		</p>
 		</div>
 
 		<div class="row">

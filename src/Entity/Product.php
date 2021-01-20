@@ -46,16 +46,14 @@ class Product
     private $shop;
 
 
-    
-
      /**
-      * @ORM\ManyToMany(targetEntity=OrderDetails::class, mappedBy="product")
+      * @ORM\OneToMany(targetEntity=SubOrder::class, mappedBy="product", cascade={"persist"})
       */
-     private $orderDetails;
+     private $subOrders;
 
     public function __construct()
     {
-        $this->orderDetails = new ArrayCollection();
+        $this->subOrders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,27 +122,30 @@ class Product
     }
 
      /**
-      * @return Collection|OrderDetails[]
+      * @return Collection|SubOrder[]
       */
-     public function getOrderDetails(): Collection
+     public function getSubOrders(): Collection
      {
-         return $this->orderDetails;
+         return $this->subOrders;
      }
 
-     public function addOrderDetail(OrderDetails $orderDetail): self
+     public function addSubOrder(SubOrder $subOrder): self
      {
-         if (!$this->orderDetails->contains($orderDetail)) {
-             $this->orderDetails[] = $orderDetail;
-             $orderDetail->addProduct($this);
+         if (!$this->subOrders->contains($subOrder)) {
+             $this->subOrders[] = $subOrder;
+             $subOrder->setProduct($this);
          }
 
          return $this;
      }
 
-     public function removeOrderDetail(OrderDetails $orderDetail): self
+     public function removeSubOrder(SubOrder $subOrder): self
      {
-         if ($this->orderDetails->removeElement($orderDetail)) {
-             $orderDetail->removeProduct($this);
+         if ($this->subOrders->removeElement($subOrder)) {
+             // set the owning side to null (unless already changed)
+             if ($subOrder->getProduct() === $this) {
+                 $subOrder->setProduct(null);
+             }
          }
 
          return $this;
