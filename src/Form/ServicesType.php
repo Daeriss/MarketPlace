@@ -14,7 +14,7 @@ class ServicesType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('shop')
+            //->add('shop')
         ;
     }
 

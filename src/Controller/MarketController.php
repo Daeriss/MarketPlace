@@ -22,6 +22,7 @@ use App\Entity\SubOrder;
 use App\Repository\ShopRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
+use App\Repository\ServicesRepository;
 
 
 class MarketController extends AbstractController
@@ -48,7 +49,7 @@ class MarketController extends AbstractController
      */
     public function accueil(Request $request): Response
     {
-        
+
         $form = $this->createForm(DistrictType::class);
         $form->handleRequest($request);
 
@@ -56,7 +57,7 @@ class MarketController extends AbstractController
 
             $district = $form->get('Code_Postale')->getData();
             $this->session->set('district', $district);
-            
+
             return $this->redirectToRoute('shops');
         }
         return $this->render('market/index.html.twig', [
@@ -64,7 +65,7 @@ class MarketController extends AbstractController
         ]);
     }
 
-    
+
 
     /**
      * @Route("/shops", name="shops")
@@ -75,32 +76,50 @@ class MarketController extends AbstractController
             ['adress' => $this->session->get('district')],
             []
         );
-        
-        return $this->render("market/shops.html.twig", [ 
-            'shops' => $listeShops]);
+
+        return $this->render("market/shops.html.twig", [
+            'shops' => $listeShops
+        ]);
     }
 
     /**
      * @Route("/shops/{id}", name="shop", methods={"GET"})
      */
-    public function shop(Shop $shop, ProductRepository $productRepository): Response
+    public function shop(Shop $shop, ProductRepository $productRepository, ServicesRepository $servicesRepository): Response
     {
-        $listeProducts = $productRepository->findBy(
-            ['shop' => $shop],
-            []
-        );
-       
-        return $this->render('market/shop.html.twig', [
-            'shop' => $shop,
-            'products' => $listeProducts
-        ]);
+
+        $userShop = $shop->getUser();
+
+        if (in_array('ROLE_SHOPKEEPER', $userShop->getRoles())) {
+            $listeProducts = $productRepository->findBy(
+                ['shop' => $shop],
+                []
+            );
+
+            return $this->render('market/shop.html.twig', [
+                'shop' => $shop,
+                'products' => $listeProducts
+            ]);
+        }
+        if (in_array('ROLE_SERVICE', $userShop->getRoles())) {
+
+            $listeServices = $servicesRepository->findBy(
+                ['shop' => $shop],
+                []
+            );
+
+            return $this->render('market/shop.html.twig', [
+                'shop' => $shop,
+                'services' => $listeServices
+            ]);
+        } 
 
     }
 
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository) : Response
+    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository): Response
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
@@ -108,11 +127,11 @@ class MarketController extends AbstractController
         // on créer une ligne order et orderDetails
         $order = new Order();
         $orderdet = new OrderDetails();
-        
+
         $user = $this->getUser();
 
         //si l'utilisateur est connecté
-        if ( $user != null) {
+        if ($user != null) {
 
             if ($form->isSubmitted() && $form->isValid()) {
 
@@ -130,32 +149,31 @@ class MarketController extends AbstractController
                 //on lie l'order et l'orderDetails
                 $order->setOrderDetails($orderdet);
                 $orderdet->setOrders($order);
-               
-               
+
+
 
                 //on récupère l'order actuel
                 $orderDetails = $order->getOrderDetails();
                 $taillepanier = count($panier); //taille du tableau pour avoir accès au total qui est toujours la dernière cellule
                 $collectDate = $form->get('collect_date')->getData(); // on récupère la date
                 dump($panier);
-                
+
                 // pour affecter les produits on doit récuper les céllules qui contiennent la valeur de l'id du produit
                 //le tableau est constité [id1],[quantité1],[id2][quandtité2].... l'id se trouve donc 1 case sur deux
                 // ce quiexplique le $i+=2 on saute une case
-                for ($i=0; $i<$taillepanier; $i+=2 ) {
+                for ($i = 0; $i < $taillepanier; $i += 2) {
 
                     //si la case n'est pas vide 
-                    if  (isset($panier[$i]) && $panier[$i]!=null && $panier[$i]!="") {
-                        
+                    if (isset($panier[$i]) && $panier[$i] != null && $panier[$i] != "") {
+
                         $subOrder = new SubOrder;
                         $orderdet->addSubOrder($subOrder);
-                        $quantite = intval($panier[$i+1]);
+                        $quantite = intval($panier[$i + 1]);
                         //on récupère le produit dans la bdd grace à l'id
                         $currentproduct = $productRepository->findOneBy(['id' => $panier[$i]]);
                         // et on l'ajoute dans la BDD
                         $subOrder->setQuantity($quantite);
                         $currentproduct->addSubOrder($subOrder);
-   
                     }
                 }
 
@@ -167,21 +185,18 @@ class MarketController extends AbstractController
 
                 $orderDetails->setCollectDate($collectDate);
                 $orderDetails->setOrderStatus("En Cours");
-                
+
 
                 //on ajoute le tout dans la BDD
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($order);
                 $entityManager->flush();
             }
-        
+
             return $this->render('market/cart.html.twig', [
                 'form' => $form->createView(),
             ]);
-
-            }
-
-        else {
+        } else {
             return $this->redirectToRoute('app_login');
         }
     }
@@ -200,7 +215,7 @@ class MarketController extends AbstractController
         // } 
 
         // dump($request->isXmlHttpRequest());
-        
+
         // $delimiter = '^';
         // $panier = explode($delimiter, $_POST['postArray']);
 
@@ -209,6 +224,6 @@ class MarketController extends AbstractController
         //    $dataResponse = array("error" => false); //Here data you can send back
         //    return new JsonResponse($dataResponse);
 
-     
+
     }
 }

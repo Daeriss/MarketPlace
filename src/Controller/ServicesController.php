@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/services")
+ * @Route("/service/services")
  */
 class ServicesController extends AbstractController
 {
@@ -30,22 +30,29 @@ class ServicesController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
+        $shop = $user->getShop();
         $service = new Services();
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($service);
-            $entityManager->flush();
+        if (in_array('ROLE_SERVICE', $user->getRoles())) {
 
-            return $this->redirectToRoute('services_index');
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $service->setShop($shop);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($service);
+                $entityManager->flush();
+                
+                return $this->redirectToRoute('services_index');
+            }
+
+            return $this->render('services/new.html.twig', [
+                'service' => $service,
+                'form' => $form->createView(),
+            ]);
         }
-
-        return $this->render('services/new.html.twig', [
-            'service' => $service,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -83,7 +90,7 @@ class ServicesController extends AbstractController
      */
     public function delete(Request $request, Services $service): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $service->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($service);
             $entityManager->flush();
