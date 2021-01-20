@@ -98,8 +98,6 @@ class ShopKeeperController extends AbstractController
                 []
             );
         }
-        dump($tablisteproduit);
-        dump($listeproduit);
 
         return $this->render('shop_keeper/shopkeeperorders.html.twig', [
             'orders' => $listecommande,
