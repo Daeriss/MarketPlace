@@ -63,6 +63,7 @@
 			{% elseif is_granted('ROLE_SERVICE') %}
 			<a class="nav-link text-white" href="{{ path('shop_index') }}">Ma boutique</a>
 			<a class="nav-link text-white" href="{{ path('appointment') }}">Mes rendez-vous</a>
+			<a class="nav-link text-white" href="{{ path('prestations') }}">Mes prestations</a>
 			<a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
             {% else %}
 			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>

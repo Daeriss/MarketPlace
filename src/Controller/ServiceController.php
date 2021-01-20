@@ -27,4 +27,14 @@ class ServiceController extends AbstractController
             'controller_name' => 'ServiceController',
         ]);
     }
+
+    /**
+     * @Route("/service/prestations", name="prestations")
+     */
+    public function prestations(): Response
+    {
+        return $this->render('service/prestations.html.twig', [
+            'controller_name' => 'ServiceController',
+        ]);
+    }
 }
