@@ -57,6 +57,41 @@ class Shop
      */
     private $img;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Lundi;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Mardi;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Mercredi;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Jeudi;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Vendredi;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Samedi;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Dimanche;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -184,6 +219,90 @@ class Shop
     public function setImg(?string $img): self
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    public function getLundi(): ?string
+    {
+        return $this->Lundi;
+    }
+
+    public function setLundi(?string $Lundi): self
+    {
+        $this->Lundi = $Lundi;
+
+        return $this;
+    }
+
+    public function getMardi(): ?string
+    {
+        return $this->Mardi;
+    }
+
+    public function setMardi(?string $Mardi): self
+    {
+        $this->Mardi = $Mardi;
+
+        return $this;
+    }
+
+    public function getMercredi(): ?string
+    {
+        return $this->Mercredi;
+    }
+
+    public function setMercredi(?string $Mercredi): self
+    {
+        $this->Mercredi = $Mercredi;
+
+        return $this;
+    }
+
+    public function getJeudi(): ?string
+    {
+        return $this->Jeudi;
+    }
+
+    public function setJeudi(?string $Jeudi): self
+    {
+        $this->Jeudi = $Jeudi;
+
+        return $this;
+    }
+
+    public function getVendredi(): ?string
+    {
+        return $this->Vendredi;
+    }
+
+    public function setVendredi(?string $Vendredi): self
+    {
+        $this->Vendredi = $Vendredi;
+
+        return $this;
+    }
+
+    public function getSamedi(): ?string
+    {
+        return $this->Samedi;
+    }
+
+    public function setSamedi(?string $Samedi): self
+    {
+        $this->Samedi = $Samedi;
+
+        return $this;
+    }
+
+    public function getDimanche(): ?string
+    {
+        return $this->Dimanche;
+    }
+
+    public function setDimanche(?string $Dimanche): self
+    {
+        $this->Dimanche = $Dimanche;
 
         return $this;
     }

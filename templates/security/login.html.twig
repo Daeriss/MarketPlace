@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container-fluid container-sign-in">
     <div class="row">
-        <div class="col-12 col-md-6 background-sign-in flex-center">
+        <div class="col-12 col-sm-12 col-md-6 background-sign-in flex-center">
             <form method="post" class="border-form flex-column">
                 {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -44,7 +44,7 @@
             </form>
         </div>
         <div class="col-12 col-md-6 no-padding">
-            <img src="{{ asset('assets/img/sign-in2.jpeg') }}" class="img-fluid">
+            <img src="{{ asset('assets/img/sign.jpeg') }}" class="img-fluid">
         </div>
     </div>
 </div>

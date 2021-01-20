@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\HorairesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,11 +18,24 @@ class ShopKeeperController extends AbstractController
     /**
      * @Route("/shopkeeper", name="accueilshopkeeper")
      */
-    public function accueilshopkeeper()
+    public function accueilshopkeeper(request $request): Response
     {
-        return $this->render('shop_keeper/indexshopKeeper.html.twig');
-    }
+        $user = $this->getUser();
+        $shop = $user->getShop();
+        $form = $this->createForm(HorairesType::class, $shop);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
 
+            $this->addFlash('message', 'Horaires à jour');
+        }
+        return $this->render('shop_keeper/indexshopKeeper.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
+    
     /**
      * @Route("/orders/", name="shopkeeperorders", methods={"GET"})
      */
