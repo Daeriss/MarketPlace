@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\OrderRepository;
+use App\Repository\SubOrderRepository;
 use App\Repository\UserRepository;
 use App\Repository\ShopRepository;
 
@@ -24,7 +25,7 @@ class ShopKeeperController extends AbstractController
         $shop = $user->getShop();
         $form = $this->createForm(HorairesType::class, $shop);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
@@ -33,13 +34,12 @@ class ShopKeeperController extends AbstractController
         return $this->render('shop_keeper/indexshopKeeper.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
-    
+
     /**
      * @Route("/orders/", name="shopkeeperorders", methods={"GET"})
      */
-    public function shopkeeperorders(OrderRepository $orderRepository, Request $request)
+    public function shopkeeperorders(OrderRepository $orderRepository, SubOrderRepository $subOrderRepository, Request $request)
     {
 
         $user = $this->getUser();
@@ -65,34 +65,45 @@ class ShopKeeperController extends AbstractController
 
                 if ($orderid == $order->getId()) {
 
-
                     if ($status != "Récupéré") {
 
                         if ($request->query->get('statut') == "Terminé") {
 
                             $details->setOrderStatus("Terminé");
-
                             $this->getDoctrine()->getManager()->flush();
                         }
 
                         if ($request->query->get('statut') == "Récupéré") {
 
                             $details->setOrderStatus("Récupéré");
-
                             $this->getDoctrine()->getManager()->flush();
                         }
                     }
                 }
             }
         }
+        $orders = $shop->getOrders()->getValues();
+
 
         $listecommande = $orderRepository->findBy(
             ['shop' => $shop],
             []
         );
+        $tablisteproduit = [];
+        for ($i = 0; $i < count($orders); $i++) {
+
+            $details = $orders[$i]->getOrderDetails();
+            $tablisteproduit[$i] = $listeproduit = $subOrderRepository->findBy(
+                ['orderDetails' => $details],
+                []
+            );
+        }
+        dump($tablisteproduit);
+        dump($listeproduit);
 
         return $this->render('shop_keeper/shopkeeperorders.html.twig', [
-            'orders' => $listecommande
+            'orders' => $listecommande,
+            'tablisteproducts' => $tablisteproduit
         ]);
     }
 }

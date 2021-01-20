@@ -1,65 +1,170 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PAGE ACCUEIL{% endblock %}
+{% block title %}PAGE ACCUEIL
+{% endblock %}
 
 
 {% block stylesheets %}
-<style>
-    
-</style>
+	<style>
+		.accordion {
+			background-color: #eee;
+			color: #444;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+			transition: 0.4s;
+		}
+
+		.active,
+		.accordion:hover {
+			background-color: #ccc;
+		}
+
+		.panel {
+			padding: 0 18px;
+			display: none;
+			background-color: white;
+			overflow: hidden;
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
 
-<h1>Mes produits</h1>
+	<h1>Mes produits</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Numero de commande</th>
-                <th>Client</th>
-                <th>Date de collect</th>
-                <th>Total</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for order in orders %}
-            <tr>
-            {% set idOrder = order.id %}
-                <td>{{ order.orderNumber }}</td>
-                <td>{{ order.user.name }}</td>
-                <td>{{ order.orderDetails.collectDate |date("j / m / Y") }}</td>
-                <td>{{ order.checkout }}€</td>  
-                {%  if (order.orderDetails.orderStatus == "Récupéré")  %}
-                <td class="green light-1">{{ order.orderDetails.orderStatus }} </td> 
-                {% elseif (order.orderDetails.orderStatus == "En Cours") %}
-                <td><a class="btn shadow-1 rounded-1 yellow light-1" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">En Cours</a></td>
-                {% elseif (order.orderDetails.orderStatus == "Terminé") %}
-                <td><a class="btn shadow-1 rounded-1 blue light-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a></td> 
-                {% endif %}
-            </tr>
-            
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{# <table class="table">
+		<thead>
+			<tr>
+				<th>Numero de commande</th>
+				<th>Client</th>
+				<th>Date de collect</th>
+				<th>Total</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for order in orders %}
+				<tr>
+					{% set idOrder = order.id %}
+					
+						<td>{{ order.orderNumber }}</td>
+						<td>{{ order.user.name }}</td>
+						<td>{{ order.orderDetails.collectDate |date("j / m / Y") }}</td>
+						<td>{{ order.checkout }}€</td>
+						{%  if (order.orderDetails.orderStatus == "Récupéré")  %}
+							<td class="green light-1">{{ order.orderDetails.orderStatus }}
+							</td>
+						{% elseif (order.orderDetails.orderStatus == "En Cours") %}
+							<td><a class="btn shadow-1 rounded-1 yellow light-1" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">En Cours</a>
+							</td>
+						{% elseif (order.orderDetails.orderStatus == "Terminé") %}
+							<td><a class="btn shadow-1 rounded-1 blue light-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a>
+							</td>
+						{% endif %}
+                        <td><button data-target="example-collapsible{{loop.index0}}" class="btn rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button></td>
+
+				</tr>
+                
+					    <tr class="collapsible" id="example-collapsible{{loop.index0}}" data-ax="collapsible">
+                                    <th>Produit</th>
+				                    <th>Quantité</th>
+                        
+						    {% for listeproducts in tablisteproducts %}
+                                {% for product in listeproducts %}
+                                    {%  if (order.orderDetails == product.orderDetails)  %}
+							            <td>{{product.product.name}}</td> 
+							            <td>{{product.quantity }}</td>
+                                    {% endif %}
+                                {% endfor %} 
+						    {% endfor %} 
+                            
+                            </ul>
+					    </tr>
+
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table> #}
+
+    <div class="container-fluid">
+		<div class="grix xs6">
+				<p>Numero de commande</p>
+				<p>Client</p>
+				<p>Date de collect</p>
+				<p>Total</p>
+				<p>Status</p>
+		</div>
+	
+       
+			{% for order in orders %}
+					{% set idOrder = order.id %}
+					<div class="grix xs6 p-3 shadow-2">
+						<p>{{ order.orderNumber }}</p>
+						<p>{{ order.user.name }}</p>
+						<p>{{ order.orderDetails.collectDate |date("j / m / Y") }}</p>
+						<p>{{ order.checkout }}€</p>
+						{%  if (order.orderDetails.orderStatus == "Récupéré")  %}
+							<p class="green light-1">{{ order.orderDetails.orderStatus }}
+							</p>
+						{% elseif (order.orderDetails.orderStatus == "En Cours") %}
+							<a class="btn shadow-1 rounded-1 yellow light-1" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">En Cours</a>
+							
+						{% elseif (order.orderDetails.orderStatus == "Terminé") %}
+							<a class="btn shadow-1 rounded-1 blue light-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a>
+							
+						{% endif %}
+                        <button data-target="example-collapsible{{loop.index0}}" class="btn rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button>
+                    </div>
+				
+        <div class="collapsible grix xs6" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
+    
+			<div class=" grix xs6" >
+                <p>Produit</p>
+				<p>Quantité</p>
+            </div>            
+			{% for listeproducts in tablisteproducts %}
+                {% for product in listeproducts %}
+                    <div class="grix xs6">
+                        {%  if (order.orderDetails == product.orderDetails)  %}
+							    <p>{{product.product.name}}</p> 
+							    <p>{{product.quantity }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %} 
+			{% endfor %} 
+			
+        </div>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		
+	</div>
 
 {% endblock %}
 
 {% block javascripts %}
 
-<script>
-function toggle(color){
+	<script>
+		function toggle(color) {
 
-    var button = document.getElementById("button");
-    button.removeAttribute("class");
-    button.setAttribute("class", color);
-    button.setAttribute("class","btn shadow-1 rounded-1 dropdown-trigger");
-}
-</script>
+            var button = document.getElementById("button");
+            button.removeAttribute("class");
+            button.setAttribute("class", color);
+            button.setAttribute("class", "btn shadow-1 rounded-1 dropdown-trigger");
+        }
+
+    
+        
+	</script>
 
 {% endblock %}
