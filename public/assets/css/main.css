@@ -229,6 +229,11 @@ p + a {
     color: white;
     background-color: var(--primary-color);
     
+    margin:auto;
+    transition-property: font-size;
+    transition-duration: 4s;
+
+    
 }
 
 .btn-sign-in:hover {
