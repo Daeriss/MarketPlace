@@ -6,7 +6,14 @@
 
 
 {% block stylesheets %}
-	<style></style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+
+    <style>
+        #calendier {
+            width : 80%;
+            margin : auto;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -50,14 +57,13 @@
 						<td colspan="7">no records found</td>
 					</tr>
 				{% endfor %}
-			{% endif %}
+			{% endif %} #}
 
-			{% if services is defined %}
+			 {% if services is defined %}
 				{% for service in services %}
 					<div class="card m-5 col-3">
 						<h3 class="card-header text-center">{{ service.name }}</h3>
 						<div class="card-body">
-							{# <p class="card-text">Description :{{ product.description  }}</p> #}
 							<p class="card-text">Prix : {{ service.price }} €</p>
 						</div>
 					</div>
@@ -67,9 +73,37 @@
 					</tr>
 				{% endfor %}
 				<a class="btn rounded-1 blue press" href="{{ path('calendar_new', {'id': shop.id}) }}">Create new</a>
+			
+			 <div id="calendrier"></div>
+			
 			{% endif %}
 		</div>
 	</section>
 
+{% block javascript %}  
+    <script>
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendrier")
+            let calendar = new FullCalendar.Calendar(calendarElt, {
+                initialView: 'timeGridWeek',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek'
+                },
+                events: {{ data|raw }},
+              selectable: true,
+            dateClick: function(info) {
+                alert('Clicked on: ' + info.dateStr);
+                
+            }
+            })
+
+            calendar.render()
+        }
+    </script>
+{% endblock %}
 {% endblock %}
 

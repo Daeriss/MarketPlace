@@ -29,7 +29,13 @@ class ServiceController extends AbstractController
      */
     public function appointment(CalendarRepository $calendarRepository, Request $request): Response
     {
-        $events = $calendarRepository->findAll();
+        $user = $this->getUser();
+        $shop = $user->getShop();
+
+        $events = $calendarRepository->findby([
+            'shop' => $shop,
+            []
+        ]);
         $rdvs = [];
 
         foreach ($events as $event){

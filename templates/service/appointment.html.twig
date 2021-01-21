@@ -27,6 +27,7 @@
         </div>
     </div>
 
+
 {% block javascript %}  
     <script>
         window.onload = () => {
@@ -41,7 +42,11 @@
                     end: 'dayGridMonth,timeGridWeek'
                 },
                 events: {{ data|raw }},
+              selectable: true,
+            dateClick: function(info) {
+                alert('Clicked on: ' + info.dateStr);
                 
+            }
             })
 
             
