@@ -206,23 +206,7 @@ class MarketController extends AbstractController
      */
     public function cartValidator(Request $request, OrderRepository $orderRepository)
     {
-        // if($request->isXmlHttpRequest()){
-
-        //     $panier = json_decode($request->request->get('a'));
-        //     dump($panier);
-        //     return new JsonResponse(json_decode($request->request->get('a')));
-
-        // } 
-
-        // dump($request->isXmlHttpRequest());
-
-        // $delimiter = '^';
-        // $panier = explode($delimiter, $_POST['postArray']);
-
-        // $data = json_decode($request->request->get('data'));
-        //    var_dump($data); // Here you can see your vars sent by AJAX
-        //    $dataResponse = array("error" => false); //Here data you can send back
-        //    return new JsonResponse($dataResponse);
+       
 
 
     }

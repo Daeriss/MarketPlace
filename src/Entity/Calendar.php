@@ -47,6 +47,17 @@ class Calendar
      */
     private $background_color;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Shop::class, inversedBy="calendars")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $shop;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +131,30 @@ class Calendar
     public function setBackgroundColor(?string $background_color): self
     {
         $this->background_color = $background_color;
+
+        return $this;
+    }
+
+    public function getShop(): ?Shop
+    {
+        return $this->shop;
+    }
+
+    public function setShop(?Shop $shop): self
+    {
+        $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getClient(): ?string
+    {
+        return $this->Client;
+    }
+
+    public function setClient(string $Client): self
+    {
+        $this->Client = $Client;
 
         return $this;
     }

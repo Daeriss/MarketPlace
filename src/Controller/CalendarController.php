@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ShopRepository;
 
 /**
  * @Route("/calendar")
@@ -20,32 +21,66 @@ class CalendarController extends AbstractController
      */
     public function index(CalendarRepository $calendarRepository): Response
     {
-        return $this->render('calendar/index.html.twig', [
-            'calendars' => $calendarRepository->findAll(),
+
+        $user = $this->getUser();
+        $shop = $user->getShop();
+        $idShop = $shop->getId();
+
+        $listerdv = $calendarRepository->findBy(
+            ['shop' => $shop],
+            []
+        );
+
+        return $this->render('product/index.html.twig', [
+            'calendars' => $listerdv
         ]);
     }
 
     /**
      * @Route("/new", name="calendar_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ShopRepository $shopRepository): Response
     {
+        $user = $this->getUser();
         $calendar = new Calendar();
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($calendar);
-            $entityManager->flush();
+        if ($user != null) {
 
-            return $this->redirectToRoute('calendar_index');
+            if (in_array('ROLE_SERVICE', $user->getRoles())) {
+
+                $shop = $user->getShop();
+            } else {
+                $requestid = Request::createFromGlobals();
+                $shopid = $requestid->query->get('id');
+
+                $shop = $shopRepository->findOneBy(['id' => $shopid]);
+            }
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $calendar->setShop($shop);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($calendar);
+                $entityManager->flush();
+
+                if (in_array('ROLE_SERVICE', $user->getRoles())) {
+
+                    return $this->redirectToRoute('appointment');
+                }else {
+               
+                    return $this->redirectToRoute('shop');
+                }
+            }
+
+            return $this->render('calendar/new.html.twig', [
+                'calendar' => $calendar,
+                'form' => $form->createView(),
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
         }
-
-        return $this->render('calendar/new.html.twig', [
-            'calendar' => $calendar,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**
@@ -83,7 +118,7 @@ class CalendarController extends AbstractController
      */
     public function delete(Request $request, Calendar $calendar): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$calendar->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $calendar->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($calendar);
             $entityManager->flush();
