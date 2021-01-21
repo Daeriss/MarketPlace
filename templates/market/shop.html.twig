@@ -66,6 +66,7 @@
 						<td colspan="7">no records found</td>
 					</tr>
 				{% endfor %}
+				<a class="btn rounded-1 blue press" href="{{ path('calendar_new', {'id': shop.id}) }}">Create new</a>
 			{% endif %}
 		</div>
 	</section>

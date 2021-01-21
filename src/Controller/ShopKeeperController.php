@@ -56,7 +56,6 @@ class ShopKeeperController extends AbstractController
         $user = $this->getUser();
         $shop = $user->getShop();
 
-
         $request = Request::createFromGlobals();
         $request->query->get('statut');
         $requestid = Request::createFromGlobals();
@@ -65,7 +64,6 @@ class ShopKeeperController extends AbstractController
         if ($request->query->get('statut') != null) {
 
             $orders = $shop->getOrders()->getValues();
-
 
             for ($i = 0; $i < count($orders); $i++) {
 
