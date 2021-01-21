@@ -61,6 +61,9 @@ class CalendarController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $calendar->setShop($shop);
+                if (in_array('ROLE_MEMBER', $user->getRoles())) {
+                    $calendar->setUser($user);
+                }
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($calendar);
                 $entityManager->flush();
@@ -70,7 +73,7 @@ class CalendarController extends AbstractController
                     return $this->redirectToRoute('appointment');
                 }else {
                
-                    return $this->redirectToRoute('shop');
+                    return $this->redirectToRoute('app_account_rdv');
                 }
             }
 
