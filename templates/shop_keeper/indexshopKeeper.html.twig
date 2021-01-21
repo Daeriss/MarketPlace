@@ -23,14 +23,24 @@
 		</div>
 	</div>
 <hr>
+{% set counter = 0 %}
+{% for order in orders %} 
+
+
+{% set counter = counter + order.checkout %}
+
+{% endfor %}
+
 	<div class="container">
 	<strong> Statistiques de mon compte vendeur : </strong> 
-		<ul>
-			<li> Nombre de commandes acceptées : 3 </li>
-			<li> Nombre de commandes refusées : 1 </li>
-			<li> Total TTC des commandes récupérées : 52 </li>
-		</ul>
+		<ul> 
+			<li> Nombre de commandes récupérée : </li>
+			<li> Total TTC des commandes récupérées : {{ counter }} € </li>
+		</ul> 
 	</div>
+
+
+
 
 {% endblock %}{% block javascripts %}
 

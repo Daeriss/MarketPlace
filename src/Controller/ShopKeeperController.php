@@ -19,7 +19,7 @@ class ShopKeeperController extends AbstractController
     /**
      * @Route("/shopkeeper", name="accueilshopkeeper")
      */
-    public function accueilshopkeeper(request $request): Response
+    public function accueilshopkeeper(request $request, OrderRepository $orderRepository): Response
     {
         $user = $this->getUser();
         $shop = $user->getShop();
@@ -30,10 +30,21 @@ class ShopKeeperController extends AbstractController
             $em->flush();
 
             $this->addFlash('message', 'Horaires à jour');
-        }
+
+        };
+        $orders = $shop->getOrders()->getValues();
+
+
+        $listecommande = $orderRepository->findBy(
+            ['shop' => $shop],
+            []
+        );
         return $this->render('shop_keeper/indexshopKeeper.html.twig', [
+            'orders' => $listecommande,
             'form' => $form->createView()
         ]);
+
+
     }
 
     /**
