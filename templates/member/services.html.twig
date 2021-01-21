@@ -31,32 +31,32 @@ table {
     </div>
       <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
       <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
-      <a href="{{ path('app_account_orders')}}" class="sidenav-link active">Mes commandes</a>
-      <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
+      <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
+      <a href="{{ path('app_account_rdv')}}" class="sidenav-link active">Mes rendez vous</a>
     </div>
 
 <div class="example-wrapper container">
 
 
-<h2>Commandes en cours :</h2>
+<h2>Mes services souscrits :</h2>
 
 <table>
   <tr>
-    <th>Magasin</th>
-    <th>Numéro de Commande</th>
+    <th>Prestataire</th>
+    <th>Date du rendez vous</th>
     <th>Etat de la commande</th>
     <th>Prix</th>
   </tr>
-  {% for order in orders %}
+  {% for service in services %}
   <tr>
-  <td>{{ order.shop.name }}</td>
-  <td>{{ order.orderNumber }}</td>
-  <td>{{ order.orderDetails.orderStatus }}</td>
-  <td>{{ order.checkout }}</td>
+  <td>{{ service.shop.name }}</td>
+  <td>{{ service.orderNumber }}</td>
+  <td>{{ service.orderDetails.orderStatus }}</td>
+  <td>{{ service.checkout }}</td>
   </tr>
   {% else %}
   <tr>
-  <td colspan="6"> Pas encore de commandes</td>
+  <td colspan="6"> Pas encore de rendez-vous</td>
   </tr>
   {% endfor %}
 
