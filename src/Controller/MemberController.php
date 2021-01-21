@@ -36,6 +36,21 @@ class MemberController extends AbstractController
     }
 
     /**
+     * @Route("/mon-compte/mes-rendez-vous", name="app_account_rdv")
+     */
+    public function rendezVous(OrderRepository $orderRepository): Response
+    {
+        $user = $this->getUser();
+        $listeServices = $orderRepository->findBy(
+            ['user' => $user],
+            []
+        );
+        return $this->render('member/services.html.twig', [
+            'services' => $listeServices
+        ]);
+    }
+
+    /**
      * @Route("/mon-compte/modifier", name="app_account_edit" , methods={"GET","POST"})
      */
     public function edit(request $request): Response
