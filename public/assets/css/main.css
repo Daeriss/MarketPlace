@@ -91,7 +91,6 @@ p + a {
 
 .absolute-form {
     position: absolute;
-
 }
 
 .img-header {
@@ -293,6 +292,11 @@ p + a {
 .btn-sign-in {
     color: white;
     background-color: var(--primary-color);
+    
+    margin:auto;
+    transition-property: font-size;
+    transition-duration: 4s;
+
     
 }
 

@@ -59,9 +59,18 @@ class User implements UserInterface
      */
     private $orders;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="user")
+     */
+    private $calendar;
+
+    
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->calendars = new ArrayCollection();
+        $this->calendar = new ArrayCollection();
     }
 
    
@@ -223,4 +232,36 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getCalendar(): Collection
+    {
+        return $this->calendar;
+    }
+
+    public function addCalendar(Calendar $calendar): self
+    {
+        if (!$this->calendar->contains($calendar)) {
+            $this->calendar[] = $calendar;
+            $calendar->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): self
+    {
+        if ($this->calendar->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getUser() === $this) {
+                $calendar->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }
