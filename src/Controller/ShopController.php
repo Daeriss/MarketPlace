@@ -108,15 +108,46 @@ class ShopController extends AbstractController
     /**
      * @Route("/{id}/edit", name="shop_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Shop $shop): Response
+    public function edit(Request $request, Shop $shop,   SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ShopType::class, $shop);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            return $this->redirectToRoute('shop_index');
+                $img = $form->get('img')->getData();
+
+
+                if ($img) {
+                    $originalFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+                    // this is needed to safely include the file name as part of the URL
+                    $safeFilename = $slugger->slug($originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $img->guessExtension();
+
+                    // Move the file to the directory where brochures are stored
+                    try {
+                        $img->move(
+                            $this->getParameter('photos_directory'),        // NE PAS OUBLIER DE CREER LE DOSSIER
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                    }
+
+                    $shop->setImg($newFilename);       // ON ENREGISTRE LE NOM DU FICHIER
+                } else {
+                    $defaultImg = "Asset-1@2x-1.png";
+                    $shop->setImg($defaultImg);
+                }
+                $shop->setUser($user);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($shop);
+                $entityManager->flush();
+                dump($shop);
+
+                return $this->redirectToRoute('shop_index');
+            }
         }
 
         return $this->render('shop/edit.html.twig', [

@@ -12,51 +12,86 @@
         #calendier {
             width : 80%;
             margin : auto;
-        }
+		}
+		
+		.container-info{
+			/* background-image: url("{{ asset('assets/uploads/' ~ shop.img ) }}");
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 20rem; */
+			    background-color: var(--third-color);
+
+		}
+		.img-product {
+			max-height: 10rem;
+		}
+
+		.card-border {
+
+		border: 4px white solid;
+    	box-shadow: 0px 1px 20px 6px #cccccc;
+    	border-radius: 10%;
+	}
+	.card-btn {
+		background-color: var(--primary-color);
+	}
+
+	.imgshop {
+		max-width: 50rem;
+	}
+
     </style>
 {% endblock %}
 
 {% block body %}
 	
-	<section class="container-fluid">
-		<div class="row m-3">
-			<h3 class="col">{{ shop.name }}</h3>
-			<div class="col"> Adresse : {{ shop.adress }}</div>
-			<div class="col">Paiements acceptés au retrait : {{ shop.paiement }}</div>
-		</div>
-		<div>
-			<h4> Horaires d'ouverture </h4>
-			<p>
-			Lundi : {{ shop.lundi }} 
-			Mardi : {{ shop.mardi }} 
-			Mercredi : {{ shop.mercredi }} 
-			Jeudi : {{ shop.jeudi }} 
-			Vendredi : {{ shop.vendredi }} 
-			Samedi : {{ shop.samedi }}
-			Dimanche : {{ shop.dimanche }}  
-			</p>
-		</div>
-		<div class="row">
+		{# <div class="d-flex flex-column justify-content-end container-info p-0 m-0">
+			<h3 class="m-0 font-w600 ">{{ shop.name }} ( {{ shop.adress }} )</h3>
+			<p class="">Paiements acceptés au retrait : {{ shop.paiement }}</p>
+		</div> #}
+		<section class="d-flex flex-row container-info justify-content-center p-5 ">
+			<div class="col-5">
+				<h3 class="mb-5 font-w600 text-white">{{ shop.name }} ( {{ shop.adress }} )</h3>
+				<p class="text-white">Paiements acceptés au retrait : {{ shop.paiement }}</p>
+				<div>
+					<h4 class="text-white"> Horaires d'ouverture </h4>
+					<p class="text-white">Lundi : {{ shop.lundi }} </p>
+					<p class="text-white">	Mardi : {{ shop.mardi }} </p>
+					<p class="text-white">	Mercredi : {{ shop.mercredi }} </p>
+					<p class="text-white">	Jeudi : {{ shop.jeudi }}</p> 
+					<p class="text-white">	Vendredi : {{ shop.vendredi }} </p>
+					<p class="text-white">	Samedi : {{ shop.samedi }}</p>
+					<p class="text-white">	Dimanche : {{ shop.dimanche }}</p>  
+					
+				</div>
+			</div>
+			
+				<img class="col-5" src="{{ asset('assets/uploads/' ~ shop.img ) }}">
+			
+		</section
+	<section class="container-fluid ">
+		
+		<div class="container-fluid p-0">
+			<div class="row d-flex pl-5 m-5">
 			{% if products is defined %}
 				{% for product in products %}
-					<div class="card m-5 col-3">
-						<h3 class="card-header text-center">{{ product.name }}</h3>
-						<div class="" style="height: 8rem">
-							<img class="img-fluid" src="{{ asset('assets/uploads/' ~ product.img ) }}">
-						</div>
+					<div class="card card-border p-0 col-md-5 m-xl-5 m-md-2 col-xl-3">
+						<img class="card-img-top img-product" src="{{ asset('assets/uploads/' ~ product.img ) }}">
 						<div class="card-body">
+							<h3 class="card-title m-0">{{ product.name }}</h3>
 							<p class="card-text">Description : {{ product.description  }}</p>
 							<p class="card-text">Prix : {{ product.price }} €</p>
 							<p class="card-text"> Disponniblité : {{ product.isavailable ? 'Oui':'Non' }} </p>
 						</div>
-						<div class="card-body">
+				
+						
 						{% if product.isavailable == true %}
-					 		<button onclick="ajouterPanierdepuisShop('{{ product.id }}','{{ product.name }}','{{ product.price }}','{{shop.id}}')">ajouter ce produit au panier!</button>
+					 		<button class="p-2 card-btn text-white text-center" onclick="ajouterPanierdepuisShop('{{ product.id }}','{{ product.name }}','{{ product.price }}','{{shop.id}}')">ajouter ce produit au panier!</button>
 						{% else %}
-						<button disabled> Produit indisponible </button>
-						{% endif %}
-							 
-						</div>
+						<button class="p-2 card-btn text-white text-center" disabled> Produit indisponible </button>
+						{% endif %} 
+						
 					</div>
 				{% else %}
 					<tr>
@@ -64,7 +99,7 @@
 					</tr>
 				{% endfor %}
 			{% endif %}
-
+			</div>
 			 {% if services is defined %}
 				{% for service in services %}
 					<div class="card m-5 col-3">
