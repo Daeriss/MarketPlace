@@ -31,16 +31,42 @@
 
 {% endfor %}
 
-	<div class="container">
-	<strong> Statistiques de mon compte vendeur : </strong> 
-		<ul> 
-			<li> Nombre de commandes récupérée : </li>
-			<li> Total TTC des commandes récupérées : {{ counter }} € </li>
-		</ul> 
-	</div>
 
 
+<h1>Gestion de ma boutique en ligne</h1>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Arrondissement</th>
+                <th>Photo</th>
+                <th>Paiement Accepté</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if (shop)  %}
+            <tr>
+                <td>{{ shop.name }}</td>
+                <td>{{ shop.adress }}</td>
+                <td>{{ shop.img }}</td>
+                <td>{{shop.paiement}}</td>
+                <td>
+                    <a href="{{ path('shop_edit', {'id': shop.id}) }}">Modifier les informations</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endif %}
+        
+        </tbody>
+    </table>
+
+Total TTC des commandes récupérées : {{ counter }} €
+	
 
 {% endblock %}{% block javascripts %}
 
