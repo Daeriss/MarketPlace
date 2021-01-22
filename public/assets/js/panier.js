@@ -49,52 +49,9 @@ total = 0,
 nbSingleProduitsPanier = 0;
 
 
-
-getPanierHTMLNoButton()
-{
-
-    var contentToAppend="";
-
-    for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
-
-        if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
-
-            var quantiteCourante = (parseInt(sessionStorage[key].split(',')[1], 10));
-            nbSingleProduitsPanier++;
-            nbProduitsPanier += quantiteCourante;
-            // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
-            // prix qu'on multiplie par la quantité
-            total += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
-        }
-    }
-
-
-
-
-    for (var key in sessionStorage) {
-
-        if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
-
-            var name = sessionStorage[key].split(',')[2];
-            var prix = sessionStorage[key].split(',')[3];
-            var quantite = sessionStorage[key].split(',')[1];
-            
-            var key2 = "\'" + key + "\'";
-            var name2 = "\'" + name + "\'";
-            var prix2 = "\'" + prix + "\'";
-            contentToAppend += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '<button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2;
-            contentToAppend += "</li>  ";
-        }
-
-    }
-    contentToAppend += "<br> Prix total : " + total + "<ul>";
-    return contentToAppend;
-}
-
-
 function getPanierHTML()
 {
-    var contentToAppend="";
+    var contentToAppend="<ul>";
 
     for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
 
@@ -105,7 +62,7 @@ function getPanierHTML()
             nbProduitsPanier += quantiteCourante;
             // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
             // prix qu'on multiplie par la quantité
-            total += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
+            total += ((parseFloat(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
         }
     }
 
@@ -128,9 +85,54 @@ function getPanierHTML()
         }
 
     }
-    contentToAppend += "<br> Prix total : " + total + "<ul>";
+    contentToAppend += "<br> Prix total : " + total + "</ul>";
+    console.log(contentToAppend);
     return contentToAppend;
 }
+
+
+
+
+function getPanierHTMLNoButton()
+{
+
+    var contentToAppend="<ul>";
+
+    for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
+
+        if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
+
+            var quantiteCourante = (parseFloat(sessionStorage[key].split(',')[1], 10));
+            nbSingleProduitsPanier++;
+            nbProduitsPanier += quantiteCourante;
+            // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
+            // prix qu'on multiplie par la quantité
+            total += ((parseFloat(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
+        }
+    }
+
+
+    for (var key in sessionStorage) {
+
+        if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
+
+            var name = sessionStorage[key].split(',')[2];
+            var prix = sessionStorage[key].split(',')[3];
+            var quantite = sessionStorage[key].split(',')[1];
+            
+            var key2 = "\'" + key + "\'";
+            var name2 = "\'" + name + "\'";
+            var prix2 = "\'" + prix + "\'";
+            contentToAppend += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite;
+            contentToAppend += "</li>  ";
+        }
+
+    }
+    contentToAppend += "<br> Prix total : " + total + "</ul>";
+    return contentToAppend;
+    
+}
+
 
 
 function AfficherPanier(idToDisplayIn) {
@@ -143,7 +145,7 @@ function AfficherPanier(idToDisplayIn) {
 function AfficherPanierNoBouton(idToDisplayIn) {
 
     var child = document.getElementById(idToDisplayIn);
-    child.innerHTML+=getPanierHTML();
+    child.innerHTML+=getPanierHTMLNoButton();
 
 }
 
@@ -236,7 +238,7 @@ function getPanier() {
     
             var prix = sessionStorage[key].split(',')[3];
             var quantite = sessionStorage[key].split(',')[1];
-            totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantite);
+            totalPrice += ((parseFloat(sessionStorage[key].split(',')[3], 10)) * quantite);
             panier [i] = key; 
             panier [i+1] = quantite;  
             i+=2;
