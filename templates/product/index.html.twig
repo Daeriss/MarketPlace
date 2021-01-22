@@ -12,6 +12,7 @@
                 <th>Description</th>
                 <th>Prix</th>
                 <th>Img</th>
+                <th>Stock</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.price }} €</td>
                 <td>{{ product.img }}</td>
+                <td>{{ product.isavailable ? 'Oui':'Non' }}</td>
                 <td>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
                     <a href="{{ path('product_delete', {'id': product.id}) }}">Supprimer</a>

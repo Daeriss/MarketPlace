@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Shop;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 
@@ -32,6 +33,10 @@ class ProductType extends AbstractType
                         'mimeTypesMessage' => 'SEULEMENT UN FICHIER IMAGE...',
                     ])
                 ],
+            ])
+            ->add('is_available', CheckboxType::class, [
+                'label' => 'En stock ?',
+                'required' => false,
             ])
             // ->add('shop', EntityType::class, [ "class" => Shop::class, "choice_label" => "name" ])
         ;
