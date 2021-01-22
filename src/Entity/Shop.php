@@ -102,6 +102,11 @@ class Shop
      */
     private $calendars;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $road;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -375,6 +380,18 @@ class Shop
                 $calendar->setShop(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRoad(): ?string
+    {
+        return $this->road;
+    }
+
+    public function setRoad(string $road): self
+    {
+        $this->road = $road;
 
         return $this;
     }
