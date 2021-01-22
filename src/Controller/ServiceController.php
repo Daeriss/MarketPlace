@@ -29,8 +29,15 @@ class ServiceController extends AbstractController
      */
     public function appointment(CalendarRepository $calendarRepository, Request $request): Response
     {
-        $events = $calendarRepository->findAll();
+        $user = $this->getUser();
+        $shop = $user->getShop();
+
+        $events = $calendarRepository->findby([
+            'shop' => $shop,
+            []
+        ]);
         $rdvs = [];
+        dump($events);
 
         foreach ($events as $event){
             $rdvs[] = [
@@ -40,12 +47,13 @@ class ServiceController extends AbstractController
                 'title' => $event->getTitle(),
                 'description' => $event->getDescription(),
                 'backgroundColor' => $event->getBackgroundColor(),
+                'user_id' => $event->getUser()->getId(),
                 'allDay' => $event->getAllDay(),
             ];
         }
 
         $data = json_encode($rdvs);
-
+        
         // $user = $this->getUser();
         // $shop = $user->getShop();
         // $service = new Services();
