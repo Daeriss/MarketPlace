@@ -317,9 +317,7 @@ p + a {
     max-width: 700px;
     line-height: 1.244;
     letter-spacing: 0.405px;
-    margin-top: 112px;
     margin-bottom: 172px;
-    margin-right: 120px;
 }
 
 .container-vendeur p {
@@ -328,6 +326,7 @@ p + a {
     font-size: 20px;
     color: var(--third-color);
     text-align: left;
+    max-width: 700px;
 }
 
 /* section clients */
@@ -349,9 +348,7 @@ p + a {
     max-width: 700px;
     line-height: 1.244;
     letter-spacing: 0.405px;
-    margin-top: 112px;
     margin-bottom: 172px;
-    margin-right: 120px;
 }
 
 .container-client p {
@@ -360,6 +357,7 @@ p + a {
     font-size: 20px;
     color: var(--third-color);
     text-align: left;
+    max-width: 700px;
 }
 
 .img-container {
