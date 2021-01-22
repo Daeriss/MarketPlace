@@ -20,6 +20,12 @@ class ShopType extends AbstractType
             ->add('adress', null, [
                 'label' => 'Code Postal'
             ])
+            ->add('road', null, [
+                'label' => 'Adresse du commerce'
+            ])
+            ->add('phone', null, [
+                'label' => 'Numéro de téléphone'
+            ])
             ->add('img', FileType::class, [
                 'label' => 'photo de profil',
                 'help' => 'Une photo représentant votre travail (ex: plats, réalisations...etc)',
