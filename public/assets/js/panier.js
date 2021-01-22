@@ -62,7 +62,7 @@ function getPanierHTML()
             nbProduitsPanier += quantiteCourante;
             // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
             // prix qu'on multiplie par la quantité
-            total += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
+            total += ((parseFloat(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
         }
     }
 
@@ -102,12 +102,12 @@ function getPanierHTMLNoButton()
 
         if (typeof sessionStorage[key] == "string" && sessionStorage[key].split(',')[0] == "CNC") {
 
-            var quantiteCourante = (parseInt(sessionStorage[key].split(',')[1], 10));
+            var quantiteCourante = (parseFloat(sessionStorage[key].split(',')[1], 10));
             nbSingleProduitsPanier++;
             nbProduitsPanier += quantiteCourante;
             // on transforme le contenu du sessionStoragege en int pour l'ajouter au prix (c'était un string :s)
             // prix qu'on multiplie par la quantité
-            total += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
+            total += ((parseFloat(sessionStorage[key].split(',')[3], 10)) * quantiteCourante);
         }
     }
 
@@ -238,7 +238,7 @@ function getPanier() {
     
             var prix = sessionStorage[key].split(',')[3];
             var quantite = sessionStorage[key].split(',')[1];
-            totalPrice += ((parseInt(sessionStorage[key].split(',')[3], 10)) * quantite);
+            totalPrice += ((parseFloat(sessionStorage[key].split(',')[3], 10)) * quantite);
             panier [i] = key; 
             panier [i+1] = quantite;  
             i+=2;
