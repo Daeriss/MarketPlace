@@ -130,8 +130,8 @@ class MarketController extends AbstractController
                 ];
             }
     
-            $dataString = json_encode($rdvs);
-            $data = compact('dataString');
+            $data = json_encode($rdvs);
+           
             dump($data);
 
             return $this->render('market/shop.html.twig', [

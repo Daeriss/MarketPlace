@@ -26,20 +26,21 @@
 
 
 {% block header %}
-	<header class="container-fluid py-5">
+	<header class="container-fluid py-4">
 		<nav class="navbar navbar-expand-lg navbar-dark flex-evenly">
             {% if is_granted('ROLE_MEMBER') %}
-			<a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueil')}}">
+			<a class="navbar-brand marketplace img-fluid container m-3" href="{{path('accueil')}}">
             {% elseif is_granted('ROLE_SHOPKEEPER') %}
-            <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueilshopkeeper')}}">
+            <a class="navbar-brand marketplace img-fluid container m-3" href="{{path('accueilshopkeeper')}}">
 			{% elseif is_granted('ROLE_SERVICE') %}
-            <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueilservice')}}">
+            <a class="navbar-brand marketplace img-fluid container m-3" href="{{path('accueilservice')}}">
             {% else %}
-            <a class="navbar-brand marketplace img-fluid flex-center" href="{{path('accueil')}}">
+            <a class="navbar-brand marketplace img-fluid container m-3" href="{{path('accueil')}}">
 
 
             {% endif %}
 				<img src="{{ asset('assets/img/logo4.png') }}" class="img-fluid logo-img">
+				<h5>CLICK'N'COMMERCES</h5>
 			</a> 
 			
 

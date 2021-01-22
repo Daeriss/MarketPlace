@@ -57,7 +57,7 @@
 						<td colspan="7">no records found</td>
 					</tr>
 				{% endfor %}
-			{% endif %} #}
+			{% endif %}
 
 			 {% if services is defined %}
 				{% for service in services %}
@@ -76,33 +76,33 @@
 			
 			 <div id="calendrier"></div>
 			
-			{% endif %}
+			{% endif %} 
 		</div>
 	</section>
 
 {% block javascript %}  
     <script>
-        window.onload = () => {
-            let calendarElt = document.querySelector("#calendrier")
-            let calendar = new FullCalendar.Calendar(calendarElt, {
-                initialView: 'timeGridWeek',
-                locale: 'fr',
-                timeZone: 'Europe/Paris',
-                headerToolbar: {
-                    start: 'prev,next today',
-                    center: 'title',
-                    end: 'dayGridMonth,timeGridWeek'
-                },
-                events: {{ data|raw }},
-              selectable: true,
-            dateClick: function(info) {
-                alert('Clicked on: ' + info.dateStr);
+        // window.onload = () => {
+        //     let calendarElt = document.querySelector("#calendrier")
+        //     let calendar = new FullCalendar.Calendar(calendarElt, {
+        //         initialView: 'timeGridWeek',
+        //         locale: 'fr',
+        //         timeZone: 'Europe/Paris',
+        //         headerToolbar: {
+        //             start: 'prev,next today',
+        //             center: 'title',
+        //             end: 'dayGridMonth,timeGridWeek'
+        //         },
+        //         events: {{ data|raw }},
+        //       selectable: true,
+        //     dateClick: function(info) {
+        //         alert('Clicked on: ' + info.dateStr);
                 
-            }
-            })
+        //     }
+        //     })
 
-            calendar.render()
-        }
+        //     calendar.render()
+        // }
     </script>
 {% endblock %}
 {% endblock %}
