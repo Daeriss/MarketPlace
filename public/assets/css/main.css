@@ -298,6 +298,74 @@ p + a {
 }
 
 
+/* section vendeur */
+
+.container-vendeur {
+    margin-top: 200px;
+    background-color: #f4f6f6;
+    max-height: 700px;
+}
+
+.container-vendeur h2 {
+    transition: all .5s;
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: var(--primary-color);
+    font-style: normal;
+    font-weight: 200;
+    text-align: left;
+    max-width: 700px;
+    line-height: 1.244;
+    letter-spacing: 0.405px;
+    margin-top: 112px;
+    margin-bottom: 172px;
+    margin-right: 120px;
+}
+
+.container-vendeur p {
+    transition: all .5s;
+    line-height: 1.5;
+    font-size: 20px;
+    color: var(--third-color);
+    text-align: left;
+}
+
+/* section clients */
+
+
+.container-client {
+    background-color: #f4f6f6;
+    max-height: 700px;
+}
+
+.container-client h2 {
+    transition: all .5s;
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: var(--primary-color);
+    font-style: normal;
+    font-weight: 200;
+    text-align: left;
+    max-width: 700px;
+    line-height: 1.244;
+    letter-spacing: 0.405px;
+    margin-top: 112px;
+    margin-bottom: 172px;
+    margin-right: 120px;
+}
+
+.container-client p {
+    transition: all .5s;
+    line-height: 1.5;
+    font-size: 20px;
+    color: var(--third-color);
+    text-align: left;
+}
+
+.img-container {
+    max-height: 700px;
+}
+
 
 /* login in page */
 
@@ -439,6 +507,8 @@ p + a {
 
 .no-padding {
     padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .margin-input {
@@ -451,8 +521,16 @@ p + a {
     width: 100%;
 }
 
+.w--60 {
+    width: 60%;
+}
+
 .h--100 {
     height: 100%;
+}
+
+.mh-100 {
+    max-height: 100%;
 }
 
 .h--60 {
