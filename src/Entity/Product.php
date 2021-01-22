@@ -51,6 +51,11 @@ class Product
       */
      private $subOrders;
 
+     /**
+      * @ORM\Column(type="boolean")
+      */
+     private $isAvailable;
+
     public function __construct()
     {
         $this->subOrders = new ArrayCollection();
@@ -147,6 +152,18 @@ class Product
                  $subOrder->setProduct(null);
              }
          }
+
+         return $this;
+     }
+
+     public function getIsAvailable(): ?bool
+     {
+         return $this->isAvailable;
+     }
+
+     public function setIsAvailable(bool $isAvailable): self
+     {
+         $this->isAvailable = $isAvailable;
 
          return $this;
      }
