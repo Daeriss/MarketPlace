@@ -37,30 +37,31 @@
 {% block body %}
 
 
-	<div class="container-fluid " id="panier">
-		<div class="card card-border p-0"> 
-			<h2 class="titrePanier card-title text-center">Votre Panier</h2>
 
-			<h2 class="text-center">Panier</h2>
-				<script>
-				AfficherPanier("panier");
-				</script>
-
-			<div class="container-fluid d-flex flex-row  justify-content-center">
-					
-				{{ form_start(form) }}
+		<div class="container-fluid d-flex justify-content-center">
+			<div class="card card-border p-0 col-5 m-5">
+				<h2 class="card-title text-center">Votre Panier</h2>
+				<div class="card-body">
+					<div class="container-fluid d-flex flex-colomn " id="panier">
+					</div>
+					<div class="row">
+						{{ form_start(form) }}
+						
+						{{ form_widget(form) }}
+						{{ form_end(form) }}
+					</div>
+					<a href="{{ path('cart') }}">
+					<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
+					</a>
 				
-				{{ form_widget(form) }}
-				<a href="{{ path('cart') }}">
-				<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
-				</a>
-				{{ form_end(form) }}
-				{# <button class="btn btn-dark m-3" onclick='resetPanier()'>Reset le panier
-				</button> #}
+				</div>
 			</div>
 		</div>
 
-	</div>
+	
+<script>
+	AfficherPanier("panier");
+</script>
 
 
 	<script>
