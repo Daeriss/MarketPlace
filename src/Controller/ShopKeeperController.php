@@ -19,7 +19,7 @@ class ShopKeeperController extends AbstractController
     /**
      * @Route("/shopkeeper", name="accueilshopkeeper")
      */
-    public function accueilshopkeeper(request $request, OrderRepository $orderRepository): Response
+    public function accueilshopkeeper(request $request, OrderRepository $orderRepository, ShopRepository $shopRepository): Response
     {
         $user = $this->getUser();
         $shop = $user->getShop();
@@ -39,9 +39,19 @@ class ShopKeeperController extends AbstractController
             ['shop' => $shop],
             []
         );
+
+        $user = $this->getUser();
+        $shopUser = $user->getShop();
+        $idShop = $shopUser->getId();
+        $shop = $shopRepository->findOneBy(['id' => $idShop]);
+        dump($idShop);
+
+        dump($shop);
+
         return $this->render('shop_keeper/indexshopKeeper.html.twig', [
             'orders' => $listecommande,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'shop' => $shop,
         ]);
 
 
