@@ -15,10 +15,13 @@
 		}
 		
 		.container-info{
-			background-image: url("{{ asset('assets/uploads/' ~ shop.img ) }}");
+			/* background-image: url("{{ asset('assets/uploads/' ~ shop.img ) }}");
 			background-position: center;
 			background-size: cover;
-			height: 15rem;
+			background-repeat: no-repeat;
+			height: 20rem; */
+			    background-color: var(--third-color);
+
 		}
 		.img-product {
 			max-height: 10rem;
@@ -34,28 +37,41 @@
 		background-color: var(--primary-color);
 	}
 
+	.imgshop {
+		max-width: 50rem;
+	}
+
     </style>
 {% endblock %}
 
 {% block body %}
 	
-		<div class="d-flex flex-column justify-content-end container-info p-0 m-0">
-			<h3 class="m-0 font-w600">{{ shop.name }} ( {{ shop.adress }} )</h3>
+		{# <div class="d-flex flex-column justify-content-end container-info p-0 m-0">
+			<h3 class="m-0 font-w600 ">{{ shop.name }} ( {{ shop.adress }} )</h3>
 			<p class="">Paiements acceptés au retrait : {{ shop.paiement }}</p>
-		</div>
+		</div> #}
+		<section class="d-flex flex-row container-info justify-content-center p-5 ">
+			<div class="col-5">
+				<h3 class="mb-5 font-w600 text-white">{{ shop.name }} ( {{ shop.adress }} )</h3>
+				<p class="text-white">Paiements acceptés au retrait : {{ shop.paiement }}</p>
+				<div>
+					<h4 class="text-white"> Horaires d'ouverture </h4>
+					<p class="text-white">Lundi : {{ shop.lundi }} </p>
+					<p class="text-white">	Mardi : {{ shop.mardi }} </p>
+					<p class="text-white">	Mercredi : {{ shop.mercredi }} </p>
+					<p class="text-white">	Jeudi : {{ shop.jeudi }}</p> 
+					<p class="text-white">	Vendredi : {{ shop.vendredi }} </p>
+					<p class="text-white">	Samedi : {{ shop.samedi }}</p>
+					<p class="text-white">	Dimanche : {{ shop.dimanche }}</p>  
+					
+				</div>
+			</div>
+			
+				<img class="col-5" src="{{ asset('assets/uploads/' ~ shop.img ) }}">
+			
+		</section
 	<section class="container-fluid ">
-		<div>
-			<h4> Horaires d'ouverture </h4>
-			<p>
-			Lundi : {{ shop.lundi }} 
-			Mardi : {{ shop.mardi }} 
-			Mercredi : {{ shop.mercredi }} 
-			Jeudi : {{ shop.jeudi }} 
-			Vendredi : {{ shop.vendredi }} 
-			Samedi : {{ shop.samedi }}
-			Dimanche : {{ shop.dimanche }}  
-			</p>
-		</div>
+		
 		<div class="container-fluid p-0">
 			<div class="row d-flex pl-5 m-5">
 			{% if products is defined %}
