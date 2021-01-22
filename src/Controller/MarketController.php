@@ -257,6 +257,6 @@ class MarketController extends AbstractController
         //    $dataResponse = array("error" => false); //Here data you can send back
         //    return new JsonResponse($dataResponse);
 
-        return $this->render('cart/cartValidator.html.twig');
+
     }
 }
