@@ -361,7 +361,14 @@ p + a {
 }
 
 .img-container {
-    max-height: 700px;
+    max-height: 600px;
+}
+
+.padding-top {
+    padding-top: 50px;
+}
+.padding-bottom {
+    padding-bottom: 50px;
 }
 
 
