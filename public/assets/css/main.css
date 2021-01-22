@@ -15,6 +15,7 @@ body {
 }
 /* header css  */
 header{
+    /* background-color: rgba(255,255,255,0); */
     background-color: var(--primary-color);
     padding: 50px 0px 50px 0px;
     margin-bottom: 0px;
@@ -86,18 +87,21 @@ p + a {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    padding: 0px;
 }
 
-.absolute-form {
-    position: absolute;
-    left: 0;
-}
 
 .img-header {
-    width: 30%;
+    width: 60%;
 }
 
+.bg-section-1 {
+    background-color: var(--third-color);
+}
+
+.panel-index {
+    
+}
 /* .sub-acceuil {
     background: #f8f5f2;
     bottom: -1px;
@@ -124,10 +128,9 @@ p + a {
 
 .container-acceuil h2 {
     font-size: 35px;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 48px;
-    letter-spacing: 10px;
-    text-transform: uppercase;
+    letter-spacing: 3px;
     font-style: normal;
     margin-top: 47px;
     color: var(--primary-color);
