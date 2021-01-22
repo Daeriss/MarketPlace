@@ -14,21 +14,34 @@
 		<div>
 			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
 		</div>
-
 		<div class="">
-
-            
-                {{form_start(form)}}
-                {{ form_widget(form) }}
-                <button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
-                {{ form_end(form) }}
+			{{form_start(form)}}
+			{{ form_widget(form) }}
+			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
+			{{ form_end(form) }}
                 
 		</div>
+	</div>
+<hr>
+{% set counter = 0 %}
+{% for order in orders %} 
+
+
+{% set counter = counter + order.checkout %}
+
+{% endfor %}
+
+	<div class="container">
+	<strong> Statistiques de mon compte vendeur : </strong> 
+		<ul> 
+			<li> Nombre de commandes récupérée : </li>
+			<li> Total TTC des commandes récupérées : {{ counter }} € </li>
+		</ul> 
+	</div>
 
 
 
-        
 
-</div>{% endblock %}{% block javascripts %}
+{% endblock %}{% block javascripts %}
 
 <script></script>{% endblock %}

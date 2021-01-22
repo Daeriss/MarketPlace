@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\EditProfileType;
 use App\Repository\OrderRepository;
+use App\Repository\CalendarRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MemberController extends AbstractController
@@ -38,15 +39,17 @@ class MemberController extends AbstractController
     /**
      * @Route("/mon-compte/mes-rendez-vous", name="app_account_rdv")
      */
-    public function rendezVous(OrderRepository $orderRepository): Response
+    public function rendezVous(CalendarRepository $calendarRepository): Response
     {
         $user = $this->getUser();
-        $listeServices = $orderRepository->findBy(
+        dump($user);
+        $listeRdv = $calendarRepository->findBy(
             ['user' => $user],
             []
         );
+        dump($listeRdv);
         return $this->render('member/services.html.twig', [
-            'services' => $listeServices
+            'rdvs' => $listeRdv
         ]);
     }
 
