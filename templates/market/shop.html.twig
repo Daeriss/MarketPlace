@@ -47,9 +47,15 @@
 						<div class="card-body">
 							<p class="card-text">Description : {{ product.description  }}</p>
 							<p class="card-text">Prix : {{ product.price }} €</p>
+							<p class="card-text"> Disponniblité : {{ product.isavailable ? 'Oui':'Non' }} </p>
 						</div>
 						<div class="card-body">
+						{% if product.isavailable == true %}
 					 		<button onclick="ajouterPanierdepuisShop('{{ product.id }}','{{ product.name }}','{{ product.price }}','{{shop.id}}')">ajouter ce produit au panier!</button>
+						{% else %}
+						<button disabled> Produit indisponible </button>
+						{% endif %}
+							 
 						</div>
 					</div>
 				{% else %}
