@@ -55,7 +55,7 @@
        				   <i id="cartLogo" class="fas fa-shopping-cart"></i> <span id="cartValue" class="badge badge-light"> 0 </span>
      				 </div>
      				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1">
-					  	<a class="nav-link"  id="cartLogoLink"  href="{{ path('cart') }}">  Valider le panier  </a>
+					  	<a class="nav-link"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
 					  </div>
 	
 			{% elseif is_granted('ROLE_SHOPKEEPER') %}
@@ -77,7 +77,7 @@
        				   <i id="cartLogo" class="fas fa-shopping-cart"></i> <span id="cartValue" class="badge badge-light"> 0 </span>
      				 </div>
      				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1">
-					  	<a class="nav-link"  id="cartLogoLink"  href="{{ path('cart') }}">  Valider le panier  </a>
+					  	<a class="nav-link"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
 					  </div>
 			{% endif %}
 			</div>
@@ -153,8 +153,9 @@
 
 
 				<script>
-		DisplayPanierHeader();
-		appendPanierChild("dropDownContent");
+				DisplayPanierHeader();
+				appendPanierChild("dropDownContent");
+				
 	</script>
 
 	</html>

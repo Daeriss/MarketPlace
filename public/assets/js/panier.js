@@ -128,6 +128,12 @@ function getPanierHTMLNoButton()
         }
 
     }
+
+
+    if(panierEstVide())
+    {
+        return '';
+    }
     contentToAppend += "<br> Prix total : " + total + "</ul>";
     return contentToAppend;
     
@@ -316,10 +322,18 @@ function PanierInitialise(shopId)
 function DisplayPanierHeader()
 {
     document.getElementById("cartValue").innerHTML=getPanierSize();
-    console.log(document.getElementById("cartValue").innerHTML+" "+getPanierSize());
+
+    if(panierEstVide())
+    {
+        console.log("panierVide");
+        document.getElementById("dropDownContent").innerHTML="<p>Votre panier esdt vide</p>";
+    }
 }
 
-
+function panierEstVide()
+{
+    return  (getPanierSize()==0);
+}
 
 
 
