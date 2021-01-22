@@ -191,7 +191,11 @@ class MarketController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($order);
                 $entityManager->flush();
+
+                return $this->redirect($this->generateUrl('cartValidator     '));
             }
+
+            
 
             return $this->render('market/cart.html.twig', [
                 'form' => $form->createView(),
@@ -206,6 +210,8 @@ class MarketController extends AbstractController
      */
     public function cartValidator(Request $request, OrderRepository $orderRepository)
     {
+
+         $user = $this->getUser();
         // if($request->isXmlHttpRequest()){
 
         //     $panier = json_decode($request->request->get('a'));
@@ -224,6 +230,6 @@ class MarketController extends AbstractController
         //    $dataResponse = array("error" => false); //Here data you can send back
         //    return new JsonResponse($dataResponse);
 
-
+        return $this->render('cart/cartValidator.html.twig');
     }
 }
