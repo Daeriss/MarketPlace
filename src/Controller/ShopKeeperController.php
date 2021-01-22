@@ -19,7 +19,7 @@ class ShopKeeperController extends AbstractController
     /**
      * @Route("/shopkeeper", name="accueilshopkeeper")
      */
-    public function accueilshopkeeper(request $request): Response
+    public function accueilshopkeeper(request $request, OrderRepository $orderRepository, ShopRepository $shopRepository): Response
     {
         $user = $this->getUser();
         $shop = $user->getShop();
@@ -30,10 +30,31 @@ class ShopKeeperController extends AbstractController
             $em->flush();
 
             $this->addFlash('message', 'Horaires à jour');
-        }
+
+        };
+        $orders = $shop->getOrders()->getValues();
+
+
+        $listecommande = $orderRepository->findBy(
+            ['shop' => $shop],
+            []
+        );
+
+        $user = $this->getUser();
+        $shopUser = $user->getShop();
+        $idShop = $shopUser->getId();
+        $shop = $shopRepository->findOneBy(['id' => $idShop]);
+        dump($idShop);
+
+        dump($shop);
+
         return $this->render('shop_keeper/indexshopKeeper.html.twig', [
-            'form' => $form->createView()
+            'orders' => $listecommande,
+            'form' => $form->createView(),
+            'shop' => $shop,
         ]);
+
+
     }
 
     /**
@@ -45,7 +66,6 @@ class ShopKeeperController extends AbstractController
         $user = $this->getUser();
         $shop = $user->getShop();
 
-
         $request = Request::createFromGlobals();
         $request->query->get('statut');
         $requestid = Request::createFromGlobals();
@@ -54,7 +74,6 @@ class ShopKeeperController extends AbstractController
         if ($request->query->get('statut') != null) {
 
             $orders = $shop->getOrders()->getValues();
-
 
             for ($i = 0; $i < count($orders); $i++) {
 

@@ -23,6 +23,7 @@ use App\Repository\ShopRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ServicesRepository;
+use App\Repository\CalendarRepository;
 
 
 class MarketController extends AbstractController
@@ -85,7 +86,7 @@ class MarketController extends AbstractController
     /**
      * @Route("/shops/{id}", name="shop", methods={"GET"})
      */
-    public function shop(Shop $shop, ProductRepository $productRepository, ServicesRepository $servicesRepository): Response
+    public function shop(Shop $shop, ProductRepository $productRepository, ServicesRepository $servicesRepository, CalendarRepository $calendarRepository): Response
     {
 
         $userShop = $shop->getUser();
@@ -103,14 +104,40 @@ class MarketController extends AbstractController
         }
         if (in_array('ROLE_SERVICE', $userShop->getRoles())) {
 
+            
+
             $listeServices = $servicesRepository->findBy(
                 ['shop' => $shop],
                 []
             );
+           
+            $events = $calendarRepository->findby(
+                ['shop' => $shop],
+                []
+            );
+            
+            $rdvs = [];
+    
+            foreach ($events as $event){
+                $rdvs[] = [
+                    'id' => $event->getId(),
+                    'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                    'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                    'title' => $event->getTitle(),
+                    'description' => $event->getDescription(),
+                    'backgroundColor' => $event->getBackgroundColor(),
+                    'allDay' => $event->getAllDay(),
+                ];
+            }
+    
+            $data = json_encode($rdvs);
+           
+            dump($data);
 
             return $this->render('market/shop.html.twig', [
                 'shop' => $shop,
-                'services' => $listeServices
+                'services' => $listeServices,
+                'data' => compact('data')
             ]);
         } 
 

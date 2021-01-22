@@ -14,11 +14,11 @@ Page d'accueil
 	<div class="container-fluid container-acceuil">
 		<div class="row w--100 h--100">
 			<div class="col-12 col-md-12">
-				<div class="row flex-center h--100">
-					<div class="col-6 flex-start flex-column absolute-form">
+				<div class="row flex-end h--100">
+					<div class="col-8 flex-start flex-column">
 						<h1 class="flex-center">Click'N'Collect</h1>
 						<div class="row flex-center">
-							<div class="col-8  flex-start flex-column form-flex">
+							<div class="col-8  flex-start flex-column form-flex panel-index">
 								<h2>Rechercher un commerce par Code postale</h2>
 								{{ form_start(form) }}
 								{{ form_widget(form) }}
@@ -28,14 +28,9 @@ Page d'accueil
 							</div>
 						</div>
 					</div>
-					<div class="col-6 flex-start align-center">
-						<img src="{{ asset('assets/img/ecommerce.png') }}" class="img-fluid img-header">
-					</div>
-					<div class="col-6 flex-end align-center">
+					<div class="col-4 flex-center align-center bg-section-1 h--100">
 						<img src="{{ asset('assets/img/store.png') }}" class="img-fluid img-header">
 					</div>
-					
-
 				</div>
 			</div>
 		</div>
@@ -44,20 +39,40 @@ Page d'accueil
 	</div>
 </section>
 
-<section class="py-5 container-rechercher">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 col-md-6">
-				
-			</div>
-			<div class="col-12 col-md-6">
-				<img src="{{ asset('assets/img/clickncollect.png') }}" class="img-fluid">
-			</div>
-		</div>
-	</div>
-</section>
+<section>
+            <div class="container-fluid">
+                <div class="row justify-content-around px-5">
+                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
+                            <img src="{{ asset('assets/img/sign.jpeg') }}" class=" img-wmp">
+                    </div>
+                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
+                            <img src="{{ asset('assets/img/sign-in2.jpeg') }}" class=" img-wmp">
+                    </div>
+                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
+                            <img src="{{ asset('assets/img/manger-photo.jpg') }}" class=" img-wmp">
+                    </div>
+                </div>
+				<div class="row justify-content-around px-5">
+                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
+						<div class="col-12">
+							<h3>Soutenez les commerçants locaux</h3>
+						</div>
+                    </div>
+                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
+						<div class="col-12">
+							<h3>Commandez de n'importe où</h3>
+						</div>
+                    </div>
+                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
+						<div class="col-12">
+							<h3>Facile et rapide d'utilisation</h3>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section class="py-5 container-concept">
+<section class="py-5">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-6">

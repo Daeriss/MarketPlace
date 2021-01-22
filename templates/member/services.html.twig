@@ -43,16 +43,20 @@ table {
 <table>
   <tr>
     <th>Prestataire</th>
+    <th>Prestation</th>
     <th>Date du rendez vous</th>
-    <th>Etat de la commande</th>
+    <th>Fin prévue</th>
+    <th>Description</th>
     <th>Prix</th>
   </tr>
-  {% for service in services %}
+  {% for rdv in rdvs %}
   <tr>
-  <td>{{ service.shop.name }}</td>
-  <td>{{ service.orderNumber }}</td>
-  <td>{{ service.orderDetails.orderStatus }}</td>
-  <td>{{ service.checkout }}</td>
+  <td>{{ rdv.shop.name }}</td>
+  <td>{{ rdv.title }}</td>
+  <td>{{ rdv.start|date('d-m-Y h:i') }}</td>
+  <td>{{ rdv.end|date('d-m-Y h:i') }}</td>
+  <td>{{ rdv.description }}</td>
+  <td>{{ rdv.checkout }}</td>
   </tr>
   {% else %}
   <tr>

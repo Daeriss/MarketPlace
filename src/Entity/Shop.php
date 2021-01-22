@@ -97,11 +97,17 @@ class Shop
      */
     private $services;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Calendar::class, mappedBy="shop")
+     */
+    private $calendars;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->services = new ArrayCollection();
+        $this->calendars = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -337,6 +343,36 @@ class Shop
             // set the owning side to null (unless already changed)
             if ($service->getShop() === $this) {
                 $service->setShop(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Calendar[]
+     */
+    public function getCalendars(): Collection
+    {
+        return $this->calendars;
+    }
+
+    public function addCalendar(Calendar $calendar): self
+    {
+        if (!$this->calendars->contains($calendar)) {
+            $this->calendars[] = $calendar;
+            $calendar->setShop($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendar(Calendar $calendar): self
+    {
+        if ($this->calendars->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getShop() === $this) {
+                $calendar->setShop(null);
             }
         }
 

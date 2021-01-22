@@ -16,7 +16,17 @@
 
 {% block body %}
     <h1>Mes rendez-vous</h1>
-    <div id="calendrier"></div>
+    <div class="container-fluid ">
+
+        <div class=" container-fluid d-flex justify-content-center m-3">
+            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_new')}}"> Ajouter un Rendez-vous</a>
+            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_index')}}"> modifier un Rendez-vous</a>              
+        </div> 
+        <div class=" container-fluid m-3">
+            <div id="calendrier"></div>
+        </div>
+    </div>
+
 
 {% block javascript %}  
     <script>
@@ -31,8 +41,15 @@
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek'
                 },
-                events: {{ data|raw }}
+                events: {{ data|raw }},
+              selectable: true,
+            dateClick: function(info) {
+                alert('Clicked on: ' + info.dateStr);
+                
+            }
             })
+
+            
 
             calendar.render()
         }

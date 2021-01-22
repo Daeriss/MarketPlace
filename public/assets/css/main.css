@@ -1,6 +1,7 @@
 :root {
-    --primary-color:#121258;
-    --secondary-color: #FFC039;
+    --primary-color: #CE584E;
+    --secondary-color:#E4A57D;
+    --third-color: #884A65;
 }
 
 body {
@@ -14,6 +15,7 @@ body {
 }
 /* header css  */
 header{
+    /* background-color: rgba(255,255,255,0); */
     background-color: var(--primary-color);
     padding: 50px 0px 50px 0px;
     margin-bottom: 0px;
@@ -21,14 +23,14 @@ header{
 }
 
 header img {
-    width: 60%;
+    width: 30%;
 }
 
 .logo {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 100px;
+    max-height: 100px; */
 }
 
 .nom-header p {
@@ -48,7 +50,7 @@ nav {
 }
 
 .nav-link {
-    color: var(--secondary-color);
+    color: white;
     text-decoration: none;
     font-size: 18px;
     text-transform: uppercase;
@@ -79,21 +81,28 @@ p + a {
     max-width: 100%;
     height: 90vh;
     background-color: var(--secondary-color);
+    background-image: url(../img/s);
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    padding: 0px;
 }
 
-.absolute-form {
-    position: absolute;
-}
 
 .img-header {
     width: 60%;
 }
 
-.sub-acceuil {
+.bg-section-1 {
+    background-color: var(--third-color);
+}
+
+.panel-index {
+    
+}
+/* .sub-acceuil {
     background: #f8f5f2;
     bottom: -1px;
     bottom: 0;
@@ -105,7 +114,7 @@ p + a {
     overflow: hidden;
     clip-path: polygon(180% 0, 100% 100%, 100% 200%, 0 100%);
     background: linear-gradient(rgb(255, 192, 57) 0%, rgb(18, 18, 88) 95%);
-}
+} */
 
 .container-acceuil h1 {
     font-style: normal;
@@ -119,10 +128,9 @@ p + a {
 
 .container-acceuil h2 {
     font-size: 35px;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 48px;
-    letter-spacing: 10px;
-    text-transform: uppercase;
+    letter-spacing: 3px;
     font-style: normal;
     margin-top: 47px;
     color: var(--primary-color);
@@ -137,18 +145,38 @@ p + a {
 /* Section rechercher par code postal */
 
 .wmp {
-    max-width: 440px;
-    max-height: 325px;
-    border: 2px solid white;
+    width: 30%;
+    max-height: 500px;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-    margin-top: -80px;
-    background-color: white;
-    padding-bottom: 34px;
+    background-color: var(--third-color);
+    margin-top: 50px;
     z-index: 20;
+    position: relative;
+    padding-top: 17%;
+}
+
+.img-wmp {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.text {
+    width: 30% !important;
+}
+
+.text h3 {
+    font-size: 28px;
+    line-height: 36px;
 }
 
 .wmp:hover {
-    border-bottom: 4px solid #F2780B;
+    border-bottom: 10px solid var(--primary-color);
 }
 
 .container-rechercher {
@@ -215,7 +243,24 @@ p + a {
     -moz-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
     -ms-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
     -o-border-radius: 52% 48% 28% 72% / 50% 46% 54% 50%   ;
-    background-color: var(--secondary-color);
+    background-color: var(--third-color);
+}
+
+.background-vecteur1{
+    border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
+    -webkit-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
+    -moz-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
+    -ms-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
+    -o-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
+    background-color: var(--third-color);
+}
+
+.background-vecteur1 img {
+    border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
+    -webkit-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
+    -moz-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
+    -ms-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
+    -o-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
 }
 
 .card-avantages {

@@ -14,21 +14,60 @@
 		<div>
 			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
 		</div>
-
 		<div class="">
-
-            
-                {{form_start(form)}}
-                {{ form_widget(form) }}
-                <button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
-                {{ form_end(form) }}
+			{{form_start(form)}}
+			{{ form_widget(form) }}
+			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
+			{{ form_end(form) }}
                 
 		</div>
+	</div>
+<hr>
+{% set counter = 0 %}
+{% for order in orders %} 
+
+
+{% set counter = counter + order.checkout %}
+
+{% endfor %}
 
 
 
+<h1>Gestion de ma boutique en ligne</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Arrondissement</th>
+                <th>Photo</th>
+                <th>Paiement Accepté</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if (shop)  %}
+            <tr>
+                <td>{{ shop.name }}</td>
+                <td>{{ shop.adress }}</td>
+                <td>{{ shop.img }}</td>
+                <td>{{shop.paiement}}</td>
+                <td>
+                    <a href="{{ path('shop_edit', {'id': shop.id}) }}">Modifier les informations</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endif %}
         
+        </tbody>
+    </table>
 
-</div>{% endblock %}{% block javascripts %}
+Total TTC des commandes récupérées : {{ counter }} €
+	
+
+{% endblock %}{% block javascripts %}
 
 <script></script>{% endblock %}

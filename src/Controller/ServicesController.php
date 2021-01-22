@@ -33,6 +33,7 @@ class ServicesController extends AbstractController
         $user = $this->getUser();
         $shop = $user->getShop();
         $service = new Services();
+        
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
 
