@@ -326,7 +326,7 @@ function DisplayPanierHeader()
     if(panierEstVide())
     {
         console.log("panierVide");
-        document.getElementById("dropDownContent").innerHTML="<p>Votre panier esdt vide</p>";
+        document.getElementById("dropDownContent").innerHTML="<p>Votre panier est vide</p>";
     }
 }
 
