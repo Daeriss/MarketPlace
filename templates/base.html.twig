@@ -27,7 +27,8 @@
 
 {% block header %}
 	<header class="container-fluid py-4">
-		<nav class="navbar navbar-expand-lg navbar-dark flex-evenly">
+	<div class="row">
+		<nav class="navbar navbar-expand-lg navbar-dark flex-evenly col-12">
             {% if is_granted('ROLE_MEMBER') %}
 			<a class="navbar-brand marketplace img-fluid container m-3" href="{{path('accueil')}}">
             {% elseif is_granted('ROLE_SHOPKEEPER') %}
@@ -81,6 +82,7 @@
 			{% endif %}
 			</div>
 		</nav>
+		</div>
 	</header>
 
 
