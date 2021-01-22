@@ -107,6 +107,11 @@ class Shop
      */
     private $road;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $phone;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -392,6 +397,18 @@ class Shop
     public function setRoad(string $road): self
     {
         $this->road = $road;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
 
         return $this;
     }
