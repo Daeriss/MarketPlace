@@ -80,7 +80,7 @@ function getPanierHTML()
             var key2 = "\'" + key + "\'";
             var name2 = "\'" + name + "\'";
             var prix2 = "\'" + prix + "\'";
-            contentToAppend += "<li style=' list-style-type: none'>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '<button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
+            contentToAppend += "<li style=' list-style-type: none'>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '€ <button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
             contentToAppend += "</li style=' list-style-type: none'>  ";
         }
 
