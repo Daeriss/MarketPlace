@@ -150,7 +150,6 @@ class MarketController extends AbstractController
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
-
       
         // on créer une ligne order et orderDetails
         $order = new Order();
