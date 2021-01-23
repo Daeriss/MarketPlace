@@ -47,7 +47,7 @@
 				<h2 class="card-title text-center">VOTRE PANIER</h2>
 				<hr>
 				<div class="card-body">
-					<div class="container-fluid d-flex flex-colomn justify-content-center"" id="panier">
+					<div class="container-fluid d-flex flex-colomn justify-content-center" id="panier">
 					</div>
 					<div class="col">
 						{{ form_start(form) }}
@@ -55,8 +55,9 @@
 						{{ form_widget(form) }}
 						{{ form_end(form) }}
 					</div>
-
-					<button class="btn shadow-1 rounded-1" id="checkout-btn" type="submit" >   {{ button_label|default('Valider la réservation') }}  </button>
+					<a href="{{ path('cart') }}">
+						<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
+					</a>
 				
 				</div>
 			</div>
