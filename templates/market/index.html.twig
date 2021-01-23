@@ -14,21 +14,24 @@ Page d'accueil
 	<div class="container-fluid container-acceuil">
 		<div class="row w--100 h--100">
 			<div class="col-12 col-md-12">
-				<div class="row flex-end h--100">
-					<div class="col-8 flex-start flex-column">
-						<h1 class="flex-center">Click'N'Collect</h1>
+				<div class="row flex-center h--100">
+					<div class="col-6 align-center flex-column">
+						<h1 class="flex-center justify">En cette période inédite, consommez local soutenez les
+							producteurs !</h1>
 						<div class="row flex-center">
 							<div class="col-8  flex-start flex-column form-flex panel-index">
-								<h2>Rechercher un commerce par Code postale</h2>
-								{{ form_start(form) }}
-								{{ form_widget(form) }}
-								<button class="btn btn-rechercher">{{ button_label|default('') }} <i
-										class="fas fa-search-location fa-2x"></i></button>
-								{{ form_end(form) }}
+								<p>Click'N'Commerces soutient les commerces de proximité, qui sont contraints de fermer,
+									directement impactés par ces mesures. Certains d’entre eux ont pu mettre en place un
+									service de commandes en ligne avec retraits en magasin.</p>
+									{{ form_start(form) }}
+									{{ form_widget(form) }}
+									<button class="btn btn-rechercher">{{ button_label|default('') }}
+										Rechercher</button>
+									{{ form_end(form) }}
 							</div>
 						</div>
 					</div>
-					<div class="col-4 flex-center align-center bg-section-1 h--100">
+					<div class="col-6 flex-center align-center bg-section-1 h--100 bg-section-1">
 						<img src="{{ asset('assets/img/store.png') }}" class="img-fluid img-header">
 					</div>
 				</div>
@@ -39,91 +42,113 @@ Page d'accueil
 	</div>
 </section>
 
+
+{# section  3 raisons de  choisirs clickandcommerce #}
+
 <section>
-            <div class="container-fluid">
-                <div class="row justify-content-around px-5">
-                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
-                            <img src="{{ asset('assets/img/sign.jpeg') }}" class=" img-wmp">
-                    </div>
-                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
-                            <img src="{{ asset('assets/img/sign-in2.jpeg') }}" class=" img-wmp">
-                    </div>
-                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
-                            <img src="{{ asset('assets/img/manger-photo.jpg') }}" class=" img-wmp">
-                    </div>
-                </div>
-				<div class="row justify-content-around px-5">
-                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
-						<div class="col-12">
-							<h3>Soutenez les commerçants locaux</h3>
-						</div>
-                    </div>
-                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
-						<div class="col-12">
-							<h3>Commandez de n'importe où</h3>
-						</div>
-                    </div>
-                    <div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
-						<div class="col-12">
-							<h3>Facile et rapide d'utilisation</h3>
-						</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-<section class="py-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 col-md-6">
-				<h2>3 raisons de choisirs Click'N'Collect</h2>
+	<div class="container-fluid container-raisons text-center py-5">
+		<div class="row flext-center px-5">
+			<div class="col-12">
+				<h2>3 raisons de choisirs Click'N'Commerces</h2>
 			</div>
-			<div class="row flex-center">
-				<div class="col-md-6 col-12 flex-row-responsive">
-					<div class="col-6 col-sm-4 card-avantages my-3 margin-responsive">
-						<div class="row">
-							<div class="col-12 col-sm-12 flex-center color-avantages">
-								<i class="fas fa-store fa-3x"></i>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 col-sm-12 flex-center color-avantages py-3">
-								<p class="text-center">Soutenez les commerçants locaux.</p>
-							</div>
-						</div>
-					</div>
+		</div>
+	</div>
+</section>
 
-					<div class="col-12 col-sm-4 card-avantages my-3 margin-responsive">
-						<div class="row">
-							<div class="col-12 col-sm-12 flex-center color-avantages">
-								<i class="fas fa-map-marker-alt fa-3x"></i>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 col-sm-12 flex-center color-avantages py-3">
-								<p class="text-center">Commandez de n'importe où.</p>
-							</div>
-						</div>
-					</div>
 
-					<div class="col-12 col-sm-4 card-avantages my-3 margin-responsive">
-						<div class="row">
-							<div class="col-12 col-sm-12 flex-center color-avantages">
-								<i class="fas fa-tachometer-alt fa-3x"></i>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12 col-sm-12 flex-center color-avantages py-3">
-								<p class="text-center">Facile et rapide d'utilisation.</p>
-							</div>
-						</div>
-					</div>
+<section>
+	<div class="container-fluid container-avantages">
+		<div class="row justify-content-around  px-5">
+			<div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
+				<img src="{{ asset('assets/img/sign.jpeg') }}" class=" img-wmp">
+			</div>
+			<div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
+				<img src="{{ asset('assets/img/sign-in2.jpeg') }}" class=" img-wmp">
+			</div>
+			<div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 wmp ">
+				<img src="{{ asset('assets/img/manger-photo.jpg') }}" class=" img-wmp">
+			</div>
+		</div>
+		<div class="row justify-content-around px-5">
+			<div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
+				<div class="col-12">
+					<h3>Soutenez les commerçants locaux</h3>
 				</div>
-				<div class="col-12 col-sm-6 flex-center background-vecteur">
-					<img src="{{ asset('assets/img/shop.png') }}" class="img-cnc">
+				<div class="col-12">
+					<p>Et si en tant que consomm’acteur, nous pouvions les aider concrètement tout en nous faisant plaisir ?</p>
+				</div>
+			</div>
+			<div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
+				<div class="col-12">
+					<h3>Commandez de n'importe où</h3>
+				</div>
+				<div class="col-12">
+					<p>Accessible depuis votre tablette, smartphone et ordinateur commandez local !</p>
+				</div>
+			</div>
+			<div class="col-xl-4 col-sm-12 col-md-12 col-lg-12 col-12 text">
+				<div class="col-12">
+					<h3>Facile et rapide d'utilisation</h3>
+				</div>
+				<div class="col-12">
+					<p>Vous êtes commerçants ? Ajoutez vos produits et proposez vos services.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
+{# vous etest vendeur ?  #}
+
+
+<section>
+	<div class="container-fluid container-vendeur padding-bottom">
+		<div class="row flext-center">
+			<div class="col-6 align-center">
+				<div class="row flex-start">
+					<div class="col-12 flex-center">
+						<h2>Vous souhaiter inscrire votre commerce ?</h2>
+					</div>
+					<div class="col-12 flex-center">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis a odit
+                            velit dolorum
+                            necessitatibus illum eligendi sit? Recusandae amet aperiam saepe animi. Ut tempore maxime
+                            numquam nostrum dolor explicabo cum.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-6 img-container flex-center">
+				<img src="{{ asset('assets/img/local.jpeg') }}" class="img-fluid mh-100">
+			</div>
+		</div>
+	</div>
+</section>
+
+{# section clients #}
+
+<section>
+	<div class="container-fluid container-client padding-top">
+		<div class="row flext-center flex-reverse">
+			<div class="col-6 align-center">
+				<div class="row flex-start">
+					<div class="col-12 flex-center">
+						<h2>Vous souhaitez soutenir les commerces locaux ?</h2>
+					</div>
+					<div class="col-12 flex-center">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis a odit
+                            velit dolorum
+                            necessitatibus illum eligendi sit? Recusandae amet aperiam saepe animi. Ut tempore maxime
+                            numquam nostrum dolor explicabo cum.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-6 flex-center img-container">
+				<img src="{{ asset('assets/img/soutenir.jpeg') }}" class="img-fluid mh-100">
+			</div>
+		</div>
+	</div>
+</section>
+
+
 {% endblock %}

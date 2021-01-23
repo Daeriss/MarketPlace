@@ -1,41 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
 
+    <style>
+       .container-form {
+            border: 4px white solid;
+            box-shadow: 0px 1px 20px 6px #cccccc;
+            border-radius: 10%;
+            -webkit-border-radius: 10%;
+            -moz-border-radius: 10%;
+            -ms-border-radius: 10%;
+            -o-border-radius: 10%;
+            padding: 50px;
+            background-color: white;
+        }
+    </style>
+{% endblock %}
 {% block body %}
 {% for flashError in app.flashes('verify_email_error') %}
 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
 {% endfor %}
 
-<section>
-    <div class="container-fluid container-inscription">
-        <h1>Créer un compte</h1>
+<section class="container-fluid container-sign-in p-5">
+    <div class="col-12 col-sm-12 col-md-6 background-sign-in flex-center">
 
-        {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name, {
-        label:'Nom'
-        }) }}
-        {{ form_row(registrationForm.firstname, {
-        label: 'Prénom'
-        }) }}
-        {{ form_row(registrationForm.email, {
-        label: 'E-mail'
-        }) }}
-        {{ form_row(registrationForm.plainPassword, {
-        label: 'Mot de passe'
-        }) }}
-        {{form_row ( registrationForm.shopkeeper, {
-        label: 'Vendeur'
-        } ) }}
-        {{form_row ( registrationForm.service, {
-        label: 'Service'
-        } ) }}
-        {{ form_row(registrationForm.agreeTerms, {
-        label: 'Accepter les conditions'
-        }) }}
+        <div class="container-form flex-column col-10">
+            {{ form_start(registrationForm) }}
+            <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
+            {{ form_row(registrationForm.name, {
+            label:'Nom'
+            }) }}
+            {{ form_row(registrationForm.firstname, {
+            label: 'Prénom'
+            }) }}
+            {{ form_row(registrationForm.email, {
+            label: 'E-mail'
+            }) }}
+            {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+            }) }}
+            {{form_row ( registrationForm.shopkeeper, {
+            label: 'Vendeur'
+            } ) }}
+            {{form_row ( registrationForm.service, {
+            label: 'Service'
+            } ) }}
+            {{ form_row(registrationForm.agreeTerms, {
+            label: 'Accepter les conditions'
+            }) }}
 
-        <button type="submit" class="btn">S'inscrire</button>
-        {{ form_end(registrationForm) }}
+            <button type="submit" class="btn btn-lg btn-sign-in my-5">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+        </div>
     </div>
 </section>
 {% endblock %}

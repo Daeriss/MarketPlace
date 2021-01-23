@@ -15,10 +15,11 @@ body {
 }
 /* header css  */
 header{
-    /* background-color: rgba(255,255,255,0); */
-    background-color: var(--primary-color);
+    background-color: rgba(255,255,255,0);
+    /* background-color: var(--primary-color); */
     padding: 50px 0px 50px 0px;
     margin-bottom: 0px;
+    box-shadow: 0 2px 12px 0 rgba(36,50,66,.075);
 
 }
 
@@ -50,7 +51,7 @@ nav {
 }
 
 .nav-link {
-    color: white;
+    color: var(--third-color);
     text-decoration: none;
     font-size: 18px;
     text-transform: uppercase;
@@ -58,8 +59,7 @@ nav {
 }
 
 .nav-link:hover {
-    color: white;
-
+    color: var(--primary-color);
 }
 
 .marketplace:hover {
@@ -80,7 +80,7 @@ p + a {
 .container-acceuil {
     max-width: 100%;
     height: 90vh;
-    background-color: var(--secondary-color);
+    background-color: #f4f6f6;
     background-image: url(../img/s);
     background-repeat: no-repeat;
     background-size: cover;
@@ -100,7 +100,7 @@ p + a {
 }
 
 .panel-index {
-    
+
 }
 /* .sub-acceuil {
     background: #f8f5f2;
@@ -119,22 +119,33 @@ p + a {
 .container-acceuil h1 {
     font-style: normal;
     font-weight: 200;
-    font-size: 55px;
-    line-height: 75px;
-    text-align: center;
+    text-align: left;
+    max-width: 700px;
+    font-size: 3.5rem;
+    line-height: 1.244;
     letter-spacing: 0.405px;
     color: var(--primary-color);
+    margin-top: 112px;
+    margin-bottom: 172px;
+    margin-right: 120px;
 }
 
-.container-acceuil h2 {
-    font-size: 35px;
-    font-weight: 600;
-    line-height: 48px;
-    letter-spacing: 3px;
-    font-style: normal;
-    margin-top: 47px;
+.container-acceuil p {
+    margin-bottom: 80px;
+    transition: all .5s;
+    font-size: 25px;
+    line-height: 1.5;
     color: var(--primary-color);
-    text-align: center;
+    text-align: left;
+    
+}
+
+#district_Code_Postale {
+    border: 3px solid var(--third-color);
+    border-radius: 25px;
+    padding: 20px;
+    width: 100%;
+    height: 66px;
 }
 
 .dev-app img {
@@ -175,9 +186,6 @@ p + a {
     line-height: 36px;
 }
 
-.wmp:hover {
-    border-bottom: 10px solid var(--primary-color);
-}
 
 .container-rechercher {
     background-color: var(--primary-color);
@@ -189,16 +197,30 @@ p + a {
 }
 
 .btn-rechercher {
-    background-color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
+    background-color: var(--third-color);
+    border: 2px solid var(--third-color);
+    border-radius: 25px;
     margin-top: 20px;
     font-size: 22px;
     font-weight: 300;
     padding: 15px 30px 15px 30px;
+    margin-left: 20px;
+    color: white;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
 }
+
 .btn-rechercher:hover {
-    color: var(--primary-color);
-    background-color: white;
+    color: white;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
 }
 
 .img-cnc{
@@ -227,14 +249,40 @@ p + a {
     color: white; 
 }
 
-/* section avantages */
 
-.color-avantages i:hover {
-    color: var(--secondary-color);
+/* section raisons */
+
+.container-raisons{
+    margin-top: 100px;
 }
 
-.color-avantages p:hover {
-    color: var(--secondary-color);
+.container-raisons h2 {
+    transition: all .5s;
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: var(--primary-color);
+}
+
+.container-raisons h3 {
+    transition: all .5s;
+    line-height: 1.5;
+    color: var(--primary-color);
+}
+
+/* section avantages */
+
+.container-avantages h3 {
+    transition: all .5s;
+    line-height: 1.5;
+    color: var(--primary-color);
+}
+
+.container-avantages p {
+    transition: all .5s;
+    line-height: 1.5;
+    font-size: 20px;
+    color: var(--third-color);
+    text-align: left;
 }
 
 .background-vecteur{
@@ -247,31 +295,86 @@ p + a {
 }
 
 .background-vecteur1{
-    border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
-    -webkit-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
-    -moz-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
-    -ms-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
-    -o-border-radius: 66% 34% 36% 64% / 64% 53% 47% 36% ;
+    border-radius: 0% 100% 57% 43% / 5% 0% 100% 95%   ;
+    -webkit-border-radius: 0% 100% 57% 43% / 5% 0% 100% 95%   ;
+    -moz-border-radius: 0% 100% 57% 43% / 5% 0% 100% 95%   ;
+    -ms-border-radius: 0% 100% 57% 43% / 5% 0% 100% 95%   ;
+    -o-border-radius: 0% 100% 57% 43% / 5% 0% 100% 95%   ;
     background-color: var(--third-color);
 }
 
-.background-vecteur1 img {
-    border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
-    -webkit-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
-    -moz-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
-    -ms-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
-    -o-border-radius: 37% 63% 51% 49% / 55% 44% 56% 45% ;
+
+/* section vendeur */
+
+.container-vendeur {
+    margin-top: 200px;
+    background-color: #f4f6f6;
+    max-height: 700px;
 }
 
-.card-avantages {
-    border: 3px solid white;
-    border-radius: 25%;
-    -webkit-border-radius: 25%;
-    -moz-border-radius: 25%;
-    -ms-border-radius: 25%;
-    -o-border-radius: 25%;
-    background-color: transparent;
-    padding: 20px;
+.container-vendeur h2 {
+    transition: all .5s;
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: var(--primary-color);
+    font-style: normal;
+    font-weight: 200;
+    text-align: left;
+    max-width: 700px;
+    line-height: 1.244;
+    letter-spacing: 0.405px;
+    margin-bottom: 172px;
+}
+
+.container-vendeur p {
+    transition: all .5s;
+    line-height: 1.5;
+    font-size: 20px;
+    color: var(--third-color);
+    text-align: left;
+    max-width: 700px;
+}
+
+/* section clients */
+
+
+.container-client {
+    background-color: #f4f6f6;
+    max-height: 700px;
+}
+
+.container-client h2 {
+    transition: all .5s;
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: var(--primary-color);
+    font-style: normal;
+    font-weight: 200;
+    text-align: left;
+    max-width: 700px;
+    line-height: 1.244;
+    letter-spacing: 0.405px;
+    margin-bottom: 172px;
+}
+
+.container-client p {
+    transition: all .5s;
+    line-height: 1.5;
+    font-size: 20px;
+    color: var(--third-color);
+    text-align: left;
+    max-width: 700px;
+}
+
+.img-container {
+    max-height: 600px;
+}
+
+.padding-top {
+    padding-top: 50px;
+}
+.padding-bottom {
+    padding-bottom: 50px;
 }
 
 
@@ -351,6 +454,12 @@ p + a {
     align-items: center;
 }
 
+.end-start {
+    justify-content: flex-end;
+    display: flex;
+    align-items: flex-start;
+}
+
 .space-around {
     display: flex;
     justify-content: space-around;
@@ -385,7 +494,7 @@ p + a {
 .form-flex form{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -401,10 +510,16 @@ p + a {
     text-align: center;
 }
 
+.justify {
+    text-align: justify;
+}
+
 /* espacement */
 
 .no-padding {
     padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .margin-input {
@@ -417,8 +532,20 @@ p + a {
     width: 100%;
 }
 
+.w--60 {
+    width: 60%;
+}
+
 .h--100 {
     height: 100%;
+}
+
+.mh-100 {
+    max-height: 100%;
+}
+
+.h--60 {
+    height: 60%;
 }
 
 /* responsive index */
