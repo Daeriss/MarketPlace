@@ -219,7 +219,9 @@ class MarketController extends AbstractController
                 $entityManager->persist($order);
                 $entityManager->flush();
 
-                return $this->redirect($this->generateUrl('cartValidator     '));
+
+                 return $this->redirectToRoute('cartValidator');
+
             }
 
             
@@ -246,21 +248,10 @@ class MarketController extends AbstractController
          ->setTo('recipient@example.com')
          ->setBody(
              $this->renderView(
-                 // templates/emails/registration.html.twig
-                 'emails/registration.html.twig',
-                 ['name' => $name]
+                 // templates/emails/panierConfirmation.html.twig
+                 'email/panierConfirmation.html.twig',
              ),
              'text/html'
-         )
- 
-         // you can remove the following code if you don't define a text version for your emails
-         ->addPart(
-             $this->renderView(
-                 // templates/emails/registration.txt.twig
-                 'panierConfirmation.html.twig',
-                 ['name' => $name]
-             ),
-             'text/plain'
          )
      ;
  

@@ -55,9 +55,8 @@
 						{{ form_widget(form) }}
 						{{ form_end(form) }}
 					</div>
-					<a href="{{ path('cart') }}">
-					<button class="btn shadow-1 rounded-1" id="checkout-btn" type="submit" >  <span style="font-weight:bold"> {{ button_label|default('Valider la réservation') }} <span> </button>
-					</a>
+
+					<button class="btn shadow-1 rounded-1" id="checkout-btn" type="submit" >   {{ button_label|default('Valider la réservation') }}  </button>
 				
 				</div>
 			</div>
