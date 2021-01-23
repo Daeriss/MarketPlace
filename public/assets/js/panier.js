@@ -80,7 +80,7 @@ function getPanierHTML()
             var key2 = "\'" + key + "\'";
             var name2 = "\'" + name + "\'";
             var prix2 = "\'" + prix + "\'";
-            contentToAppend += "<li style=' list-style-type: none'>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '€ <button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
+            contentToAppend += "<li style=' list-style-type: none'>  " + quantite + " " + name + ", a " + prix + "€ soit au total " + prix * quantite + '€ <button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
             contentToAppend += "</li style=' list-style-type: none'>  ";
         }
 
@@ -332,6 +332,46 @@ function panierEstVide()
 }
 
 
+function intToMonth(month) //maybe ca servira un jour, en fin de compte non
+{
+    switch(month)
+    {
+        case 1: return "Jan";
+        case 2: return "Feb";
+        case 3: return "Mar";
+        case 4: return "Apr";
+        case 5: return "May";
+        case 6: return "Jun";
+        case 7: return "Jul";
+        case 8: return "Aug";
+        case 9: return "Sep";
+        case 10: return "Oct";
+        case 11: return "Nov";
+        case 12: return "Dec";
+        default : return "Jan";
+    }
+    return "Jan";
+}
+
+
+
+
+function setDefaultDate()
+{
+
+    var today = new Date();
+    var day=today.getDate();
+    var month=today.getMonth()+1;//janvier est le mois 1
+    var year=today.getFullYear();
+
+
+        console.log(month);
+
+    document.getElementById("cart_collect_date_month").value=(month);
+    document.getElementById("cart_collect_date_day").value=day;
+    document.getElementById("cart_collect_date_year").value=year;
+
+}
 
 
 
