@@ -54,8 +54,19 @@
     				  <div class="navbar-link secondary dropdown-trigger">
        				   <i id="cartLogo" class="fas fa-shopping-cart"></i> <span id="cartValue" class="badge badge-light"> 0 </span>
      				 </div>
-     				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1">
-					  	<a class="nav-link"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
+     				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1 rounded-3 p-2
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  ">
+					  	<a class="dropdown-item btn-rechercher btn rounded-1  press m-auto mt-2"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
 					  </div>
 	
 			{% elseif is_granted('ROLE_SHOPKEEPER') %}
@@ -72,12 +83,12 @@
 			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>
 			<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
             <a class="nav-link" href="#">Le concept</a>            
-							<div class="dropdown" id="example-dropdown" data-ax="dropdown">
+							<div class="dropdown rounded-1 outline txt-blue" id="example-dropdown" data-ax="dropdown">
     				  <div class="navbar-link secondary dropdown-trigger">
        				   <i id="cartLogo" class="fas fa-shopping-cart"></i> <span id="cartValue" class="badge badge-light"> 0 </span>
      				 </div>
-     				 <div id="dropDownContent"class="dropdown-content right-aligned white shadow-1">
-					  	<a class="nav-link"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
+     				 <div id="dropDownContent"class="dropdown-content white right-aligned shadow-1 rounded-3 p-2">
+					  	<a class="dropdown-item btn-rechercher btn rounded-1  press m-auto mt-2"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
 					  </div>
 			{% endif %}
 			</div>

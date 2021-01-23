@@ -235,10 +235,39 @@ class MarketController extends AbstractController
     /**
      * @Route("/cartValidator", name="cartValidator")
      */
-    public function cartValidator(Request $request, OrderRepository $orderRepository)
+    public function cartValidator(Request $request, OrderRepository $orderRepository ,\Swift_Mailer $mailer)
     {
 
          $user = $this->getUser();
+
+
+         $message = (new \Swift_Message('Hello Email'))
+         ->setFrom('send@example.com')
+         ->setTo('recipient@example.com')
+         ->setBody(
+             $this->renderView(
+                 // templates/emails/registration.html.twig
+                 'emails/registration.html.twig',
+                 ['name' => $name]
+             ),
+             'text/html'
+         )
+ 
+         // you can remove the following code if you don't define a text version for your emails
+         ->addPart(
+             $this->renderView(
+                 // templates/emails/registration.txt.twig
+                 'panierConfirmation.html.twig',
+                 ['name' => $name]
+             ),
+             'text/plain'
+         )
+     ;
+ 
+     $mailer->send($message);
+ 
+
+
         // if($request->isXmlHttpRequest()){
 
         //     $panier = json_decode($request->request->get('a'));
@@ -257,6 +286,8 @@ class MarketController extends AbstractController
         //    $dataResponse = array("error" => false); //Here data you can send back
         //    return new JsonResponse($dataResponse);
 
-
+        return $this->render('market/cartValidator.html.twig');
     }
+
+  
 }
