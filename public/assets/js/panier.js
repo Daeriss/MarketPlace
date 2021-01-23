@@ -231,6 +231,12 @@ function resetPanier() {
     flushPanier();
 }
 
+
+function resetPanierNoFlush()
+{
+    sessionStorage.clear();
+}
+
 function getPanier() {
     
    var panier = [];
@@ -358,14 +364,10 @@ function intToMonth(month) //maybe ca servira un jour, en fin de compte non
 
 function setDefaultDate()
 {
-
     var today = new Date();
     var day=today.getDate();
     var month=today.getMonth()+1;//janvier est le mois 1
     var year=today.getFullYear();
-
-
-        console.log(month);
 
     document.getElementById("cart_collect_date_month").value=(month);
     document.getElementById("cart_collect_date_day").value=day;
