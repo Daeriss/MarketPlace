@@ -12,12 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 // pour acceder aux entités
 use App\Entity\Shop;
 use App\Entity\Order;
+use App\Entity\OrderDetails;
+use App\Entity\SubOrder;
 
 // création et post-process des formulaires
 use App\Form\DistrictType;
 use App\Form\CartType;
-use App\Entity\OrderDetails;
-use App\Entity\SubOrder;
 // accès aux colomnes des tables dans la BDD
 use App\Repository\ShopRepository;
 use App\Repository\OrderRepository;
