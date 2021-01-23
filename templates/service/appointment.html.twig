@@ -8,6 +8,24 @@
             width : 80%;
             margin : auto;
         }
+
+        .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 10%;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+}
+
+            .tooltip:hover .tooltiptext {
+            visibility: visible;
+            }
     </style>
 {% endblock %}
 
@@ -19,8 +37,14 @@
     <div class="container-fluid ">
 
         <div class=" container-fluid d-flex justify-content-center m-3">
-            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_new')}}"> Ajouter un Rendez-vous</a>
-            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_index')}}"> modifier un Rendez-vous</a>              
+        {% if error is defined %}
+            <p class="p-3 my-2 rounded-2 error">{{error}}</p>
+        {% endif %}
+            {# <p> Pour créer un rendez-vous sélectionnez un crénaux et cliquez sur "Ajouter un rendez-vous"</p>
+            <p> Pour modifer un rendez-vous sélectionnez un rendez-vous et cliquez sur "modifer un rendez-vous"</p> #}
+            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_new')}}">Ajouter un Rendez-vous</a>
+            {# <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_index', {'id': id() } ) }}"> modifier un Rendez-vous</a>               #}
+            <p id="edit"></p>
         </div> 
         <div class=" container-fluid m-3">
             <div id="calendrier"></div>
@@ -31,6 +55,7 @@
 {% block javascript %}  
     <script>
         window.onload = () => {
+            var eventId = 0;
             let calendarElt = document.querySelector("#calendrier")
             let calendar = new FullCalendar.Calendar(calendarElt, {
                 initialView: 'timeGridWeek',
@@ -42,17 +67,37 @@
                     end: 'dayGridMonth,timeGridWeek'
                 },
                 events: {{ data|raw }},
-              selectable: true,
-            dateClick: function(info) {
-                alert('Clicked on: ' + info.dateStr);
-                
-            }
-            })
-
-            
-
+                selectable: true,
+                dateClick: function(info) {
+                    console.log(info);
+                    let url = `/marketplace/public/calendar/nouveau/appointment`
+                    let donnees = {
+                        "start": info.date
+                    }
+                    console.log(donnees)
+                 console.log(url)
+                let xhr = new XMLHttpRequest
+                xhr.open("PUT", url)
+                xhr.send(JSON.stringify(donnees))
+                }, 
+                eventClick: function(e) {
+                    console.log(e);
+                    console.log(e.event.id);
+                    eventclick(e.event.id);
+                }
+            }) 
             calendar.render()
         }
+        function eventclick( eventClickInfo ) { 
+
+            var text = "";
+            var url = `{{ path("calendar_edit",{'id' : 'idevent' }) }}`.replace('idevent', eventClickInfo)
+            text += '<a class="btn rounded-1 blue press grix sx1 m-3" href='+ url +'>modifier le Rendez-vous</a>';
+            document.getElementById("edit").innerHTML = text;
+        }
+
+        
+
     </script>
 {% endblock %}
 

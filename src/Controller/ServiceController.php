@@ -32,10 +32,10 @@ class ServiceController extends AbstractController
         $user = $this->getUser();
         $shop = $user->getShop();
 
-        $events = $calendarRepository->findby([
-            'shop' => $shop,
+        $events = $calendarRepository->findby(
+            ['shop' => $shop],
             []
-        ]);
+        );
         $rdvs = [];
         dump($events);
 
@@ -47,7 +47,7 @@ class ServiceController extends AbstractController
                 'title' => $event->getTitle(),
                 'description' => $event->getDescription(),
                 'backgroundColor' => $event->getBackgroundColor(),
-                'user_id' => $event->getUser()->getId(),
+                'user_id' => $event->getUser(),
                 'allDay' => $event->getAllDay(),
             ];
         }

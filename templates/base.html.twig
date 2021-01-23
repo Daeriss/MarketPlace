@@ -43,8 +43,8 @@
 
 
             {% endif %}
-				<img src="{{ asset('assets/img/logo4.png') }}" class="img-fluid logo-img">
-				<h5>CLICK'N'COMMERCES</h5>
+				<img src="{{ asset('assets/img/logo_noir.png') }}" class="img-fluid">
+				
 			</a> 
 			
 			<div class="flex-center">
@@ -65,14 +65,14 @@
 				  
 	
 			{% elseif is_granted('ROLE_SHOPKEEPER') %}
-            <a class="nav-link text-white" href="{{ path('accueilshopkeeper') }}">Ma boutique</a>
-			<a class="nav-link text-white" href="{{ path('product_index') }}">Mes produits</a>
-			<a class="nav-link text-white" href="{{ path('shopkeeperorders') }}">Mes commandes</a>
+            <a class="nav-link " href="{{ path('accueilshopkeeper') }}">Ma boutique</a>
+			<a class="nav-link " href="{{ path('product_index') }}">Mes produits</a>
+			<a class="nav-link " href="{{ path('shopkeeperorders') }}">Mes commandes</a>
             <a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
 			{% elseif is_granted('ROLE_SERVICE') %}
-			<a class="nav-link text-white" href="{{ path('shop_index') }}">Ma boutique</a>
-			<a class="nav-link text-white" href="{{ path('appointment') }}">Mes rendez-vous</a>
-			<a class="nav-link text-white" href="{{ path('services_index') }}">Mes prestations</a>
+			<a class="nav-link " href="{{ path('shop_index') }}">Ma boutique</a>
+			<a class="nav-link " href="{{ path('appointment') }}">Mes rendez-vous</a>
+			<a class="nav-link " href="{{ path('services_index') }}">Mes prestations</a>
 			<a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a>
             {% else %}
 			<a class="nav-link" href="{{ path('app_register') }}">inscription</a>

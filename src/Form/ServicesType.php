@@ -6,6 +6,8 @@ use App\Entity\Services;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class ServicesType extends AbstractType
 {
@@ -14,8 +16,10 @@ class ServicesType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            //->add('shop')
-        ;
+            ->add('duration', TimeType::class, [
+                //'input'  => 'timestamp',
+                'widget' => 'choice',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

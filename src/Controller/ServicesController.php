@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Services;
 use App\Form\ServicesType;
 use App\Repository\ServicesRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,11 +38,18 @@ class ServicesController extends AbstractController
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
 
+       
         if (in_array('ROLE_SERVICE', $user->getRoles())) {
 
             if ($form->isSubmitted() && $form->isValid()) {
+                
+                $date = new \DateTime("now");
+
+                $duree = $form->get('duration')->getData();
+                dump($duree);
 
                 $service->setShop($shop);
+                
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($service);
                 $entityManager->flush();

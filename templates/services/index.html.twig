@@ -10,7 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Price</th>
+                <th>Prix</th>
+                 <th>Durée</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ service.id }}</td>
                 <td>{{ service.name }}</td>
                 <td>{{ service.price }}</td>
+                <td>{{ service.duration ? service.duration|date('H:i') : '' }}</td>
                 <td>
                     <a href="{{ path('services_show', {'id': service.id}) }}">show</a>
                     <a href="{{ path('services_edit', {'id': service.id}) }}">edit</a>

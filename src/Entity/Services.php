@@ -33,6 +33,11 @@ class Services
      */
     private $shop;
 
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $duration;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +75,18 @@ class Services
     public function setShop(?Shop $shop): self
     {
         $this->shop = $shop;
+
+        return $this;
+    }
+
+    public function getDuration(): ?\DateTimeInterface
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?\DateTimeInterface $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }
