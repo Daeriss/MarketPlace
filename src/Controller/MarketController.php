@@ -219,7 +219,7 @@ class MarketController extends AbstractController
                 $entityManager->persist($order);
                 $entityManager->flush();
 
-                return $this->redirect($this->generateUrl('cartValidator     '));
+                return $this->redirect($this->generateUrl('cartValidator '));
             }
 
             
@@ -227,6 +227,7 @@ class MarketController extends AbstractController
             return $this->render('market/cart.html.twig', [
                 'form' => $form->createView(),
             ]);
+
         } else {
             return $this->redirectToRoute('app_login');
         }
