@@ -150,7 +150,7 @@ class MarketController extends AbstractController
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
-
+      
         // on créer une ligne order et orderDetails
         $order = new Order();
         $orderdet = new OrderDetails();
@@ -161,6 +161,7 @@ class MarketController extends AbstractController
         if ($user != null) {
 
             if ($form->isSubmitted() && $form->isValid()) {
+                
 
                 // on récupère le tableau de la session qui a été transformer en string
                 $panierString = $form->get('input')->getData();
@@ -219,11 +220,10 @@ class MarketController extends AbstractController
                 $entityManager->persist($order);
                 $entityManager->flush();
 
-
-                 return $this->redirectToRoute('cartValidator');
-
+                return $this->redirectToRoute('cartValidator');
+                
             }
-
+            
             
 
             return $this->render('market/cart.html.twig', [
@@ -256,7 +256,7 @@ class MarketController extends AbstractController
          )
      ;
  
-     $mailer->send($message);
+    //  $mailer->send($message);
  
 
 

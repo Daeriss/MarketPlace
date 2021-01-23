@@ -361,7 +361,7 @@ function intToMonth(month) //maybe ca servira un jour, en fin de compte non
 
 
 
-
+/*
 function setDefaultDate()
 {
     var today = new Date();
@@ -373,7 +373,7 @@ function setDefaultDate()
     document.getElementById("cart_collect_date_day").value=day;
     document.getElementById("cart_collect_date_year").value=year;
 
-}
+ }
 
-
+*/
 
