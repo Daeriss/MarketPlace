@@ -51,7 +51,7 @@ nbSingleProduitsPanier = 0;
 
 function getPanierHTML()
 {
-    var contentToAppend="<ul>";
+    var contentToAppend="<ul style='padding-left:0'>";;
 
     for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
 
@@ -80,13 +80,12 @@ function getPanierHTML()
             var key2 = "\'" + key + "\'";
             var name2 = "\'" + name + "\'";
             var prix2 = "\'" + prix + "\'";
-            contentToAppend += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite + '<button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
-            contentToAppend += "</li>  ";
+            contentToAppend += "<li style=' list-style-type: none'>  " + quantite + " " + name + ", a " + prix + "€ soit au total " + prix * quantite + '€ <button class="m-3" onclick="ajouterPanier(' + key2 + ',' + name2 + ', ' + prix2 + ')"> + </button> <button onclick="retirerPanier(' + key2 + ',' + name2 + ', ' + prix2 + ' )")>-</button>';
+            contentToAppend += "</li style=' list-style-type: none'>  ";
         }
 
     }
-    contentToAppend += "<br> Prix total : " + total + "</ul>";
-    console.log(contentToAppend);
+        contentToAppend += "<hr> Prix total : " + total + " €</ul>";
     return contentToAppend;
 }
 
@@ -96,7 +95,7 @@ function getPanierHTML()
 function getPanierHTMLNoButton()
 {
 
-    var contentToAppend="<ul>";
+    var contentToAppend="<ul style='padding-left:0'>";
 
     for (var key in sessionStorage) { // alert(typeof sessionStorage[key] +" "+sessionStorage[key])
 
@@ -123,8 +122,8 @@ function getPanierHTMLNoButton()
             var key2 = "\'" + key + "\'";
             var name2 = "\'" + name + "\'";
             var prix2 = "\'" + prix + "\'";
-            contentToAppend += "<li>  " + quantite + " " + name + ", a " + prix + "€ soit au total" + prix * quantite;
-            contentToAppend += "</li>  ";
+            contentToAppend += "<li style=' list-style-type: none'>  " + quantite + " " + name + ", a " + prix + "€ soit au total "  + prix * quantite+" € ";
+            contentToAppend += "</li style=' list-style-type: none'>  ";
         }
 
     }
@@ -134,7 +133,7 @@ function getPanierHTMLNoButton()
     {
         return '';
     }
-    contentToAppend += "<br> Prix total : " + total + "</ul>";
+    contentToAppend += "<hr> Prix total : " + total + " €</ul>";
     return contentToAppend;
     
 }
@@ -194,8 +193,7 @@ function ajouterPanier(id,name, price ) {
             if (alreadyExistentItem == null || alreadyExistentItem == undefined) {
                 var addedItem = "CNC," + 1 + "," + name + "," + price;
                 sessionStorage.setItem(id, addedItem);
-                alert('premier ajout');
-            } else {
+                } else {
                 var quantity = alreadyExistentItem.split(",")[1];
                 quantity++;
                 var addedItem = "CNC," + quantity + "," + name + "," + price;
@@ -255,7 +253,6 @@ function getPanier() {
 
     var url = $('#checkout-btn').val();
 
-    console.log(panier);
     delimiter = '^';
     var postArray = panier.join(delimiter);
     //jsonpanier = JSON.stringify(panier)
@@ -325,7 +322,6 @@ function DisplayPanierHeader()
 
     if(panierEstVide())
     {
-        console.log("panierVide");
         document.getElementById("dropDownContent").innerHTML="<p>Votre panier est vide</p>";
     }
 }
@@ -336,6 +332,46 @@ function panierEstVide()
 }
 
 
+function intToMonth(month) //maybe ca servira un jour, en fin de compte non
+{
+    switch(month)
+    {
+        case 1: return "Jan";
+        case 2: return "Feb";
+        case 3: return "Mar";
+        case 4: return "Apr";
+        case 5: return "May";
+        case 6: return "Jun";
+        case 7: return "Jul";
+        case 8: return "Aug";
+        case 9: return "Sep";
+        case 10: return "Oct";
+        case 11: return "Nov";
+        case 12: return "Dec";
+        default : return "Jan";
+    }
+    return "Jan";
+}
+
+
+
+
+function setDefaultDate()
+{
+
+    var today = new Date();
+    var day=today.getDate();
+    var month=today.getMonth()+1;//janvier est le mois 1
+    var year=today.getFullYear();
+
+
+        console.log(month);
+
+    document.getElementById("cart_collect_date_month").value=(month);
+    document.getElementById("cart_collect_date_day").value=day;
+    document.getElementById("cart_collect_date_year").value=year;
+
+}
 
 
 

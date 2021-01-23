@@ -43,19 +43,20 @@
 
 
 		<div class="container-fluid d-flex container-panier justify-content-center">
-			<div class="card card-border p-0 col-5 m-5">
-				<h2 class="card-title text-center">Votre Panier</h2>
+			<div class="card card-border p-0 col-5 m-5 text-center">
+				<h2 class="card-title text-center">VOTRE PANIER</h2>
+				<hr>
 				<div class="card-body">
-					<div class="container-fluid d-flex flex-colomn " id="panier">
+					<div class="container-fluid d-flex flex-colomn justify-content-center"" id="panier">
 					</div>
-					<div class="row">
+					<div class="col">
 						{{ form_start(form) }}
 						
 						{{ form_widget(form) }}
 						{{ form_end(form) }}
 					</div>
 					<a href="{{ path('cart') }}">
-					<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
+					<button class="btn shadow-1 rounded-1" id="checkout-btn" type="submit" >  <span style="font-weight:bold"> {{ button_label|default('Valider la réservation') }} <span> </button>
 					</a>
 				
 				</div>
@@ -66,9 +67,30 @@
 <script>
 	AfficherPanier("panier");
 </script>
-
-
 	<script>
 			setPanier();
 		</script>
+<script>
+	setDefaultDate();
+</script>
+
+
+<style>
+	.form-control{
+		width:9rem;
+		max-width:28%;
+		margin:auto;
+	}
+
+	#cart_collect_date{
+		display: inline-flex!important;
+		margin:auto;
+	}
+
+	panier ul{
+		width:100%;
+	}
+</style>
+
+
 {% endblock %}
