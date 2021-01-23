@@ -53,12 +53,12 @@
 						{{ form_start(form) }}
 						
 						{{ form_widget(form) }}
-						{{ form_end(form) }}
+					
 					</div>
 					<a href="{{ path('cart') }}">
 						<button class="btn btn-dark m-3" id="checkout-btn" type="submit" >{{ button_label|default('Valider') }}</button>
 					</a>
-				
+						{{ form_end(form) }}
 				</div>
 			</div>
 		</div>
@@ -70,9 +70,9 @@
 	<script>
 			setPanier();
 		</script>
-<script>
-	setDefaultDate();
-</script>
+// <script>
+// 	setDefaultDate();
+// </script>
 
 
 <style>

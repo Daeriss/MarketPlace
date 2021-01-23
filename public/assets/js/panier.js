@@ -356,22 +356,22 @@ function intToMonth(month) //maybe ca servira un jour, en fin de compte non
 
 
 
-function setDefaultDate()
-{
+// function setDefaultDate()
+// {
 
-    var today = new Date();
-    var day=today.getDate();
-    var month=today.getMonth()+1;//janvier est le mois 1
-    var year=today.getFullYear();
+//     // var today = new Date();
+//     // var day=today.getDate();
+//     // var month=today.getMonth()+1;//janvier est le mois 1
+//     // var year=today.getFullYear();
 
 
-        console.log(month);
+//     //     console.log(month);
 
-    document.getElementById("cart_collect_date_month").value=(month);
-    document.getElementById("cart_collect_date_day").value=day;
-    document.getElementById("cart_collect_date_year").value=year;
+//     // document.getElementById("cart_collect_date_month").value=(month);
+//     // document.getElementById("cart_collect_date_day").value=day;
+//     // document.getElementById("cart_collect_date_year").value=year;
 
-}
+// }
 
 
 
