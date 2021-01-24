@@ -281,5 +281,36 @@ class MarketController extends AbstractController
         return $this->render('market/cartValidator.html.twig');
     }
 
+    /**
+     * @Route("/newAppointment/{id}", name="newClientAppointment", methods={"GET","POST"})
+     */
+    public function appointment(Shop $shop, CalendarRepository $calendarRepository, Request $request): Response
+    {
+        $userShop = $shop->getUser();
+
+        $events = $calendarRepository->findby(
+            ['shop' => $shop],
+            []
+        );
+        $rdvs = [];
+        dump($events);
+
+        foreach ($events as $event){
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'shopid'=>$event->getShop()->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'backgroundColor' => $event->getBackgroundColor(),
+                'allDay' => $event->getAllDay(),
+            ];
+        }
+
+        $data = json_encode($rdvs);
+        
+
+        return $this->render('market/newClientAppointment.html.twig', compact('data'));
+    }
+
   
 }

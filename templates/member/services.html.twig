@@ -47,7 +47,7 @@ table {
     <th>Date du rendez vous</th>
     <th>Fin prévue</th>
     <th>Description</th>
-    <th>Prix</th>
+    <th>Prix</th> 
   </tr>
   {% for rdv in rdvs %}
   <tr>
@@ -56,7 +56,11 @@ table {
   <td>{{ rdv.start|date('d-m-Y h:i') }}</td>
   <td>{{ rdv.end|date('d-m-Y h:i') }}</td>
   <td>{{ rdv.description }}</td>
-  <td>{{ rdv.checkout }}</td>
+   {% for service in rdv.shop.services %}
+    {% if service.name == rdv.title %}
+    <td>{{ service.price}} €</td>
+    {% endif %}
+  {% endfor %}
   </tr>
   {% else %}
   <tr>

@@ -55,14 +55,18 @@ class CalendarController extends AbstractController
      */
     public function new_appointment(?Calendar $calendar, Request $request): Response
     {
-
+        //decode les données recu en json
         $donnees = json_decode($request->getContent());
         dump($donnees);
 
         if (isset($donnees)) {
+            //si il y a des données
             $start = new DateTime($donnees->start);
             dump($start);
+            //on stock la date de début et le shop
             $this->session->set('appointmentStart', $start);
+            $shopid = $donnees->shopId;
+            $this->session->set('shopId', $shopid);
         }
 
         return $this->redirectToRoute('calendar_new');
@@ -73,8 +77,9 @@ class CalendarController extends AbstractController
      */
     public function new(Request $request, ShopRepository $shopRepository, ServicesRepository $servicesRepository): Response
     {
-        // on récpère l'heure sélectionnée
+        // on récpère l'heure sélectionnée et le shop 
         $start = $this->session->get('appointmentStart');
+        $shopid = $this->session->get('shopId');
 
         $user = $this->getUser();
         $calendar = new Calendar();
@@ -84,17 +89,13 @@ class CalendarController extends AbstractController
 
         if (isset($start)){
             if ($user != null) {
-
                 if (in_array('ROLE_SERVICE', $user->getRoles())) {
-
+                    //si lapersonne qui prend un rdv est le prestataire on recupère sa boutique
                     $shop = $user->getShop();
                 } else {
-                    $requestid = Request::createFromGlobals();
-                    $shopid = $requestid->query->get('id');
-
+                    // si c'est un client on récupère la boutique provenant des données envoyées en json
                     $shop = $shopRepository->findOneBy(['id' => $shopid]);
                 }
-
                 if ($form->isSubmitted() && $form->isValid()) {
 
                     //on récupère la prestation souhaité
@@ -115,7 +116,6 @@ class CalendarController extends AbstractController
 
                     dump($dureeHours);
                     dump($dureeMinutes);
-
                     dump($start);
 
                     // on doit créer un autre objet date time pour l'heure de fin sinon il modifie l'heure de début parce qu'il les considère comme un seul objet meme si les variable ont des nom différents
@@ -130,11 +130,11 @@ class CalendarController extends AbstractController
                     dump($start);
                     dump($endtime);
 
-
                     $calendar->setStart($start);
                     $calendar->setEnd($endtime);
                     $calendar->setTitle($serviceObject->getName());
                     $calendar->setShop($shop);
+                    
                     if (in_array('ROLE_MEMBER', $user->getRoles())) {
                         $calendar->setUser($user);
                     }
@@ -143,10 +143,10 @@ class CalendarController extends AbstractController
                     $entityManager->flush();
 
                     if (in_array('ROLE_SERVICE', $user->getRoles())) {
-
+                        //si c'est le prestataire on le redirige vers ses rdv
                         return $this->redirectToRoute('appointment');
                     } else {
-
+                        //si c'est un client on le redirige vers ses rdv
                         return $this->redirectToRoute('app_account_rdv');
                     }
                     $this->session->clear();
@@ -157,6 +157,7 @@ class CalendarController extends AbstractController
                     'form' => $form->createView(),
                 ]);
             } else {
+                //si la personne n'est pas connecté elle se connecte
                 return $this->redirectToRoute('app_login');
             }
         }else {
