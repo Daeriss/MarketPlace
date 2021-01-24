@@ -46,9 +46,9 @@ class ServiceController extends AbstractController
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
                 'title' => $event->getTitle(),
                 'description' => $event->getDescription(),
-                'backgroundColor' => $event->getBackgroundColor(),
+                //'backgroundColor' => $event->getBackgroundColor(),
                 'user_id' => $event->getUser(),
-                'allDay' => $event->getAllDay(),
+                //'allDay' => $event->getAllDay(),
             ];
         }
 

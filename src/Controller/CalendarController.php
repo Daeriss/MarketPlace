@@ -180,15 +180,51 @@ class CalendarController extends AbstractController
     /**
      * @Route("/{id}/edit", name="calendar_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Calendar $calendar): Response
+    public function edit(Request $request, Calendar $calendar, ServicesRepository $servicesRepository): Response
     {
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //on récupère la prestation souhaité
+            $serviceObject = $form->get('Prestation')->getData('choice_label');
+
+            // on trouve la ligne de la prestation souhaité
+            $service = $servicesRepository->findOneBy([
+                'name' => $serviceObject->getName(),
+            ]);
+
+            dump($service->getDuration());
+            // on récupère la durée de la prestation
+            $dureeDateTime = $service->getDuration();
+            // on récupère l'heure
+            $dureeHours = $dureeDateTime->format("h");
+            //et laminute de la prestation
+            $dureeMinutes = $dureeDateTime->format("i");
+
+            dump($dureeHours);
+            dump($dureeMinutes);
+           
+
+            // on doit créer un autre objet date time pour l'heure de fin sinon il modifie l'heure de début parce qu'il les considère comme un seul objet meme si les variable ont des nom différents
+            $start = $form->get('start')->getData();
+            $startforendstring = $start->format("Y-m-d H:i:s");
+            $startforend = new \DateTime($startforendstring);
+
+            // on ajoute a notre nouvel objet date time la durée
+            $endhours = $startforend->modify("+{$dureeHours} hours");
+            $endtime = $endhours->modify("+{$dureeMinutes} minutes");
+
+            //et on a deux date time le début de la prestation et la fin
+            dump($start);
+            dump($endtime);
+
+            $calendar->setStart($start);
+            $calendar->setEnd($endtime);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('calendar_index');
+            return $this->redirectToRoute('appointment');
         }
 
         return $this->render('calendar/edit.html.twig', [
