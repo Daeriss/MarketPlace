@@ -65,8 +65,10 @@ class CalendarController extends AbstractController
             dump($start);
             //on stock la date de début et le shop
             $this->session->set('appointmentStart', $start);
-            $shopid = $donnees->shopId;
-            $this->session->set('shopId', $shopid);
+            if (isset($donnees->shopId)) {
+                $shopid = $donnees->shopId;
+                $this->session->set('shopId', $shopid);
+            }
         }
 
         return $this->redirectToRoute('calendar_new');
@@ -129,7 +131,7 @@ class CalendarController extends AbstractController
                     //et on a deux date time le début de la prestation et la fin
                     dump($start);
                     dump($endtime);
-
+                    $calendar->setBackgroundColor("#884A65");
                     $calendar->setStart($start);
                     $calendar->setEnd($endtime);
                     $calendar->setTitle($serviceObject->getName());
@@ -182,6 +184,7 @@ class CalendarController extends AbstractController
      */
     public function edit(Request $request, Calendar $calendar, ServicesRepository $servicesRepository): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
 
@@ -224,7 +227,14 @@ class CalendarController extends AbstractController
             $calendar->setEnd($endtime);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('appointment');
+
+            if (in_array('ROLE_SERVICE', $user->getRoles())) {
+                return $this->redirectToRoute('appointment');
+
+            }else {
+                return $this->redirectToRoute('app_account_rdv');
+
+            }
         }
 
         return $this->render('calendar/edit.html.twig', [
@@ -238,12 +248,20 @@ class CalendarController extends AbstractController
      */
     public function delete(Request $request, Calendar $calendar): Response
     {
+        $user = $this->getUser();
+
         if ($this->isCsrfTokenValid('delete' . $calendar->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($calendar);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('calendar_index');
+        if (in_array('ROLE_SERVICE', $user->getRoles())) {
+            return $this->redirectToRoute('appointment');
+
+        }else {
+            return $this->redirectToRoute('app_account_rdv');
+
+        }
     }
 }

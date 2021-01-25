@@ -28,7 +28,7 @@ class CalendarType extends AbstractType
                 
                 $calendar = $event->getData();
                 $form = $event->getForm();
-                if($calendar || null === $calendar->getId()) {
+                if(null !== $calendar->getId()) {
     
                      $form->add('start', DateTimeType::class,[
                          'date_widget' => 'single_text'

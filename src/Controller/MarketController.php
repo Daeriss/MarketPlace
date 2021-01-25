@@ -126,7 +126,6 @@ class MarketController extends AbstractController
                     'title' => $event->getTitle(),
                     'description' => $event->getDescription(),
                     'backgroundColor' => $event->getBackgroundColor(),
-                    'allDay' => $event->getAllDay(),
                 ];
             }
     
@@ -301,8 +300,7 @@ class MarketController extends AbstractController
                 'shopid'=>$event->getShop()->getId(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
-                'backgroundColor' => $event->getBackgroundColor(),
-                'allDay' => $event->getAllDay(),
+                'backgroundColor' => $event->getBackgroundColor(),  
             ];
         }
 

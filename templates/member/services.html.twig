@@ -20,6 +20,9 @@ table {
     background-color: #dddddd;
   }
 
+  .card-btn {
+		background-color: var(--third-color);
+	}
 </style>
 
 <body class="layout with-sidenav">
@@ -46,7 +49,8 @@ table {
           <th>Date du rendez vous</th>
           <th>Fin prévue</th>
           <th>Description</th>
-          <th>Prix</th> 
+          <th>Prix</th>
+          <th>Action</th>
         </tr>
         {% for rdv in rdvs %}
           <tr>
@@ -60,6 +64,19 @@ table {
                 <td>{{ service.price}} €</td>
               {% endif %}
             {% endfor %}
+            <td>
+              {% if rdv.start|date('d/m/Y h:i') <= "now"|date("d-m-Y h:i") %}
+                Rdv passé
+                {% else %}
+                <a class="p-2 btn card-btn text-white text-center mb-1" href="{{path('calendar_edit', {'id': rdv.id } ) }}">Modifier</a>
+                <form method="post" class="" action="{{ path('calendar_delete', {'id': rdv.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
+                  <button class="btn p-2 card-btn text-white text-center">Delete</button>
+                </form>
+                {# <a class="p-2 card-btn text-white text-center" href="{{path('calendar_delete', {'id': rdv.id } ) }}">Supprimer</a> #}
+              {% endif %}
+            </td>
           </tr>
         {% else %}
           <tr>

@@ -26,6 +26,26 @@
             .tooltip:hover .tooltiptext {
             visibility: visible;
             }
+
+            .card-btn {
+		background-color: var(--third-color);
+	    }
+
+        /* CSS d'un event */
+        .fc-media-screen .fc-timegrid-event {
+            position: absolute;
+            top: 0;
+            bottom: 1px;
+            left: 0;
+            right: 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .fc-media-screen .fc-timegrid-event:hover {
+            transform: scale(1.05);
+        }
+        
     </style>
 {% endblock %}
 
@@ -42,9 +62,14 @@
         {% endif %}
             {# <p> Pour créer un rendez-vous sélectionnez un crénaux et cliquez sur "Ajouter un rendez-vous"</p>
             <p> Pour modifer un rendez-vous sélectionnez un rendez-vous et cliquez sur "modifer un rendez-vous"</p> #}
-            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_new')}}">Ajouter un Rendez-vous</a>
+            <a class="btn rounded-1 text-white card-btn press grix sx1 m-3" href="{{path('calendar_new')}}">Ajouter un Rendez-vous</a>
             {# <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_index', {'id': id() } ) }}"> modifier un Rendez-vous</a>               #}
             <p id="edit"></p>
+            <form method="post" id="formDelete" class="" action="" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" id="inputDelete" value="">
+                <span id="delete"></span>
+            </form>
         </div> 
         <div class=" container-fluid m-3">
             <div id="calendrier"></div>
@@ -84,21 +109,38 @@
                     console.log(e);
                     console.log(e.event.id);
                     eventclick(e.event.id);
-                }
+                },
+                
             }) 
             calendar.render()
         }
         function eventclick( eventClickInfo ) { 
 
-            var text = "";
-            var url = `{{ path("calendar_edit",{'id' : 'idevent' }) }}`.replace('idevent', eventClickInfo)
-            text += '<a class="btn rounded-1 blue press grix sx1 m-3" href='+ url +'>modifier le Rendez-vous</a>';
-            document.getElementById("edit").innerHTML = text;
+            var textEdit = "";
+            var urlEdit = `{{ path("calendar_edit",{'id' : 'idevent' }) }}`.replace('idevent', eventClickInfo)
+            textEdit += '<a class="btn rounded-1 text-white card-btn press grix sx1 m-3" href='+ urlEdit +'>modifier le Rendez-vous</a>';
+            document.getElementById("edit").innerHTML = textEdit;
+
+           
+            var actionFormDelete = document.getElementById("delete");
+            var actionForm = `{{ path("calendar_delete",{'id' : 'idevent' }) }}`.replace('idevent', eventClickInfo);
+            actionFormDelete.setAttribute("action", actionForm);
+
+            var inputDelete =  document.getElementById("inputDelete");
+            var valueInput = `{{ csrf_token('delete' ~ 'idevent') }}`.replace('idevent', eventClickInfo);
+            inputDelete.setAttribute("value", valueInput);
+
+            var button = '<button class="btn card-btn rounded-1 text-white press grix sx1 m-3">Delete</button>';
+
+            document.getElementById("delete").innerHTML = button;
+
         }
 
         
 
     </script>
+
+   
 {% endblock %}
 
 {% endblock %}
