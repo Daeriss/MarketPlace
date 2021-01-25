@@ -78,9 +78,15 @@ class MarketController extends AbstractController
             []
         );
 
-        return $this->render("market/shops.html.twig", [
-            'shops' => $listeShops
-        ]);
+        if ($listeShops == null) {
+            return $this->redirectToRoute('404');
+        }else {
+
+            return $this->render("market/shops.html.twig", [
+                'shops' => $listeShops
+            ]);
+        }
+
     }
 
     /**
@@ -308,6 +314,14 @@ class MarketController extends AbstractController
         
 
         return $this->render('market/newClientAppointment.html.twig', compact('data'));
+    }
+
+    /**
+     * @Route("/404", name="404")
+     */
+    public function error(): Response
+    {
+        return $this->render('market/404.html.twig');
     }
 
   
