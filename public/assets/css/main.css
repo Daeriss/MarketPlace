@@ -448,30 +448,29 @@ p + a {
 }
 
 .btn-sign-in {
-    color: white;
-    background-color: var(--primary-color);
-    
-    margin:auto;
-    transition-property: font-size;
-    transition-duration: 4s;
-
-    
+    color: var(--third-color);
+    border: 2px solid var(--third-color);
+    background: white; /* default color */
+    background: linear-gradient(to left, white 50%, var(--third-color) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+    margin:auto; 
+    font-size: 20px;   
 }
 
 .btn-sign-in:hover {
-    color: var(--third-color);
-    background-color: var(--shadow-color);
-    -webkit-transform: scale(1.25);
-    transform-origin: center;
+    color: white;
+    background-position: left;
 }
 
 .border-form {
+    margin: 40px;
     box-shadow:inset 0px 1px 27px 6px var(--shadow-color);
-    border-radius: 10%;
-    -webkit-border-radius: 10%;
-    -moz-border-radius: 10%;
-    -ms-border-radius: 10%;
-    -o-border-radius: 10%;
+    border-radius: 5%;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    -ms-border-radius: 5%;
+    -o-border-radius: 5%;
     padding: 50px;
     background-color: white;
     width: 400px;
