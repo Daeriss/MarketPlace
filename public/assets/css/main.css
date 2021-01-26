@@ -2,6 +2,9 @@
     --primary-color: #CE584E;
     --secondary-color:#E4A57D;
     --third-color: #884A65;
+    --shadow-color: #BABECC;
+    --color-bg: #f4f6f6;
+    --font-size: 17px;
 }
 
 body {
@@ -52,9 +55,9 @@ nav {
 .nav-link {
     color: var(--third-color);
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .nav-link:hover {
@@ -79,7 +82,7 @@ p + a {
 .container-acceuil {
     max-width: 100%;
     height: 90vh;
-    background-color: #f4f6f6;
+    background-color:var(--color-bg);
     /* background-image: url(../img/s); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -130,19 +133,18 @@ p + a {
     font-weight: 200;
     text-align: left;
     max-width: 700px;
-    font-size: 3.5rem;
+    font-size: 2rem;
     line-height: 1.244;
     letter-spacing: 0.405px;
     color: var(--primary-color);
     margin-top: 112px;
     margin-bottom: 172px;
-    margin-right: 120px;
 }
 
 .container-acceuil p {
     margin-bottom: 80px;
     transition: all .5s;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 1.5;
     color: var(--primary-color);
     text-align: left;
@@ -150,9 +152,21 @@ p + a {
 }
 
 #district_Code_Postale {
-    border: 3px solid var(--third-color);
-    border-radius: 25px;
+    box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    appearance: none;
+    border-radius: 320px;
     width: 100%;
+    -webkit-border-radius: 320px;
+    -moz-border-radius: 320px;
+    -ms-border-radius: 320px;
+    -o-border-radius: 320px;
+}
+
+#district_Code_Postale:focus {
+    box-shadow:  inset 1px 1px 2px var(--shadow-color), inset -1px -1px 2px  #fff;
+    background-color: var(--color-bg);
 }
 
 .dev-app img {
@@ -190,7 +204,7 @@ p + a {
 }
 
 .text h3 {
-    font-size: 28px;
+    font-size: 23px;
     line-height: 36px;
 }
 
@@ -206,29 +220,36 @@ p + a {
 
 .btn-rechercher {
     background-color: var(--third-color);
-    border: 2px solid var(--third-color);
-    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: -5px -5px 20px white,  5px 5px 20px var(--shadow-color);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 320px;
+    -webkit-border-radius: 320px;
+    -moz-border-radius: 320px;
+    -ms-border-radius: 320px;
+    -o-border-radius: 320px;;
     margin-top: 20px;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 300;
     padding: 15px 30px 15px 30px;
     margin-left: 20px;
     color: white;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
+    -webkit-border-radius: 320px;
+    -moz-border-radius: 320px;
+    -ms-border-radius: 320px;
+    -o-border-radius: 320px;
 }
 
 .btn-rechercher:hover {
     color: white;
     background-color: var(--primary-color);
-    border: 2px solid var(--primary-color);
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
+    box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
 }
 
 .img-cnc{
@@ -266,7 +287,7 @@ p + a {
 
 .container-raisons h2 {
     transition: all .5s;
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1.5;
     color: var(--primary-color);
 }
@@ -288,7 +309,7 @@ p + a {
 .container-avantages p {
     transition: all .5s;
     line-height: 1.5;
-    font-size: 20px;
+    font-size: var(--font-size);
     color: var(--third-color);
     text-align: left;
 }
@@ -316,13 +337,13 @@ p + a {
 
 .container-vendeur {
     margin-top: 200px;
-    background-color: #f4f6f6;
+    background-color: var(--color-bg);
     max-height: 700px;
 }
 
 .container-vendeur h2 {
     transition: all .5s;
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1.5;
     color: var(--primary-color);
     font-style: normal;
@@ -331,13 +352,13 @@ p + a {
     max-width: 700px;
     line-height: 1.244;
     letter-spacing: 0.405px;
-    margin-bottom: 172px;
+    margin-bottom: 100px;
 }
 
 .container-vendeur p {
     transition: all .5s;
     line-height: 1.5;
-    font-size: 20px;
+    font-size: var(--font-size);
     color: var(--third-color);
     text-align: left;
     max-width: 700px;
@@ -347,13 +368,13 @@ p + a {
 
 
 .container-client {
-    background-color: #f4f6f6;
+    background-color: var(--color-bg);
     max-height: 700px;
 }
 
 .container-client h2 {
     transition: all .5s;
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1.5;
     color: var(--primary-color);
     font-style: normal;
@@ -362,15 +383,20 @@ p + a {
     max-width: 700px;
     line-height: 1.244;
     letter-spacing: 0.405px;
-    margin-bottom: 172px;
+    margin-bottom: 100px;
 }
 
 .container-client p {
     transition: all .5s;
     line-height: 1.5;
-    font-size: 20px;
+    font-size: var(--font-size);
     color: var(--third-color);
     text-align: left;
+    max-width: 700px;
+}
+
+.ajustement-center {
+    justify-content: flex-start !important;
     max-width: 700px;
 }
 
@@ -549,7 +575,7 @@ p + a {
 }
 
 .mh-100 {
-    max-height: 100%;
+    max-height: 80% !important;
 }
 
 .h--60 {
