@@ -1,0 +1,562 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Foire aux question et Aide{% endblock %}
+
+{% block body %}
+<style>
+
+body {font-family: helvetica}
+.containere {width: 320px; margin: 0 auto; overflow: hidden}
+a{text-decoration: none}
+
+#faq-links {padding: 10px 20px}
+
+#faq-links div {
+    color: #aeaeaf;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin: 18px 0
+}
+
+.faq-group {
+    padding: 0 20px 40px 20px;
+    position: relative
+}
+
+.faq-group div {
+    font-weight: 700;
+    text-align: center;
+}
+
+.faq-group hr {
+        border: 0;
+    border-top: 1px solid #606060;
+    clear: both;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+    height: 0;
+}
+
+.faq-group:after {
+    top: 33%;
+	 left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-top-color: #393939;
+	border-width: 15px;
+  margin-left: -15px
+}
+
+.faq-accordion>li  {
+    border-top: 1px solid rgba(198, 198, 198, 0.4);
+    color: #666;
+    padding: 1.125em 0
+}
+
+.faq-accordion li a {
+    color: #666;
+    padding: 1.125em;
+}
+
+.faq-accordion > li:last-child {
+    border-bottom: 1px solid rgba(198, 198, 198, 0.4);
+}
+
+.faq-accordion > li > a:before {
+    content: 'Q.';
+    padding-right: 0.313em
+}
+
+.faq-accordion > li > a:after {
+    color: #ff8300;
+    content: '+';
+    float: right;
+    font-weight:300;
+    margin-right: 1.25em;
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+            transform: scale(2);
+    overflow-y: hidden;
+}
+
+.faq-accordion > li > a.expanded:after {
+    color:  #ffa326;
+    content: '\2212';
+    -webkit-transform: scale(2);
+    -ms-transform: scale(2);
+            transform: scale(2);
+}
+
+.faq-accordion > li > a.expanded {font-weight: 700; opacity: 1 !important}
+
+.faq-content {
+    background-color: #ececec;
+    margin: 20px 0 -20px;
+}
+
+.faq-content p:before {
+    content: 'A.';
+    color: #ff8300;
+    float: left;
+    font-weight: 700;
+  margin-right: .5em
+}
+
+.faq-content p {
+    margin: 0 1.2em;
+    padding: 1.250em 0
+
+}
+
+.faq-hide {display: none}
+
+.faq-selected {
+    color: #49494b!important;
+ -webkit-transition: all 1s ease;
+         transition: all 1s ease;
+}
+
+
+.slide-left{
+
+	-webkit-animation-name: slide-left;	
+  -moz-animation-name: slide-left;	
+  	animation-name: slide-left;
+
+	
+	-webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;	
+
+		
+	-webkit-animation-timing-function: ease-in-out;	
+  -moz-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+
+}
+
+
+
+@-webkit-keyframes slide-left {
+	0% {
+		-webkit-transform: translateX(150%);
+	}
+	50%{
+		-webkit-transform: translateX(-8%);
+	}
+	65%{
+		-webkit-transform: translateX(4%);
+	}
+	80%{
+		-webkit-transform: translateX(-4%);
+	}
+	95%{
+		-webkit-transform: translateX(2%);
+	}			
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+@-moz-keyframes slide-left {
+	0% {
+		-webkit-transform: translateX(150%);
+    -moz-transform: translateX(150%);
+		        transform: translateX(150%);
+	}
+	50%{
+		-webkit-transform: translateX(-8%);
+    -moz-transform: translateX(-8%);
+		        transform: translateX(-8%);
+	}
+	65%{
+		-webkit-transform: translateX(4%);
+    -moz-transform: translateX(4%);
+		        transform: translateX(4%);
+	}
+	80%{
+		-webkit-transform: translateX(-4%);
+    -moz-transform: translateX(-4%);
+		        transform: translateX(-4%);
+	}
+	95%{
+		-webkit-transform: translateX(2%);
+    -moz-transform: translateX(2%);
+		        transform: translateX(2%);
+	}			
+	100% {
+		-webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+		        transform: translateX(0%);
+	}
+}
+@keyframes slide-left {
+	0% {
+		-webkit-transform: translateX(150%);
+    -moz-transform: translateX(150%);
+		        transform: translateX(150%);
+	}
+	50%{
+		-webkit-transform: translateX(-8%);
+    -moz-transform: translateX(-8%);
+		        transform: translateX(-8%);
+	}
+	65%{
+		-webkit-transform: translateX(4%);
+    -moz-transform: translateX(4%);
+		        transform: translateX(4%);
+	}
+	80%{
+		-webkit-transform: translateX(-4%);
+    -moz-transform: translateX(-4%);
+		        transform: translateX(-4%);
+	}
+	95%{
+		-webkit-transform: translateX(2%);
+    -moz-transform: translateX(2%);
+		        transform: translateX(2%);
+	}			
+	100% {
+		-webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+		        transform: translateX(0%);
+	}
+}
+
+</style>
+<div class="containere">
+<h1>Foire Aux Questions</h1>
+<div id="faq-links">
+    <div id="service" class="faq-selected">Compte</div>
+    <div id="installation">Commandes</div>
+    <div id="plan">Rendez-vous</div>
+    <div id="features">Fonctionnement général</div>
+    <div id="mobile">Autre</div>
+</div>
+
+
+
+<div id="faq-wrapper" class="about-service">
+
+<div class="faq-group">
+        <div class="slide-left">
+            <div>Compte</div>
+        </div>
+    <hr>
+</div><!--faq-group-->
+<div class="slide-left">
+              <div  class="faq">
+                 <ul class="faq-accordion">
+
+                    <li>
+                        <a href="#">Modifier les informations</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Pour modifier les informations de votre compte (e-mail, nom...) vous pouvez accéder à votre partie client et modifier les informations personnelles directement. En cas de disfonctionnement notre équipe support est là pour vous aider.</p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Bacon ipsum-->
+
+                    <li>
+                        <a href="#">Mot de passe perdu ?</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Prenez contact avec notre service client en nous donnant les informations permettant d'identifier votre compte (nom, prénom, dernières commandes, ainsi que votre pièce d'identité) nous vous enverons un lien afin de modifier votre mot de passe par e-mail dans les plus brefs délais.</p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Beer ipsum-->
+
+                    <li>
+                        <a href="#">J'ai un compte utilisateur et commerçant</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Les comptes utilisateurs et commerçant ne peuvent être mutualisés, pour passer vos commande ou réserver un service, veuillez vous connecter sur le compte adéquat. Pour gérer vos commandes et votre commerce en ligne, veuillez utiliser le compte commerçant. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Carey ipsum-->
+                    </ul>
+            </div>
+</div>
+</div>
+
+
+
+
+
+
+        <div class="about-installation faq-hide">
+
+<div class="faq-group">
+        <div class="slide-left">
+            <div>Commandes</div>
+        </div>
+    <hr>
+</div>
+                 
+          <div class="slide-left">     
+                 <ul class="faq-accordion">
+
+                    <li>
+                        <a href="#">J'ai passé une commande</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Une fois la commande passée, si vous avez obtenue une confirmation, elle apparaitra dans votre espace client, dans la rubrique "mes commandes" vous pourrez ainsi suivre son évolution. si ce n'est pas le cas, merci de contacter votre commerçant ou de venir vers nous pour vérifier que votre commande ai bien été enregistré. ATTENTION, une fois la date de récupération de la commande passée, le commerçant se réserve le droit de la remettre en rayon dès le lendemain. Pensez donc à être assidu.  </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Bacon ipsum-->
+                     <li>
+                        <a href="#">Qu'ai-je besoin pour récupérer ma commande ?</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Pour récupérer la commande, vous devez préciser votre numéro de commande. Merci de prévoir votre carte d'identité, pour que le commerçant puisse s'assurer de remettre la commande à la bonne personne.   </p></div>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+
+
+                    <li>
+                        <a href="#">Ma commande est toujours en cours</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Votre commande peut rester au statut "en cours" si le commerçant souhaite pour des raisons évidente de conservation, ne la préparer que le jour J. Veuillez donc patienter jusqu'au jour de récolte de votre commande, en cas de doute, n'hésitez pas à contacter votre commerçant pour vérifier avec lui qu'il ai bien pris en compte votre commande.  </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Beer ipsum-->
+
+                    <li>
+                        <a href="#">Ma commande est passée en récupérée</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Votre commande est passée en "récupérée alors que vous ne l'avez pas récupérée ? Appelez le commerçant pour vous assurer qu'il ne l'a pas modifiée sans le faire exprès. En cas d'incident avec la récupération de votre commande, veuillez contacter le service client du site. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Carey ipsum-->
+                    </ul>
+                    
+                </div><!--lide-left --> 
+        </div>
+
+
+        <div  class="about-plan faq-hide">
+
+<div class="faq-group">
+    <div class="slide-left">
+    <div>Rendez vous</div>
+    </div>
+    <hr>
+</div>
+            <div class="slide-left">
+                 <ul class="faq-accordion">
+
+                    <li>
+                        <a href="#">j'ai pris un rendez vous</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Une fois votre rendez vous réservé, vous devez le voir apparaitre dans votre compte client, rubrique "mes rendez vous". N'hésitez pas à contacter le prestataire afin d'obtenir un maximum d'information concernant la prestation si la description n'est pas assez explicite ou si votre besoin est plus spécifique. En effet, les prix affichés pour une prestation ne peuvent varier, que si votre problème est conforme à la prestation de résolution.</p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Bacon ipsum-->
+
+                    <li>
+                        <a href="#">Absence lors du rendez vous</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Que vous soyez prestataire ou client, le respect du rendez vous doit être de mise. N'hésitez pas à vous contacter mutuellement le jour voire la veille du rendez vous pour s'assurer de la disponnibilité de chacun, de l'expertise éventuelle du dépannage, des conditions de réalisation, ainsi que du prix ferme pour une réalisation donnée. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Beer ipsum-->
+
+                    <li>
+                        <a href="#">Je souhaite annuler le rendez vous</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Pour annuler un rendez vous, si vous ne pouvez le faire via le site, veuillez contacter le prestataire afin de lui informer de votre absence, et programmer éventuellement un report. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Carey ipsum-->
+                    </ul>
+                </div><!--slide-left-->
+        </div>
+
+        <div class="about-features faq-hide">
+
+<div class="faq-group">
+    <div class="slide-left">
+    <div>fonctionnement général</div>
+    </div>
+    <hr>
+</div>
+            <div class="slide-left">
+                 <ul class="faq-accordion">
+
+                    <li>
+                        <a href="#">Personne dans mon code postal</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Vous ne trouvez aucun résultat dans votre quartier ou Arrondissement, soyez patient, le site vient tout juste d'émerger, n'hésitez pas à proposer à vos commerçants de proximité, le bon plan et la gratuité de s'inscrire sur Click'n'commerces</p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Bacon ipsum-->
+
+                    <li>
+                        <a href="#">En savoir plus sur le commerce.</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Les commerçants et prestataires de service, affichent leurs horaires de disponnibilité, mais aussi leur adresse et leurs coordonnées sur leur page. Vous pouvez ainsi prendre contact avec eux à tout moment pour en savoir plus. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Beer ipsum-->
+
+                    <li>
+                        <a href="#">Supprimer mon compte</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Vous souhaitez supprimer votre compte? N'hésitez pas à nous contacter en présisant votre nom, prénom et e-mail. Nous nous chargerons de la suppression de votre compte, à condition qu'aucune commande ne soit en cours. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                   
+                    </ul>
+                </div><!--slide-left-->
+        </div> <!--about-features faq-hide-->
+
+
+         <div  class="about-mobile faq-hide">
+
+<div class="faq-group">
+        <div class="slide-left">
+            <div>Autre</div>
+        </div>
+    <hr>
+</div>
+            <div class="slide-left">
+                 <ul class="faq-accordion">
+
+                    <li>
+                        <a href="#">Contacter le service client</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Pour nous contactez, n'hésitez pas à utiliser le formulaire </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Bacon ipsum-->
+
+                    <li>
+                        <a href="#">Qu'ai-je besoin pour inscrire mon commerce ?</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Asssiduité et validité de votre commerce. Tout commerce non enregistré et légalement non autorisé à exercé, sera supprimé. </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Beer ipsum-->
+
+                    <li>
+                        <a href="#">Mon commerce a été supprimé</a>
+                        <ul class="faq-content">
+                            <li>
+                                <div><p>Si votre compte a été supprimé, il est probable qu'il ne réponde pas aux exigeances de Click'n'commerces, merci de vérifier votre éligibilité dans les conditions générales d'utilisation, et en cas de contestation nous nous tenons à votre écoute.
+                                </p></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Carey ipsum-->
+                    </ul>
+                </div><!--slide-left-->
+        </div> <!--about-mobile faq-hide-->
+     </div><!--container-->
+
+<script> 
+var accordWithPage =  function() {
+  
+ var faqDiv = $('#faq-links div');
+  
+
+$(function () {
+  
+faqDiv.on("click", function() {
+    
+  var hideSec = 'faq-hide';  
+      var $this = $(this),
+      $id = $this.attr('id'),
+      $class = '.' + $('.about-' + $id).attr('class').replace(hideSec, '');
+
+  $('#faq-wrapper').addClass(hideSec);
+  $('.about-' + $id).removeClass(hideSec);
+  $('div[class*=about]').not($class).addClass(hideSec);
+     
+ });
+
+});
+
+$(function () {
+  
+        var select = 'faq-selected';      
+  
+        faqDiv.click(function () {
+
+        if ($(this).hasClass(select)) {
+            $(this).removeClass(select);
+        } else {
+            $('#faq-links .faq-selected').removeClass(select);
+            $(this).addClass(select);             
+        }
+    }); //faq link selected
+});
+
+  
+  
+//Accordion
+  
+$(function () {
+  
+  var expand = 'expanded';
+  var content = $('.faq-content');
+        //FAQ Accordion
+        $('.faq-accordion > li > a').click(function (e) {
+        		e.preventDefault();
+        if ($(this).hasClass(expand)) {
+            $(this).removeClass(expand);
+//          $('.faq-accordion > li > a > div').not(this).css('opacity', '1');//returns li back to normal state
+            $(this).parent().children('ul').stop(true, true).slideUp();
+        } else {
+//            $('.faq-accordion > li > a > div').not(this).css('opacity', '0.5');//dims inactive li
+            $('.faq-accordion > li > a.expanded').removeClass(expand);
+            $(this).addClass(expand);
+            content.filter(":visible").slideUp();
+            $(this).parent().children('ul').stop(true, true).slideDown();
+        }
+    }); //accordion function
+
+    content.hide();
+
+}); 
+  
+}
+
+accordWithPage();
+</script>
+{% endblock %}
+

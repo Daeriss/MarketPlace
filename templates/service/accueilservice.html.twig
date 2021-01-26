@@ -46,6 +46,8 @@
                 <h4>Adresse :  {{ app.user.shop.road }} </h4>
                 <h4>CP :  {{ app.user.shop.adress }} </h4>
                 <h4>Paiement acceptés :  {{ app.user.shop.paiement }}</h4>
+                <h4>Contact :  {{ app.user.shop.phone }}</h4>
+                <a class="btn btn-success" href="{{ path('shop_edit', {'id': app.user.shop.id}) }}">Modifier les informations</a>
         </div>
 	</div>
 

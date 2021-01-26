@@ -143,8 +143,8 @@
 
 {% block header %}
 	<header class="container-fluid p-0">
-	
 		<nav class="navbar navbar-expand-lg navbar-dark  p-0 m-3" id="myTopnav">
+
             {% if is_granted('ROLE_MEMBER') %}
 			<a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueil')}}">
             {% elseif is_granted('ROLE_SHOPKEEPER') %}
@@ -184,8 +184,7 @@
 				<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
 				{% else %}
 				<a class="nav-link burgerElement" href="{{ path('app_register') }}">inscription</a>
-				<a class="nav-link burgerElement" href="{{ path('app_login') }}">Connexion</a>
-				<a class="nav-link burgerElement" href="#">Le concept</a>   
+				<a class="nav-link burgerElement" href="{{ path('app_login') }}">Connexion</a>   
 
 				<div class="dropdown burgerElement rounded-2" id="example-dropdown" data-ax="dropdown">
 					<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">
@@ -222,29 +221,24 @@
 					<div class="row flex-center">
 						<!--Grid column-->
 						<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-							<h5 class="text-uppercase">Footer Content</h5>
+							<h5 class="text-uppercase">Click'N'Commerces</h5>
 
 							<p>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-														molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-														voluptatem veniam, est atque cumque eum delectus sint!
+								Click'N'Commerces votre service de click'n'collect local et COVID-Friendly
 							</p>
 						</div>
 						<!--Grid column-->
 						<!--Grid column
 									<!--Grid column-->
 						<!--Grid column-->
-							<div class="col-lg-3 col-md-6 mb-4 "> <h5 class="text-uppercase">Links</h5>
+							<div class="col-lg-3 col-md-6 mb-4 "> <h5 class="text-uppercase">Navigation</h5>
 
 							<ul class="list-unstyled">
 								<li>
-									<a href="#!" class="">Recrutement</a>
+									<a href="{{ path('faq') }}" class="">Aide / FaQ</a>
 								</li>
 								<li>
-									<a href="#!" class="">Créer ma boutique</a>
-								</li>
-								<li>
-									<a href="{{ path('cgdv') }}" class="">Conditions générales de vente</a>
+									<a href="{{ path('cgdv') }}" class="">Conditions générales d'utilisation</a>
 								</li>
 								<li>
 									<a class="text dark" href="{{ path('mentions_legales') }}"> Mentions légales</a>
@@ -259,7 +253,7 @@
 
 				<!-- Copyright -->
 				<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-					<a class="" href="#">© 2021 Copyright: Maéva | Olivier | Benjamin LPB | Tony => Team
+					<a class="" href="#">© 2021 Copyright: Mäéva | Olivier | Benjamin | Tony => Team
 										rocketScript</a>
 				</div>
 				<!-- Copyright -->
