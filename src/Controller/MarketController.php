@@ -24,6 +24,7 @@ use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\ServicesRepository;
 use App\Repository\CalendarRepository;
+use App\Repository\SubOrderRepository;
 
 
 class MarketController extends AbstractController
@@ -151,7 +152,7 @@ class MarketController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository , \Swift_Mailer $mailer ): Response
+    public function cart(Request $request, SubOrderRepository $subOrderRepository,  OrderRepository $orderRepository,  ProductRepository $productRepository , \Swift_Mailer $mailer ): Response
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
@@ -173,7 +174,6 @@ class MarketController extends AbstractController
                 $delimiter = '^';
                 $panier = explode($delimiter, $panierString); //et on recréer un tableau à partir de la  string
 
-                $prductList;
 
 
 
@@ -241,7 +241,10 @@ class MarketController extends AbstractController
 
                     //on envoie une mail au client pour valider son panier
 
-
+                    $tablisteproduit =  $subOrderRepository->findBy(
+                        ['orderDetails' => $orderDetails],
+                        []
+                    );
 
 
                     $message = (new \Swift_Message('Confirmation de commande'))
@@ -258,8 +261,7 @@ class MarketController extends AbstractController
                             ['name' => $user->getUsername(),
                             'order'=> $order,
                             'date'=> $collectDate->format('D/M/Y'),
-                            'listePdt'=> $listeProducts ,
-                            'listQt'=> $prductQuantity]
+                            'listePdt'=> $tablisteproduit]
                         ),
                         'text/html'
                     );
@@ -363,6 +365,16 @@ class MarketController extends AbstractController
     public function error(): Response
     {
         return $this->render('market/404.html.twig');
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq(): Response
+    {
+        return $this->render('faq/index.html.twig', [
+            'controller_name' => 'FaqController',
+        ]);
     }
 
   

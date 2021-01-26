@@ -8,13 +8,5 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FaqController extends AbstractController
 {
-    /**
-     * @Route("/faq", name="faq")
-     */
-    public function index(): Response
-    {
-        return $this->render('faq/index.html.twig', [
-            'controller_name' => 'FaqController',
-        ]);
-    }
+    
 }
