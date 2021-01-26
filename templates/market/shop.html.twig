@@ -63,13 +63,13 @@
 				<p class="text-white"> numéro de téléphone : <strong> {{ shop.phone }} </strong> </p> 
 				<div>
 					<h4 class="text-white"> Horaires d'ouverture </h4>
-					<p class="text-white">Lundi : {{ shop.lundi }} </p>
-					<p class="text-white">	Mardi : {{ shop.mardi }} </p>
-					<p class="text-white">	Mercredi : {{ shop.mercredi }} </p>
-					<p class="text-white">	Jeudi : {{ shop.jeudi }}</p> 
-					<p class="text-white">	Vendredi : {{ shop.vendredi }} </p>
-					<p class="text-white">	Samedi : {{ shop.samedi }}</p>
-					<p class="text-white">	Dimanche : {{ shop.dimanche }}</p>  
+					<p class="text-white">Lundi : {{ shop.lundi|date("H:i") }} </p>
+					<p class="text-white">	Mardi : {{ shop.mardi|date("H:i") }} </p>
+					<p class="text-white">	Mercredi : {{ shop.mercredi|date("H:i") }} </p>
+					<p class="text-white">	Jeudi : {{ shop.jeudi|date("H:i") }}</p> 
+					<p class="text-white">	Vendredi : {{ shop.vendredi|date("H:i") }} </p>
+					<p class="text-white">	Samedi : {{ shop.samedi|date("H:i") }}</p>
+					<p class="text-white">	Dimanche : {{ shop.dimanche|date("H:i") }}</p>  
 					
 				</div>
 			</div>
