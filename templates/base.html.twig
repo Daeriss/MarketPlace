@@ -144,7 +144,7 @@
 {% block header %}
 	<header class="container-fluid p-0">
 	
-		<nav class="navbar navbar-expand-lg navbar-dark flex-evenly col-12 topnav p-0 m-3" id="myTopnav">
+		<nav class="navbar navbar-expand-lg navbar-dark flex-evenly col-12 topnav" id="myTopnav">
             {% if is_granted('ROLE_MEMBER') %}
 			<a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueil')}}">
             {% elseif is_granted('ROLE_SHOPKEEPER') %}
@@ -184,8 +184,7 @@
 				<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
 				{% else %}
 				<a class="nav-link burgerElement" href="{{ path('app_register') }}">inscription</a>
-				<a class="nav-link burgerElement" href="{{ path('app_login') }}">Connexion</a>
-				<a class="nav-link burgerElement" href="#">Le concept</a>   
+				<a class="nav-link burgerElement" href="{{ path('app_login') }}">Connexion</a>   
 
 				<div class="dropdown burgerElement rounded-2" id="example-dropdown" data-ax="dropdown">
 					<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">

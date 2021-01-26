@@ -23,6 +23,10 @@ header{
     padding: 50px 0px 50px 0px;
     margin-bottom: 0px;
     box-shadow: 0 2px 12px 0 rgba(36,50,66,.075);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 85px;
 }
 
 header img {
@@ -49,7 +53,7 @@ header img {
 }
 
 nav {
-    padding: 50px 0px 50px 0px;
+    max-width: 1600px;
 }
 
 .nav-link {
@@ -72,6 +76,13 @@ nav {
     max-width: 300px;
 }
 
+.fa-shopping-cart {
+    color: var(--third-color);
+}
+
+.badge {
+    color: var(--third-color);
+}
 
 p + a {
     font-family: 'Manrope';
