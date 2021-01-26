@@ -434,11 +434,13 @@ p + a {
 }
 
 .container-sign-in h1{
-    color: var(--primary-color);
+    color: var(--third-color);
 }
 
 .color-label{
-    color: var(--primary-color);
+    color: var(--third-color);
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .background-sign-in {
@@ -457,15 +459,14 @@ p + a {
 }
 
 .btn-sign-in:hover {
-    color: var(--secondary-color);
-    background-color: rgb(18, 18, 88);
+    color: var(--third-color);
+    background-color: var(--shadow-color);
     -webkit-transform: scale(1.25);
-    transform-origin: top left;
+    transform-origin: center;
 }
 
 .border-form {
-    border: 4px white solid;
-    box-shadow: 0px 1px 20px 6px #cccccc;
+    box-shadow:inset 0px 1px 27px 6px var(--shadow-color);
     border-radius: 10%;
     -webkit-border-radius: 10%;
     -moz-border-radius: 10%;
@@ -474,6 +475,16 @@ p + a {
     padding: 50px;
     background-color: white;
     width: 400px;
+}
+
+.border-form:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 11px 4px rgba(186,190,204,0.34);
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
 }
 
 .input-custom input[type=email] {
@@ -607,23 +618,23 @@ footer {
 footer h5 {
     line-height: 1.244;
     letter-spacing: 0.405px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--primary-color);
     font-style: normal;
-    font-weight: 200;
+    font-weight: bold;
 }
 
 footer p{
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 17px;
     color: var(--third-color);
     text-align: left;
 }
 
 footer a{
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 17px;
     color: var(--third-color);
     text-align: left;
 }
