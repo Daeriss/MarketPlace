@@ -56,7 +56,7 @@ class MarketController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $district = $form->get('Code_Postale')->getData();
+            $district = $form->get('Code_Postal')->getData();
             $this->session->set('district', $district);
 
             return $this->redirectToRoute('shops');
@@ -151,7 +151,7 @@ class MarketController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository): Response
+    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository , \Swift_Mailer $mailer ): Response
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
@@ -172,6 +172,10 @@ class MarketController extends AbstractController
                 $panierString = $form->get('input')->getData();
                 $delimiter = '^';
                 $panier = explode($delimiter, $panierString); //et on recréer un tableau à partir de la  string
+
+                $prductList;
+
+
 
                 // tous les produits dans le panier proviennent du même shop
                 $idproduct = intval($panier[0]);
@@ -194,6 +198,8 @@ class MarketController extends AbstractController
                 // pour affecter les produits on doit récuper les céllules qui contiennent la valeur de l'id du produit
                 //le tableau est constité [id1],[quantité1],[id2][quandtité2].... l'id se trouve donc 1 case sur deux
                 // ce quiexplique le $i+=2 on saute une case
+
+                $index = 0;
                 for ($i = 0; $i < $taillepanier; $i += 2) {
 
                     //si la case n'est pas vide 
@@ -207,6 +213,12 @@ class MarketController extends AbstractController
                         // et on l'ajoute dans la BDD
                         $subOrder->setQuantity($quantite);
                         $currentproduct->addSubOrder($subOrder);
+
+                            /*pour afficher dans le template, on met a jour la liste des produits et des quantités*/ 
+                        $prductList[$index]= $currentproduct;
+                        $index++;
+
+
                     }
                 }
 
@@ -224,6 +236,35 @@ class MarketController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($order);
                 $entityManager->flush();
+
+
+
+                    //on envoie une mail au client pour valider son panier
+
+
+
+
+                    $message = (new \Swift_Message('Confirmation de commande'))
+
+                    ->setFrom('clickncommerce@gmail.com')
+                    
+                    //->setTo($user->getEmail())
+                    
+                    ->setTo("oli.vallet0@gmail.com")
+                    ->setBody(
+                        $this->renderView(
+                            // templates/emails/registration.html.twig
+                            'email/commandeValidationClient.html.twig',
+                            ['name' => $user->getUsername(),
+                            'order'=> $order,
+                            'date'=> $collectDate->format('D/M/Y'),
+                            'listePdt'=> $listeProducts ,
+                            'listQt'=> $prductQuantity]
+                        ),
+                        'text/html'
+                    );
+            
+                $mailer->send($message);
 
                 return $this->redirectToRoute('cartValidator');
                 

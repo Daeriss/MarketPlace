@@ -14,7 +14,7 @@ class DistrictType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Code_Postale',null , [
+            ->add('Code_Postal',null , [
                 'constraints' => [
                     new Length([
                         'min' => 5,
