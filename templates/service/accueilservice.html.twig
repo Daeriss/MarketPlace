@@ -1,7 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ServiceController!{% endblock %}
+{% block title %}PAGE ACCUEIL
+{% endblock %}
+
+
+{% block stylesheets %}
+    <style>
+        .form-control {
+            position: relative;
+            display: block;
+            border: 1px solid #bbb8b8;
+            
+           
+            transition: border .2s ease,box-shadow .3s ease;
+            height: 2.5rem;
+            width: 50%;
+            
+           
+            appearance: none;
+            line-height: 1.3;
+            color: inherit;
+            background-color: inherit;
+        }
+
+        .form-inline {
+            flex : auto;
+            flex-direction: row;
+        }
+        .task_field {
+            width : 150px;
+            display : flex;
+        }
+    
+    </style>
+{% endblock %}
 
 {% block body %}
+    <h1> Ma boutique </h1>
+	<div class="container grix xs2 m-5">
+		<div>
+			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
+		</div>
+        <div class="container">
+                <h4>Nom de l'enseigne :  {{ app.user.shop.name }}</h4>
+                <h4>Adresse :  {{ app.user.shop.road }} </h4>
+                <h4>CP :  {{ app.user.shop.adress }} </h4>
+                <h4>Paiement acceptés :  {{ app.user.shop.paiement }}</h4>
+        </div>
+	</div>
 
+    <h1>Gestion de ma boutique en ligne</h1>
+    
+
+        
+        </tbody>
+    </table>
+	
+
+<script>
+   
+   
+ 
+
+</script>
 {% endblock %}
+
+{% block javascripts %}{% endblock %}
+
