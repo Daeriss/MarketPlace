@@ -46,51 +46,51 @@
 
 
 		<div>
-			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
+			<img class="img-test mt-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
 		</div>
 		<div class="container m-auto">
 			<h3>
 				Gestion Horaire
 			</h3>
 			{{form_start(form)}}
-            <label>lundi </label>
-			<div class="row">
-				de
+            <label>lundi :</label>
+			<div class="row m-auto">
+				De : 
 				{{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} à
 				{{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
-            <label>Mardi </label>
-			<div class="row">
+			</div> <hr>
+            <label>Mardi :</label> <br>
+			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
-            <label>Mercredi </label>
-			<div class="row">
+			</div><hr>
+            <label>Mercredi :</label><br>
+			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} à :
 				{{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
-            <label>Jeudi </label>
-			<div class="row">
+			</div><hr>
+            <label>Jeudi :</label><br>
+			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} à :
 				{{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
-            <label>Vendredi </label>
-			<div class="row">
+			</div><hr>
+            <label>Vendredi :</label>
+			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
-            <label>Samedi </label>
-			<div class="row">
+			</div><hr>
+            <label>Samedi :</label><br>
+			<div class="row m-auto">
 				De : 
 				{{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
-            <label>Dimanche </label>
-			<div class="row">
+			</div><hr>
+            <label>Dimanche :</label><br>
+			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
-			</div>
+			</div><br>
 			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
 			{{ form_end(form) }}
 
