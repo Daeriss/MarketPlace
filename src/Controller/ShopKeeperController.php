@@ -12,12 +12,16 @@ use App\Repository\SubOrderRepository;
 use App\Repository\UserRepository;
 use App\Repository\ShopRepository;
 
+
+/**
+ * @Route("/shopkeeper")
+ */
 class ShopKeeperController extends AbstractController
 {
 
 
     /**
-     * @Route("/shopkeeper", name="accueilshopkeeper")
+     * @Route("/", name="accueilshopkeeper")
      */
     public function accueilshopkeeper(request $request, OrderRepository $orderRepository, ShopRepository $shopRepository): Response
     {

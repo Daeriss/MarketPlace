@@ -35,12 +35,12 @@
 
 {% block body %}
 
-	<h1>Mes Commandes</h1>
+	<h1 class="p-3">Mes Commandes</h1>
 
 	
 
     <div class="container-fluid">
-		<div class="grix xs6">
+		<div class="grix xs6 p-3 shadow-2 align-items-center">
 				<p>Numero de commande</p>
 				<p>Client</p>
 				<p>Date de collect</p>
@@ -51,7 +51,7 @@
        
 			{% for order in orders %}
 					{% set idOrder = order.id %}
-					<div class="grix xs6 p-3 shadow-2">
+					<div class="grix xs6 p-3 shadow-2 align-items-center">
 						<p>{{ order.orderNumber }}</p>
 						<p>{{ order.user.name }}</p>
 						<p>{{ order.orderDetails.collectDate |date("j / m / Y") }}</p>
@@ -69,7 +69,7 @@
                         <button data-target="example-collapsible{{loop.index0}}" class="btn rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button>
                     </div>
 				
-        <div class="collapsible grix xs6" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
+        <div class="collapsible p-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
     
 			<div class=" grix xs6" >
                 <p>Produit</p>
