@@ -4,63 +4,59 @@
 <style>
 
     /* TABLES COMMANDE */
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
   td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
   }
-  
+    
   tr:nth-child(even) {
     background-color: #dddddd;
   }
 
 </style>
+  <body class="layout with-sidenav">
+    <div class="container-fluid  d-flex flex-row">
 
+      <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
+        <div class="sidenav-header">
+          <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+          <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+        </div>
+        <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
+        <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
+        <a href="{{ path('app_account_orders')}}" class="sidenav-link active">Mes commandes</a>
+        <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
+      </div>
+  
+      <div class="container-fluid">
+        <h2>Historique de mes commandes</h2>
 
-    <body class="layout with-sidenav">
-    <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
-    <div class="sidenav-header">
-    <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-    <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+        <div class="grix xs5 p-3 bc text-white shadow-2 align-items-center">
+          <h5>Magasin</h5>
+          <h5>Numéro de Commande</h5>
+          <h5>Statut</h5>
+          <h5>Prix</h5>
+        </div>
+        {% for order in orders %}
+        	<div class="grix xs5 p-3 shadow-2 align-items-center" >
+            <p class="m-0">{{ order.shop.name }}</p>
+            <p class="m-0">{{ order.orderNumber }}</p>
+            <p class="m-0">{{ order.checkout }} €</p>
+            <p class="m-0">{{ order.orderDetails.orderStatus }}</p>
+            <p>
+              <a href="#">Détail de la commande</a>
+            </p>
+          </div>
+        {% else %}
+          <p colspan="6"> Pas de commandes</p>
+        {% endfor %}
+      </div>
     </div>
-      <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
-      <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
-      <a href="{{ path('app_account_orders')}}" class="sidenav-link active">Mes commandes</a>
-      <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
-    </div>
-
-<div class="example-wrapper container">
-
-
-<h2>Commandes en cours :</h2>
-
-<table>
-  <tr>
-    <th>Magasin</th>
-    <th>Numéro de Commande</th>
-    <th>Etat de la commande</th>
-    <th>Prix</th>
-  </tr>
-  {% for order in orders %}
-  <tr>
-  <td>{{ order.shop.name }}</td>
-  <td>{{ order.orderNumber }}</td>
-  <td>{{ order.orderDetails.orderStatus }}</td>
-  <td>{{ order.checkout }}</td>
-  </tr>
-  {% else %}
-  <tr>
-  <td colspan="6"> Pas encore de commandes</td>
-  </tr>
-  {% endfor %}
-
-</table>
-
-</div>
 {% endblock %}

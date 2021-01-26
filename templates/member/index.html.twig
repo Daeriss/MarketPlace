@@ -7,32 +7,64 @@
 </style>
 
 <body class="layout with-sidenav">
-  <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
-    <div class="sidenav-header">
-      <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-      <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
-    </div>
-    <a href="{{ path('app_account')}}" class="sidenav-link active">Mon compte</a>
-    <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
-    <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
-    <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
-  </div>
-
-  <div class="example-wrapper">
-    <h1>Salut {{ app.user.name }}! </h1>
-    <h3> Mon compte </h3>
-    <div class="grix xs4 container">
-      <div class="col-xs4"> profil de {{ app.user.firstname }} </div>
-      <div class="col-xs1">Nom</div>
-      <div class="col-xs3">{{app.user.name}}</div>
-      <div class="col-xs1">Prenom</div>
-      <div class="col-xs3">{{app.user.firstname}}</div>
-      <div class="col-xs1">Email</div>
-      <div class="col-xs3">{{app.user.email}}</div>
-      <div class="col-xs4"> 
-        <a href="{{ path('app_account_edit')}}" class="btn shadow-1 rounded-1 blue">Modifier le profil</a>
-        <a href="{{ path('app_account_edit_mdp') }}" class="btn shadow-1 rounded-1 blue">Modifier le mot de passe</a>
+  <div class="container-fluid  d-flex flex-row">
+    <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
+      <div class="sidenav-header">
+        <p>Bonjour, {{ app.user.name }} </p>
       </div>
+      <a href="{{ path('app_account')}}" class="sidenav-link active">Mon compte</a>
+      <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
+      <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
+      <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
+    </div>
+  
+    <div class="example-wrapper">
+      <div class="container-fluid p-3 shadow-2 mb-3">
+        <h4>Mes données personnelles</h4>
+        <hr>
+        <p>N'hesitez pas à modifier vos coordonnées pour les mettre a jour. </p>
+        <div class="card shadow-1">
+          <p class="m-3">{{ app.user.firstname }} {{app.user.name}}</p>
+          <hr class="w-75 m-auto">
+          <p class="m-3">{{app.user.email}}</p>
+        </div>
+      </div>
+
+      <div class="container-fluid shadow-2 p-3 border">
+        <h4>Ma dernière commande</h4>
+        <hr>
+        {% if lastOrder is not null %}
+        <div class="grix xs4 p-3 bc text-white shadow-2 align-items-center">
+          <p>Nom du magasin</p>
+				  <p>Numéro de commande</p>
+          <p>Total</p>
+          <p>Statut</p>
+        </div>
+         	<div class="grix xs4 p-3 shadow-2 align-items-center" >
+            <p class="m-0">{{lastOrder.shop.name }}</p>
+            <p class="m-0">{{ lastOrder.orderNumber }}</p>
+            <p class="m-0">{{ lastOrder.checkout }} €</p>
+            <p class="m-0">{{  lastOrder.orderDetails.orderStatus }}</p>
+          </div>
+          {% else %}
+          <p>Vous n'avez pas de commandes</p>
+          {% endif %}
+      </div>
+    
+     
+      {# <div class="grix xs4 container">
+        <div class="col-xs4"> profil de {{ app.user.firstname }} </div>
+        <div class="col-xs1">Nom</div>
+        <div class="col-xs3">{{app.user.name}}</div>
+        <div class="col-xs1">Prenom</div>
+        <div class="col-xs3">{{app.user.firstname}}</div>
+        <div class="col-xs1">Email</div>
+        <div class="col-xs3">{{app.user.email}}</div>
+        <div class="col-xs4"> 
+          <a href="{{ path('app_account_edit')}}" class="btn shadow-1 rounded-1 blue">Modifier le profil</a>
+          <a href="{{ path('app_account_edit_mdp') }}" class="btn shadow-1 rounded-1 blue">Modifier le mot de passe</a>
+        </div>
+      </div> #}
     </div>
   </div>
 {% endblock %}

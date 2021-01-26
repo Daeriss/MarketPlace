@@ -2,10 +2,21 @@
 
 {% block title %}Se connecter{% endblock %}
 
+{% block stylesheets %}
+<style>
+    .bc {
+			background-color: var(--third-color);
+        }
+    .tx-w {
+        color: white;
+    }
+</style>
+{% endblock %} 
+
 {% block body %}
 <div class="container-fluid container-sign-in">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 background-sign-in flex-center">
+        <div class="col-12 col-sm-12 col-md-6 background-sign-in bc flex-center">
             <form method="post" class="border-form flex-column">
                 {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -38,7 +49,7 @@
                 </div>
                 #}
 
-                <button class="btn btn-lg btn-sign-in my-5" type="submit">
+                <button class="btn btn-lg bc btn-sign-in my-5" type="submit">
                     Se connecter
                 </button>
             </form>

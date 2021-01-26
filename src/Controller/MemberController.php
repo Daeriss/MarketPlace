@@ -16,9 +16,15 @@ class MemberController extends AbstractController
     /**
      * @Route("/mon-compte", name="app_account")
      */
-    public function index(): Response
+    public function index(OrderRepository $orderRepository): Response
     {
-        return $this->render('member/index.html.twig');
+        $user = $this->getUser();
+       
+        $lastOrder = $orderRepository->findOneBy(['user' => $user], ['id' => 'desc']);
+        dump($lastOrder);
+        return $this->render('member/index.html.twig', [
+            'lastOrder' => $lastOrder
+        ]);
     }
 
     /**
