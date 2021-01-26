@@ -17,28 +17,56 @@ class HorairesType extends AbstractType
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Lundiclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choice',
+            ])
             ->add('Mardi', TimeType::class, [
                 'input'  => 'datetime',
+                'widget' => 'choice',
+            ])
+            ->add('Mardiclose', TimeType::class, [
+                'input' => 'datetime',
                 'widget' => 'choice',
             ])
             ->add('Mercredi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Mercrediclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choice',
+            ])
             ->add('Jeudi', TimeType::class, [
                 'input'  => 'datetime',
+                'widget' => 'choice',
+            ])
+            ->add('Jeudiclose', TimeType::class, [
+                'input' => 'datetime',
                 'widget' => 'choice',
             ])
             ->add('Vendredi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Vendrediclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choice',
+            ])
             ->add('Samedi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Samediclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choice',
+            ])
             ->add('Dimanche', TimeType::class, [
                 'input'  => 'datetime',
+                'widget' => 'choice',
+            ])
+            ->add('Dimancheclose', TimeType::class, [
+                'input' => 'datetime',
                 'widget' => 'choice',
             ])
         ;

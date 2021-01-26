@@ -63,13 +63,13 @@
 				<p class="text-white"> numéro de téléphone : <strong> {{ shop.phone }} </strong> </p> 
 				<div>
 					<h4 class="text-white"> Horaires d'ouverture </h4>
-					<p class="text-white">Lundi : {{ shop.lundi|date("H:i") }} </p>
-					<p class="text-white">	Mardi : {{ shop.mardi|date("H:i") }} </p>
-					<p class="text-white">	Mercredi : {{ shop.mercredi|date("H:i") }} </p>
-					<p class="text-white">	Jeudi : {{ shop.jeudi|date("H:i") }}</p> 
-					<p class="text-white">	Vendredi : {{ shop.vendredi|date("H:i") }} </p>
-					<p class="text-white">	Samedi : {{ shop.samedi|date("H:i") }}</p>
-					<p class="text-white">	Dimanche : {{ shop.dimanche|date("H:i") }}</p>  
+					<p class="text-white"> Lundi : de {{ shop.lundi|date("H:i") }} à {{ shop.lundiclose|date("H:i") }} </p>
+					<p class="text-white">	Mardi : de {{ shop.mardi|date("H:i") }} à {{ shop.mardiclose|date("H:i") }}</p>
+					<p class="text-white">	Mercredi : de {{ shop.mercredi|date("H:i") }} à {{ shop.mercrediclose|date("H:i") }} </p>
+					<p class="text-white">	Jeudi : de {{ shop.jeudi|date("H:i") }} à {{ shop.jeudiclose|date("H:i") }}</p> 
+					<p class="text-white">	Vendredi : de {{ shop.vendredi|date("H:i") }} à {{ shop.vendrediclose|date("H:i") }} </p>
+					<p class="text-white">	Samedi : de {{ shop.samedi|date("H:i") }} à {{ shop.samediclose|date("H:i") }}</p>
+					<p class="text-white">	Dimanche : de {{ shop.dimanche|date("H:i") }} à {{ shop.dimancheclose|date("H:i") }}</p>  
 					
 				</div>
 			</div>
