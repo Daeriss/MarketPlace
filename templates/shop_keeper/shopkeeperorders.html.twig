@@ -30,6 +30,19 @@
 			background-color: white;
 			overflow: hidden;
 		}
+
+		.bc {
+			background-color: var(--third-color);
+		}
+
+		.widthbtn {
+			width: 8rem;
+			height: 3rem;
+			
+		}
+		.recupererbtn {
+			padding-top: 0.8rem;
+		}
 	</style>
 {% endblock %}
 
@@ -40,7 +53,7 @@
 	
 
     <div class="container-fluid">
-		<div class="grix xs6 p-3 shadow-2 align-items-center">
+		<div class="grix xs7 p-3 shadow-2 align-items-center">
 				<p>Numero de commande</p>
 				<p>Client</p>
 				<p>Date de collect</p>
@@ -51,22 +64,26 @@
        
 			{% for order in orders %}
 					{% set idOrder = order.id %}
-					<div class="grix xs6 p-3 shadow-2 align-items-center">
-						<p>{{ order.orderNumber }}</p>
-						<p>{{ order.user.name }}</p>
-						<p>{{ order.orderDetails.collectDate |date("j / m / Y") }}</p>
-						<p>{{ order.checkout }}€</p>
+					<div class="grix xs7 p-3 shadow-2 align-items-center " >
+						<div class="grix xs4 w-100 col-xs4 collapsible-trigger" data-target="example-collapsible{{loop.index0}}">
+							<p>{{ order.orderNumber }}</p>
+							<p>{{ order.user.name }}</p>
+							<p>{{ order.orderDetails.collectDate |date("j / m / Y") }}</p>
+							<p>{{ order.checkout }}€</p>
+						</div>
 						{%  if (order.orderDetails.orderStatus == "Récupéré")  %}
-							<p class="green light-1">{{ order.orderDetails.orderStatus }}
+							<p class="shadow-1 text-center mb-0 rounded-1 recupererbtn secondary widthbtn ">{{ order.orderDetails.orderStatus }}
 							</p>
-						{% elseif (order.orderDetails.orderStatus == "En Cours") %}
-							<a class="btn shadow-1 rounded-1 yellow light-1" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">En Cours</a>
-							
-						{% elseif (order.orderDetails.orderStatus == "Terminé") %}
-							<a class="btn shadow-1 rounded-1 blue light-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a>
+						{% elseif (order.orderDetails.orderStatus == "En Cours" or order.orderDetails.orderStatus == "Terminé") %}
+							<a class="btn shadow-1 rounded-1 warning widthbtn light-3" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">En Cours</a>
+							<a class="btn shadow-1 rounded-1 widthbtn blue dark-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a>
+							<p class="shadow-1 text-center mb-0 rounded-1 recupererbtn secondary widthbtn ">Récupéré
+							</p>
+						{# {% elseif (order.orderDetails.orderStatus == "Terminé") %} #}
+							{# <a class="btn shadow-1 rounded-1 widthbtn blue dark-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a> #}
 							
 						{% endif %}
-                        <button data-target="example-collapsible{{loop.index0}}" class="btn rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button>
+                        {# <button data-target="example-collapsible{{loop.index0}}" class="btn bc rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button> #}
                     </div>
 				
         <div class="collapsible p-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
