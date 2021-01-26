@@ -27,6 +27,10 @@
             flex : auto;
             flex-direction: row;
         }
+        .task_field {
+            width : 150px;
+            display : flex;
+        }
     
     </style>
 {% endblock %}
@@ -39,7 +43,13 @@
 		</div>
 		<div class="">
 			{{form_start(form)}}
-		{{ form_widget(form) }}
+		Lundi : {{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
+		Mardi : {{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
+		Mercredi : {{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }}
+		Jeudi : {{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }}
+		Vendredi : {{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
+		Samedi : {{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
+		Dimanche : {{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
 			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
 			{{ form_end(form) }}
                 
