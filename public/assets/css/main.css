@@ -30,7 +30,7 @@ header{
 }
 
 header img {
-    width: 30%;
+    width: 100%;
 }
 
 /* .logo {
@@ -52,9 +52,9 @@ header img {
     color: white;
 }
 
-nav {
+/* nav {
     max-width: 1600px;
-}
+} */
 
 .nav-link {
     color: var(--third-color);
