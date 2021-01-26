@@ -464,7 +464,7 @@ p + a {
 }
 
 .border-form {
-    margin: 40px;
+    margin: 27px;
     box-shadow:inset 0px 1px 27px 6px var(--shadow-color);
     border-radius: 5%;
     -webkit-border-radius: 5%;
