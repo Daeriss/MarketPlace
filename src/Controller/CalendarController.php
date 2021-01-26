@@ -82,12 +82,12 @@ class CalendarController extends AbstractController
         // on récpère l'heure sélectionnée et le shop 
         $start = $this->session->get('appointmentStart');
         $shopid = $this->session->get('shopId');
+        dump($start);
 
         $user = $this->getUser();
         $calendar = new Calendar();
         $form = $this->createForm(CalendarType::class, $calendar);
         $form->handleRequest($request);
-        dump($start);
 
         if (isset($start)){
             if ($user != null) {
