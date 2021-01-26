@@ -43,9 +43,11 @@
 		.recupererbtn {
 			padding-top: 0.8rem;
 		}
+		.i {
+			color: var(--third-color);
+		}
 	</style>
-{% endblock %}
-
+{% endblock %} 
 {% block body %}
 
 	<h1 class="p-3">Mes Commandes</h1>
@@ -53,51 +55,56 @@
 	
 
     <div class="container-fluid">
-		<div class="grix xs7 p-3 shadow-2 align-items-center">
-				<p>Numero de commande</p>
-				<p>Client</p>
-				<p>Date de collect</p>
-				<p>Total</p>
-				<p>Status</p>
+		<div class="grix xs7 p-3 bc text-white shadow-2 align-items-center">
+				<h5>Numero de commande</h5>
+				<h5>Client</h5>
+				<h5>Date de collect</h5>
+				<h5>Total</h5>
+				<h5>Statut actuel</h5>
+				<h5>Changer le statut</h5>
 		</div>
 	
        
 			{% for order in orders %}
 					{% set idOrder = order.id %}
-					<div class="grix xs7 p-3 shadow-2 align-items-center " >
+					<div class="grix xs7 p-3 shadow-2 align-items-center" >
 						<div class="grix xs4 w-100 col-xs4 collapsible-trigger" data-target="example-collapsible{{loop.index0}}">
-							<p>{{ order.orderNumber }}</p>
-							<p>{{ order.user.name }}</p>
-							<p>{{ order.orderDetails.collectDate |date("j / m / Y") }}</p>
-							<p>{{ order.checkout }}€</p>
+							<p class="m-0">{{ order.orderNumber }} <i class="fas fa-sort-down"></i></p>
+							<p class="m-0">{{ order.user.name }}</p>
+							<p class="m-0">{{ order.orderDetails.collectDate |date("j / m / Y") }}</p>
+							<p class="m-0">{{ order.checkout }} €</p>
 						</div>
 						{%  if (order.orderDetails.orderStatus == "Récupéré")  %}
-							<p class="shadow-1 text-center mb-0 rounded-1 recupererbtn secondary widthbtn ">{{ order.orderDetails.orderStatus }}
+							<p class="m-0">{{ order.orderDetails.orderStatus }}
 							</p>
-						{% elseif (order.orderDetails.orderStatus == "En Cours" or order.orderDetails.orderStatus == "Terminé") %}
-							<a class="btn shadow-1 rounded-1 warning widthbtn light-3" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">En Cours</a>
-							<a class="btn shadow-1 rounded-1 widthbtn blue dark-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a>
-							<p class="shadow-1 text-center mb-0 rounded-1 recupererbtn secondary widthbtn ">Récupéré
+						{% elseif (order.orderDetails.orderStatus == "En Cours")  %}
+							{# <a class="btn shadow-1 rounded-1 warning widthbtn light-3" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">{{ order.orderDetails.orderStatus }}</a> #}
+							<p class="m-0">{{ order.orderDetails.orderStatus }}
 							</p>
-						{# {% elseif (order.orderDetails.orderStatus == "Terminé") %} #}
+							<a class="btn shadow-1 rounded-1 widthbtn blue dark-1" href="{{ path('shopkeeperorders', {statut: "Terminé", id: idOrder}) }}">Terminé</a>
+						 {% elseif (order.orderDetails.orderStatus == "Terminé") %} 
 							{# <a class="btn shadow-1 rounded-1 widthbtn blue dark-1" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Terminé</a> #}
+							<p class="m-0">{{ order.orderDetails.orderStatus }}
+							</p>
+							<a class="btn shadow-1 rounded-1 widthbtn secondary" href="{{ path('shopkeeperorders', {statut: "Récupéré", id: idOrder}) }}">Récupéré</a>
 							
 						{% endif %}
                         {# <button data-target="example-collapsible{{loop.index0}}" class="btn bc rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button> #}
                     </div>
 				
-        <div class="collapsible p-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
+        <div class="collapsible mb-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
     
-			<div class=" grix xs6" >
-                <p>Produit</p>
-				<p>Quantité</p>
+			<div class=" grix xs6 align-items-center " >
+                <p class="align-self-center m-3">Produit</p>
+				<p class="align-self-center m-3">Quantité</p>
             </div>            
+				<hr class="m-0">
 			{% for listeproducts in tablisteproducts %}
                 {% for product in listeproducts %}
-                    <div class="grix xs6">
+                    <div class="grix xs6 ">
                         {%  if (order.orderDetails == product.orderDetails)  %}
-							    <p>{{product.product.name}}</p> 
-							    <p>{{product.quantity }}</p>
+							    <p class="m-3">{{product.product.name}}</p> 
+							    <p class="m-3">{{product.quantity }}</p>
                         {% endif %}
                     </div>
                 {% endfor %} 

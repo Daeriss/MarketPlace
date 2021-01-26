@@ -2,37 +2,38 @@
 
 {% block title %}Services index{% endblock %}
 
+{% block stylesheets %}
+<style>
+    .bc {
+			background-color: var(--third-color);
+        }
+    .tx-w {
+        color: white;
+    }
+</style>
+{% endblock %} 
+
 {% block body %}
-    <h1>Services index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Prix</th>
-                 <th>Durée</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1 class="p-3">Services index</h1>
+    <div class="container-fluid">
+        <div class="grix xs4 p-3 bc text-white shadow-2 align-items-center">
+				<h5>Name</h5>
+				<h5>Prix</h5>
+				<h5>Durée</h5>
+				<h5>Actions</h5>
+		</div>
         {% for service in services %}
-            <tr>
-                <td>{{ service.id }}</td>
-                <td>{{ service.name }}</td>
-                <td>{{ service.price }}</td>
-                <td>{{ service.duration ? service.duration|date('H:i') : '' }}</td>
-                <td>
-                    <a href="{{ path('services_edit', {'id': service.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="grix xs4 p-3 shadow-2 align-items-center" >
+					<p class="m-0">{{ service.name }}</p>
+					<p class="m-0">{{ service.price }} €</p>
+					<p class="m-0">{{ service.duration ? service.duration|date('H:i') : '' }} </p>
+                    <a href="{{ path('services_edit', {'id': service.id}) }}">Modifier</a>
 
-    <a href="{{ path('services_new') }}">Create new</a>
+            </div>
+                {% else %}
+                    <p colspan="4">no records found</p>
+                {% endfor %}
+                
+            <a class="btn bc rounded-1 tx-w m-3" href="{{ path('services_new') }}">Create new</a>
+    </div>
 {% endblock %}
