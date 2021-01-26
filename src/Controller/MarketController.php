@@ -56,7 +56,7 @@ class MarketController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $district = $form->get('Code_Postale')->getData();
+            $district = $form->get('Code_Postal')->getData();
             $this->session->set('district', $district);
 
             return $this->redirectToRoute('shops');
@@ -151,7 +151,7 @@ class MarketController extends AbstractController
     /**
      * @Route("/cart", name="cart")
      */
-    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository): Response
+    public function cart(Request $request,  OrderRepository $orderRepository,  ProductRepository $productRepository , \Swift_Mailer $mailer ): Response
     {
         $form = $this->createForm(CartType::class);
         $form->handleRequest($request);
@@ -224,6 +224,31 @@ class MarketController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($order);
                 $entityManager->flush();
+
+
+
+                    //on envoie une mail au client pour valider son panier
+
+                    $message = (new \Swift_Message('Confirmation de commande'))
+
+                    ->setFrom('clickncommerce@gmail.com')
+                    
+                    ->setTo($user->getEmail())
+                    
+                    //->setTo("oli.vallet0@gmail.com")
+                    ->setBody(
+                        $this->renderView(
+                            // templates/emails/registration.html.twig
+                            'email/commandeValidationClient.html.twig',
+                            ['name' => $user->getUsername(),
+                            'order'=> $order]
+                        ),
+                        'text/html'
+                    )
+
+                ;
+            
+                $mailer->send($message);
 
                 return $this->redirectToRoute('cartValidator');
                 

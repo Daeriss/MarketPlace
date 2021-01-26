@@ -1,0 +1,17 @@
+Bonjour {{name}}, et merci pour votre commande
+
+Votre commmande a été validée, elle sera transmise au commercant, qui la mettra de coté dans les plus bref délai
+
+Récapitulatif de la commande : 
+
+<table>
+{% for item in order %}
+    <tr>
+        {{item}}
+
+        {% for truc in item %}
+            <td> {{ truc }}</td>
+        {% endfor %}
+    </tr>
+{% endfor %}
+</table>
