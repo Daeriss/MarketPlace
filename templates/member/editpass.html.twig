@@ -6,8 +6,7 @@
     <body class="layout with-sidenav">
     <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
     <div class="sidenav-header">
-    <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-    <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+    <p>Bonjour, {{ app.user.name }} </p>
     </div>
       <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
       <a href="{{ path('app_account_edit')}}" class="sidenav-link active">Modifier mon profil</a>

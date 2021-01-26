@@ -26,8 +26,7 @@
 
       <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
         <div class="sidenav-header">
-          <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-          <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+         <p>Bonjour, {{ app.user.name }} </p>
         </div>
         <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
         <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
@@ -45,18 +44,36 @@
           <h5>Prix</h5>
         </div>
         {% for order in orders %}
-        	<div class="grix xs5 p-3 shadow-2 align-items-center" >
+        	<div class="grix xs5 p-3 shadow-2 align-items-center mt-3" >
             <p class="m-0">{{ order.shop.name }}</p>
             <p class="m-0">{{ order.orderNumber }}</p>
             <p class="m-0">{{ order.checkout }} €</p>
             <p class="m-0">{{ order.orderDetails.orderStatus }}</p>
-            <p>
-              <a href="#">Détail de la commande</a>
-            </p>
+            
+            <button data-target="example-collapsible{{loop.index0}}" class="btn bc rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button>
+
           </div>
+
+          <div class="collapsible mb-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
+			      <div class=" grix xs6 align-items-center " >
+              <p class="align-self-center m-3">Produits</p>
+				      <p class="align-self-center m-3">Quantité</p>
+            </div>            
+				    <hr class="m-0">
+            {% for listeproducts in tablisteproduit %}
+              {% for product in listeproducts %}
+                <div class="grix xs6 ">
+                  {%  if (order.orderDetails == product.orderDetails)  %}
+                    <p class="m-3">{{product.product.name}}</p> 
+                    <p class="m-3">{{product.quantity }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %} 
+			      {% endfor %} 
+          </div>       
         {% else %}
-          <p colspan="6"> Pas de commandes</p>
-        {% endfor %}
-      </div>
+        <p colspan="6"> Pas de commandes</p>
+			  {% endfor %} 
+		  </div>
     </div>
 {% endblock %}

@@ -10,6 +10,7 @@ use App\Form\EditProfileType;
 use App\Repository\OrderRepository;
 use App\Repository\CalendarRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Repository\SubOrderRepository;
 
 class MemberController extends AbstractController
 {
@@ -30,15 +31,29 @@ class MemberController extends AbstractController
     /**
      * @Route("/mon-compte/mes-commandes", name="app_account_orders")
      */
-    public function commandes(OrderRepository $orderRepository): Response
+    public function commandes(OrderRepository $orderRepository, SubOrderRepository $subOrderRepository): Response
     {
         $user = $this->getUser();
+        $orders = $user->getOrders()->getValues();
+
         $listeCommandes = $orderRepository->findBy(
             ['user' => $user],
             []
         );
+
+        $tablisteproduit = [];
+        for ($i = 0; $i < count($orders); $i++) {
+
+            $details = $orders[$i]->getOrderDetails();
+            $tablisteproduit[$i] = $listeproduit = $subOrderRepository->findBy(
+                ['orderDetails' => $details],
+                []
+            );
+        }
+        
         return $this->render('member/orders.html.twig', [
-            'orders' => $listeCommandes
+            'orders' => $listeCommandes,
+            'tablisteproduit'=>$tablisteproduit
         ]);
     }
 
