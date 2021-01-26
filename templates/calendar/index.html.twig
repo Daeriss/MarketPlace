@@ -13,7 +13,6 @@
                 <th>Début</th>
                 <th>Fin</th>
                 <th>Description</th>
-                <th>Toute une journée</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,7 +24,6 @@
                 <td>{{ calendar.start ? calendar.start|date('d-m-Y H:i') : '' }}</td>
                 <td>{{ calendar.end ? calendar.end|date('d-m-Y H:i') : '' }}</td>
                 <td>{{ calendar.description }}</td>
-                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">edit</a>
                 </td>

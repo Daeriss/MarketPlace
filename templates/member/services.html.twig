@@ -20,51 +20,70 @@ table {
     background-color: #dddddd;
   }
 
+  .card-btn {
+		background-color: var(--third-color);
+	}
 </style>
 
-
-    <body class="layout with-sidenav">
+<body class="layout with-sidenav">
+  <div class="container-fluid  d-flex flex-row">
     <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
-    <div class="sidenav-header">
-    <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-    <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+      <div class="sidenav-header">
+        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+      </div>
+        <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
+        <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
+        <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
+        <a href="{{ path('app_account_rdv')}}" class="sidenav-link active">Mes rendez vous</a>
     </div>
-      <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
-      <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
-      <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
-      <a href="{{ path('app_account_rdv')}}" class="sidenav-link active">Mes rendez vous</a>
+  
+    <div class="example-wrapper container">
+  
+      <h2>Mes rendez-vous :</h2>
+  
+      <table>
+        <tr>
+          <th>Prestataire</th>
+          <th>Prestation</th>
+          <th>Date du rendez vous</th>
+          <th>Fin prévue</th>
+          <th>Description</th>
+          <th>Prix</th>
+          <th>Action</th>
+        </tr>
+        {% for rdv in rdvs %}
+          <tr>
+            <td>{{ rdv.shop.name }}</td>
+            <td>{{ rdv.title }}</td>
+            <td>{{ rdv.start|date('d-m-Y h:i') }}</td>
+            <td>{{ rdv.end|date('d-m-Y h:i') }}</td>
+            <td>{{ rdv.description }}</td>
+            {% for service in rdv.shop.services %}
+              {% if service.name == rdv.title %}
+                <td>{{ service.price}} €</td>
+              {% endif %}
+            {% endfor %}
+            <td>
+              {% if rdv.start|date('d/m/Y h:i') <= "now"|date("d-m-Y h:i") %}
+                Rdv passé
+                {% else %}
+                <a class="p-2 btn card-btn text-white text-center mb-1" href="{{path('calendar_edit', {'id': rdv.id } ) }}">Modifier</a>
+                <form method="post" class="" action="{{ path('calendar_delete', {'id': rdv.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
+                  <button class="btn p-2 card-btn text-white text-center">Delete</button>
+                </form>
+                {# <a class="p-2 card-btn text-white text-center" href="{{path('calendar_delete', {'id': rdv.id } ) }}">Supprimer</a> #}
+              {% endif %}
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="6"> Pas encore de rendez-vous</td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
-
-<div class="example-wrapper container">
-
-
-<h2>Mes services souscrits :</h2>
-
-<table>
-  <tr>
-    <th>Prestataire</th>
-    <th>Prestation</th>
-    <th>Date du rendez vous</th>
-    <th>Fin prévue</th>
-    <th>Description</th>
-    <th>Prix</th>
-  </tr>
-  {% for rdv in rdvs %}
-  <tr>
-  <td>{{ rdv.shop.name }}</td>
-  <td>{{ rdv.title }}</td>
-  <td>{{ rdv.start|date('d-m-Y h:i') }}</td>
-  <td>{{ rdv.end|date('d-m-Y h:i') }}</td>
-  <td>{{ rdv.description }}</td>
-  <td>{{ rdv.checkout }}</td>
-  </tr>
-  {% else %}
-  <tr>
-  <td colspan="6"> Pas encore de rendez-vous</td>
-  </tr>
-  {% endfor %}
-
-</table>
-
-</div>
+  </div>
 {% endblock %}

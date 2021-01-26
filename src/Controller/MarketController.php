@@ -78,9 +78,15 @@ class MarketController extends AbstractController
             []
         );
 
-        return $this->render("market/shops.html.twig", [
-            'shops' => $listeShops
-        ]);
+        if ($listeShops == null) {
+            return $this->redirectToRoute('404');
+        }else {
+
+            return $this->render("market/shops.html.twig", [
+                'shops' => $listeShops
+            ]);
+        }
+
     }
 
     /**
@@ -126,7 +132,6 @@ class MarketController extends AbstractController
                     'title' => $event->getTitle(),
                     'description' => $event->getDescription(),
                     'backgroundColor' => $event->getBackgroundColor(),
-                    'allDay' => $event->getAllDay(),
                 ];
             }
     
@@ -279,6 +284,44 @@ class MarketController extends AbstractController
         //    return new JsonResponse($dataResponse);
 
         return $this->render('market/cartValidator.html.twig');
+    }
+
+    /**
+     * @Route("/newAppointment/{id}", name="newClientAppointment", methods={"GET","POST"})
+     */
+    public function appointment(Shop $shop, CalendarRepository $calendarRepository, Request $request): Response
+    {
+        $userShop = $shop->getUser();
+
+        $events = $calendarRepository->findby(
+            ['shop' => $shop],
+            []
+        );
+        $rdvs = [];
+        dump($events);
+
+        foreach ($events as $event){
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'shopid'=>$event->getShop()->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'backgroundColor' => $event->getBackgroundColor(),  
+            ];
+        }
+
+        $data = json_encode($rdvs);
+        
+
+        return $this->render('market/newClientAppointment.html.twig', compact('data'));
+    }
+
+    /**
+     * @Route("/404", name="404")
+     */
+    public function error(): Response
+    {
+        return $this->render('market/404.html.twig');
     }
 
   

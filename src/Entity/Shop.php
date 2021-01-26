@@ -58,37 +58,37 @@ class Shop
     private $img;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Lundi;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Mardi;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Mercredi;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Jeudi;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Vendredi;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Samedi;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="time", length=255, nullable=true)
      */
     private $Dimanche;
 
@@ -245,84 +245,84 @@ class Shop
         return $this;
     }
 
-    public function getLundi(): ?string
+    public function getLundi(): ?\DateTimeInterface
     {
         return $this->Lundi;
     }
 
-    public function setLundi(?string $Lundi): self
+    public function setLundi(?\DateTimeInterface $Lundi): self
     {
         $this->Lundi = $Lundi;
 
         return $this;
     }
 
-    public function getMardi(): ?string
+    public function getMardi(): ?\DateTimeInterface
     {
         return $this->Mardi;
     }
 
-    public function setMardi(?string $Mardi): self
+    public function setMardi(?\DateTimeInterface $Mardi): self
     {
         $this->Mardi = $Mardi;
 
         return $this;
     }
 
-    public function getMercredi(): ?string
+    public function getMercredi(): ?\DateTimeInterface
     {
         return $this->Mercredi;
     }
 
-    public function setMercredi(?string $Mercredi): self
+    public function setMercredi(?\DateTimeInterface $Mercredi): self
     {
         $this->Mercredi = $Mercredi;
 
         return $this;
     }
 
-    public function getJeudi(): ?string
+    public function getJeudi(): ?\DateTimeInterface
     {
         return $this->Jeudi;
     }
 
-    public function setJeudi(?string $Jeudi): self
+    public function setJeudi(?\DateTimeInterface $Jeudi): self
     {
         $this->Jeudi = $Jeudi;
 
         return $this;
     }
 
-    public function getVendredi(): ?string
+    public function getVendredi(): ?\DateTimeInterface
     {
         return $this->Vendredi;
     }
 
-    public function setVendredi(?string $Vendredi): self
+    public function setVendredi(?\DateTimeInterface $Vendredi): self
     {
         $this->Vendredi = $Vendredi;
 
         return $this;
     }
 
-    public function getSamedi(): ?string
+    public function getSamedi(): ?\DateTimeInterface
     {
         return $this->Samedi;
     }
 
-    public function setSamedi(?string $Samedi): self
+    public function setSamedi(?\DateTimeInterface $Samedi): self
     {
         $this->Samedi = $Samedi;
 
         return $this;
     }
 
-    public function getDimanche(): ?string
+    public function getDimanche(): ?\DateTimeInterface
     {
         return $this->Dimanche;
     }
 
-    public function setDimanche(?string $Dimanche): self
+    public function setDimanche(?\DateTimeInterface $Dimanche): self
     {
         $this->Dimanche = $Dimanche;
 
