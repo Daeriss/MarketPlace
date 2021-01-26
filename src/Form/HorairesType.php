@@ -19,7 +19,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Lundiclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
             ->add('Mardi', TimeType::class, [
                 'input'  => 'datetime',
@@ -27,7 +27,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Mardiclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
             ->add('Mercredi', TimeType::class, [
                 'input'  => 'datetime',
@@ -35,7 +35,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Mercrediclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
             ->add('Jeudi', TimeType::class, [
                 'input'  => 'datetime',
@@ -43,7 +43,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Jeudiclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
             ->add('Vendredi', TimeType::class, [
                 'input'  => 'datetime',
@@ -51,7 +51,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Vendrediclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
             ->add('Samedi', TimeType::class, [
                 'input'  => 'datetime',
@@ -59,7 +59,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Samediclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
             ->add('Dimanche', TimeType::class, [
                 'input'  => 'datetime',
@@ -67,7 +67,7 @@ class HorairesType extends AbstractType
             ])
             ->add('Dimancheclose', TimeType::class, [
                 'input' => 'datetime',
-                'widget' => 'choise',
+                'widget' => 'choice',
             ])
         ;
     }
