@@ -112,6 +112,41 @@ class Shop
      */
     private $phone;
 
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $lundiclose;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $mardiclose;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $mercrediclose;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $jeudiclose;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $vendrediclose;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $samediclose;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $dimancheclose;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -409,6 +444,90 @@ class Shop
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getLundiclose(): ?\DateTimeInterface
+    {
+        return $this->lundiclose;
+    }
+
+    public function setLundiclose(?\DateTimeInterface $lundiclose): self
+    {
+        $this->lundiclose = $lundiclose;
+
+        return $this;
+    }
+
+    public function getMardiclose(): ?\DateTimeInterface
+    {
+        return $this->mardiclose;
+    }
+
+    public function setMardiclose(?\DateTimeInterface $mardiclose): self
+    {
+        $this->mardiclose = $mardiclose;
+
+        return $this;
+    }
+
+    public function getMercrediclose(): ?\DateTimeInterface
+    {
+        return $this->mercrediclose;
+    }
+
+    public function setMercrediclose(?\DateTimeInterface $mercrediclose): self
+    {
+        $this->mercrediclose = $mercrediclose;
+
+        return $this;
+    }
+
+    public function getJeudiclose(): ?\DateTimeInterface
+    {
+        return $this->jeudiclose;
+    }
+
+    public function setJeudiclose(?\DateTimeInterface $jeudiclose): self
+    {
+        $this->jeudiclose = $jeudiclose;
+
+        return $this;
+    }
+
+    public function getVendrediclose(): ?\DateTimeInterface
+    {
+        return $this->vendrediclose;
+    }
+
+    public function setVendrediclose(?\DateTimeInterface $vendrediclose): self
+    {
+        $this->vendrediclose = $vendrediclose;
+
+        return $this;
+    }
+
+    public function getSamediclose(): ?\DateTimeInterface
+    {
+        return $this->samediclose;
+    }
+
+    public function setSamediclose(?\DateTimeInterface $samediclose): self
+    {
+        $this->samediclose = $samediclose;
+
+        return $this;
+    }
+
+    public function getDimancheclose(): ?\DateTimeInterface
+    {
+        return $this->dimancheclose;
+    }
+
+    public function setDimancheclose(?\DateTimeInterface $dimancheclose): self
+    {
+        $this->dimancheclose = $dimancheclose;
 
         return $this;
     }

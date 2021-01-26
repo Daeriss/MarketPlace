@@ -17,29 +17,57 @@ class HorairesType extends AbstractType
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Lundiclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
+            ])
             ->add('Mardi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
+            ])
+            ->add('Mardiclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
             ])
             ->add('Mercredi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Mercrediclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
+            ])
             ->add('Jeudi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
+            ])
+            ->add('Jeudiclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
             ])
             ->add('Vendredi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Vendrediclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
+            ])
             ->add('Samedi', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
             ])
+            ->add('Samediclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
+            ])
             ->add('Dimanche', TimeType::class, [
                 'input'  => 'datetime',
                 'widget' => 'choice',
+            ])
+            ->add('Dimancheclose', TimeType::class, [
+                'input' => 'datetime',
+                'widget' => 'choise',
             ])
         ;
     }
