@@ -23,7 +23,6 @@
                 <td>{{ service.price }}</td>
                 <td>{{ service.duration ? service.duration|date('H:i') : '' }}</td>
                 <td>
-                    <a href="{{ path('services_show', {'id': service.id}) }}">show</a>
                     <a href="{{ path('services_edit', {'id': service.id}) }}">edit</a>
                 </td>
             </tr>
