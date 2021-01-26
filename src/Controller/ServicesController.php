@@ -21,8 +21,18 @@ class ServicesController extends AbstractController
      */
     public function index(ServicesRepository $servicesRepository): Response
     {
+        $user = $this->getUser();
+        $shop = $user->getShop();
+        $idShop = $shop->getId();
+
+        
+        $listeservices = $servicesRepository->findBy(
+            ['shop' => $shop],
+            []
+        );
+
         return $this->render('services/index.html.twig', [
-            'services' => $servicesRepository->findAll(),
+            'services' => $listeservices,
         ]);
     }
 

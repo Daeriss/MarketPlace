@@ -19,7 +19,8 @@ class CalendarEditType extends AbstractType
             ->add('Prestation',EntityType::class, [
                 'mapped' => false,
                 'class' => Services::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label' => 'Prestation'
             ])
             ->add('client')
              ->add('start', DateTimeType::class,[
@@ -29,7 +30,7 @@ class CalendarEditType extends AbstractType
             //     'date_widget' => 'single_text'
             // ])
             ->add('description')
-            ->add('all_day')
+            //->add('all_day')
             //->add('background_color', ColorType::class)
         ;
     }

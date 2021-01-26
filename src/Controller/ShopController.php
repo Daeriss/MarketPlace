@@ -82,12 +82,22 @@ class ShopController extends AbstractController
                 $entityManager->flush();
                 dump($shop);
 
-                return $this->redirectToRoute('shop_index');
-            }
-        } else {
-            return $this->redirectToRoute('shop_index');
-        }
+                if (in_array('ROLE_SHOPKEEPER', $user->getRoles())) {
 
+                    return $this->redirectToRoute('accueilshopkeeper');
+                }
+                if (in_array('ROLE_SERVICE', $user->getRoles())) {
+
+                    return $this->redirectToRoute('accueilservice');
+                }
+            }
+        } elseif (in_array('ROLE_SHOPKEEPER', $user->getRoles())) {
+
+            return $this->redirectToRoute('accueilshopkeeper');
+        } elseif (in_array('ROLE_SERVICE', $user->getRoles())) {
+
+            return $this->redirectToRoute('accueilservice');
+        }
 
         return $this->render('shop/new.html.twig', [
             'shop' => $shop,

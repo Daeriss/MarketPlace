@@ -12,9 +12,15 @@ class EditProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('name')
-            ->add('firstname')
+            ->add('email', null, [
+                'label' => 'Mail'
+            ])
+            ->add('name', null, [
+                'label' => 'Nom'
+            ])
+            ->add('firstname', null, [
+                'label' => '¨Prénom'
+            ])
         ;
     }
 
