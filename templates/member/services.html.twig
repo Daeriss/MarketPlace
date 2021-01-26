@@ -76,7 +76,7 @@ table {
                   <form method="post" class="" action="{{ path('calendar_delete', {'id': rdv.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer ce rendez-vous ?');">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
-                    <button class="btn p-2 card-btn text-white text-center">Delete</button>
+                    <button class="btn p-2 card-btn text-white text-center">Annuler le rendez-vous</button>
                   </form>
                   {# <a class="p-2 card-btn text-white text-center" href="{{path('calendar_delete', {'id': rdv.id } ) }}">Supprimer</a> #}
                 {% endif %}
