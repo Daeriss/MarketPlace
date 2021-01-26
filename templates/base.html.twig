@@ -137,7 +137,7 @@
 				</button>
 
 				{# <div class="flex-center grix xs4" id="burgerContainer"> #}
-				<div class="collapse navbar-collapse bg-light container-fluid flexheader text-end" id="navbarTogglerDemo02">
+				<div class="collapse navbar-collapse container-fluid flexheader text-end" id="navbarTogglerDemo02">
 					{% if is_granted('ROLE_MEMBER') %}
 					<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
 					<a class="nav-link burgerElement" href="{{ path('app_account') }}">Mon Compte</a>
