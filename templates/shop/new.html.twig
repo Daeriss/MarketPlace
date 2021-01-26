@@ -3,9 +3,12 @@
 {% block title %}Nouveau commerce{% endblock %}
 
 {% block body %}
-    <h1>Créez votre commercer</h1>
+    <h1 class="text-center">Inscrivez votre commerce</h1>
 
+
+    <div class="container">
+    <p> Saisissez les informations qui vont être affichées a vos clients! (Vous pourrez modifier ces informations dans votre espace boutique)<p>
     {{ include('shop/_form.html.twig') }}
-
+    </div>
   
 {% endblock %}
