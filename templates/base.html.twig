@@ -144,7 +144,7 @@
 {% block header %}
 	<header class="container-fluid p-0">
 
-		<nav class="navbar navbar-expand-lg navbar-dark  p-0 m-3" id="myTopnav">
+		<nav class="navbar navbar-expand-lg navbar-dark col-12 p-0 m-3" id="myTopnav">
 
             {% if is_granted('ROLE_MEMBER') %}
 			<a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueil')}}">
@@ -236,7 +236,7 @@
 
 							<ul class="list-unstyled">
 								<li>
-									<a href="{{ path('faq') }}" class="">Aide / FaQ</a>
+									{# <a href="{{ path('faq') }}" class="">Aide / FaQ</a> #}
 								</li>
 								<li>
 									<a href="{{ path('cgdv') }}" class="">Conditions générales d'utilisation</a>

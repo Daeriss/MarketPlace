@@ -173,6 +173,10 @@ p + a {
     -moz-border-radius: 320px;
     -ms-border-radius: 320px;
     -o-border-radius: 320px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
 }
 
 #district_Code_Postale:focus {
