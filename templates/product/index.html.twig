@@ -1,41 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Mes produits{% endblock %}
-
+{% block stylesheets %}
+<style>
+    .bc {
+			background-color: var(--third-color);
+        }
+    .tx-w {
+        color: white;
+    }
+</style>
+{% endblock %} 
 {% block body %}
-    <h1>Mes produits</h1>
+    <h1 class="p-3">Mes produits</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Img</th>
-                <th>Stock</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }} €</td>
-                <td>{{ product.img }}</td>
-                <td>{{ product.isavailable ? 'Oui':'Non' }}</td>
-                <td>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
-                    <a href="{{ path('product_delete', {'id': product.id}) }}">Supprimer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <table class="table">
+            <div class="grix xs6 p-3 bc text-white shadow-2 align-items-center">
+               <h5>Nom</h5>
+				<h5>Description</h5>
+				<h5>Prix</h5>
+				<h5>Img</h5>
+				<h5>Stock</h5>
+				<h5>actions</h5>
+               
+            </div>
 
-    <a href="{{ path('product_new') }}">Ajouter un produit</a>
+            {% for product in products %}
+               	<div class="grix xs6 p-3 shadow-2 align-items-center" >
+                    <p class="m-0">{{ product.name }}</p>
+                    <p class="m-0">{{ product.description }}</p>
+                    <p class="m-0">{{ product.price }} €</p>
+                    <p class="m-0">{{ product.img }}</p>
+                    <p class="m-0">{{ product.isavailable ? 'Oui':'Non' }}</p>
+                    <p>
+                        <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
+                        <a href="{{ path('product_delete', {'id': product.id}) }}">Supprimer</a>
+                    </p>
+                </div>
+            {% else %}
+                    <p colspan="6">no records found</p>
+            {% endfor %}
+            
+        {# <button data-target="example-collapsible{{loop.index0}}" class="btn bc rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button> #}
+        <a class="btn bc rounded-1 tx-w m-3" href="{{ path('product_new') }}">Ajouter un produit</a>
+    </div>
+
 {% endblock %}
