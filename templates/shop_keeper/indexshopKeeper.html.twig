@@ -36,20 +36,21 @@
 {% endblock %}
 
 {% block body %}
-
+    <h1> Ma boutique </h1>
 	<div class="container grix xs2 m-5">
 		<div>
 			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
 		</div>
-		<div class="">
+		<div class="container">
+        <h3> Gestion Horaire </h3>
 			{{form_start(form)}}
-		Lundi : {{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
-		Mardi : {{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
-		Mercredi : {{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }}
-		Jeudi : {{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }}
-		Vendredi : {{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
-		Samedi : {{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
-		Dimanche : {{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} - {{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
+		<div class="row"> Lundi : {{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} - Fermeture : {{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }} </div>
+		<div class="row"> Mardi : {{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }} </div>
+		<div class="row"> Mercredi : {{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} -Fermeture : {{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }} </div>
+		<div class="row"> Jeudi : {{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} - Fermeture : {{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }} </div>
+		<div class="row"> Vendredi : {{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }} </div>
+		<div class="row"> Samedi : {{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }} </div>
+		<div class="row"> Dimanche : {{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }} </div>
 			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
 			{{ form_end(form) }}
                 
@@ -74,6 +75,7 @@
                 <th>Nom</th>
                 <th>Arrondissement</th>
                 <th>Photo</th>
+                <th> Adresse : </th>
                 <th>Paiement Accepté</th>
                 <th>actions</th>
             </tr>
@@ -84,6 +86,7 @@
                 <td>{{ shop.name }}</td>
                 <td>{{ shop.adress }}</td>
                 <td>{{ shop.img }}</td>
+                <td> {{ shop.road }} </td>
                 <td>{{shop.paiement}}</td>
                 <td>
                     <a href="{{ path('shop_edit', {'id': shop.id}) }}">Modifier les informations</a>
