@@ -19,9 +19,56 @@
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+.smallscreen {
+  display : none;
+}
+.topnavsmall {
+    display : none;
+  }
+  @media screen and (max-width: 769px) {
+        h4 {
+          font-size: 1rem;
+        }
+
+        .fontsmall {
+          font-size: 0.75rem;
+        }
+
+        .topnavsmall {
+          display: block;
+          overflow: hidden;
+        }
+        .margin15 {
+          margin : 0.15rem;
+          color : white;
+        }
+        .margin25 {
+          margin : 0.25rem
+        }
+        .marginleft {
+          margin-left: 0.5rem;
+        }
+        .widthbtn {
+          width: 3rem;
+          padding: 0.5rem;
+        }
+
+        .grandscreen {
+          display : none;
+        }
+      .smallscreen {
+        display : block;
+      }
+			}
 
 </style>
   <body class="layout with-sidenav">
+  <div class="topnavsmall margin25">
+        <a  class="fontsmall bc btn p-1 margin15 "  href="{{ path('app_account')}}">Mon compte</a>
+        <a class="fontsmall bc btn p-1 margin15 "  href="{{ path('app_account_edit')}}">Mon profil</a>
+        <a  class="fontsmall bc btn p-1 margin15 " href="{{ path('app_account_orders')}}">Mes commandes</a>
+        <a  class="fontsmall bc btn p-1 margin15 " href="{{ path('app_account_rdv')}}">Mes rendez vous</a>
+  </div>
     <div class="container-fluid  d-flex flex-row">
 
       <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
@@ -34,38 +81,80 @@
         <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
       </div>
   
-      <div class="container-fluid">
-        <h2>Historique de mes commandes</h2>
+      <div class="container-fluid grandscreen">
+        <h4 class="">Historique de mes commandes</h4>
 
         <div class="grix xs5 p-3 bc text-white shadow-2 align-items-center">
-          <h5>Magasin</h5>
-          <h5>Numéro de Commande</h5>
-          <h5>Statut</h5>
-          <h5>Prix</h5>
+          <h5 class="fontsmall">Magasin</h5>
+          <h5 class="fontsmall">Numéro de Commande</h5>
+          <h5 class="fontsmall">Prix</h5>
+          <h5 class="fontsmall">Statut</h5>
         </div>
         {% for order in orders %}
         	<div class="grix xs5 p-3 shadow-2 align-items-center mt-3" >
-            <p class="m-0">{{ order.shop.name }}</p>
-            <p class="m-0">{{ order.orderNumber }}</p>
-            <p class="m-0">{{ order.checkout }} €</p>
-            <p class="m-0">{{ order.orderDetails.orderStatus }}</p>
+            <p class="m-0 fontsmall">{{ order.shop.name }}</p>
+            <p class="m-0 fontsmall">{{ order.orderNumber }}</p>
+            <p class="m-0 fontsmall">{{ order.checkout }} €</p>
+            <p class="m-0 fontsmall">{{ order.orderDetails.orderStatus }}</p>
             
-            <button data-target="example-collapsible{{loop.index0}}" class="btn bc rounded-1 press primary collapsible-trigger mx-auto">Afficher les détails</button>
+            <button data-target="example-collapsible{{loop.index0}}" class="btn widthbtn fontsmall bc rounded-1 press primary collapsible-trigger mx-auto">Détails</button>
 
           </div>
 
           <div class="collapsible mb-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
 			      <div class=" grix xs6 align-items-center " >
-              <p class="align-self-center m-3">Produits</p>
-				      <p class="align-self-center m-3">Quantité</p>
+              <p class="align-self-center fontsmall m-3">Produits</p>
+				      <p class="align-self-center fontsmall m-3">Quantité</p>
             </div>            
 				    <hr class="m-0">
             {% for listeproducts in tablisteproduit %}
               {% for product in listeproducts %}
                 <div class="grix xs6 ">
                   {%  if (order.orderDetails == product.orderDetails)  %}
-                    <p class="m-3">{{product.product.name}}</p> 
-                    <p class="m-3">{{product.quantity }}</p>
+                    <p class="m-3 fontsmall">{{product.product.name}}</p> 
+                    <p class="m-3 fontsmall">{{product.quantity }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %} 
+			      {% endfor %} 
+          </div>       
+        {% else %}
+        <p colspan="6"> Pas de commandes</p>
+			  {% endfor %} 
+		  </div>
+
+      <div class="container-fluid smallscreen">
+        <h4 class="">Historique de mes commandes</h4>
+
+        <div class="grix xs5 p-3 bc text-white shadow-2 align-items-center">
+          <h5 class="fontsmall">Magasin</h5>
+          <h5 class="fontsmall">Numéro de Commande</h5>
+          <h5 class="fontsmall">Prix</h5>
+          <h5 class="fontsmall">Statut</h5>
+        </div>
+        {% for order in orders %}
+        	<div class="grix xs5 p-3 shadow-2 align-items-center mt-3" >
+            <p class="m-0 fontsmall">{{ order.shop.name }}</p>
+            <p class="m-0 fontsmall">{{ order.orderNumber }}</p>
+            <p class="m-0 fontsmall">{{ order.checkout }} €</p>
+            <p class="m-0 fontsmall">{{ order.orderDetails.orderStatus }}</p>
+            
+            <button data-target="example-collapsible{{loop.index0}}" class="btn widthbtn fontsmall bc rounded-1 press primary collapsible-trigger mx-auto">Détails</button>
+
+          </div>
+
+          <div class="collapsible mb-3 shadow-2 align-items-center" id="example-collapsible{{loop.index0}}" data-ax="collapsible"> 
+			      <div class=" grix xs6 align-items-center " >
+              <p class="align-self-center fontsmall m-3">Produits</p>
+				      <p class="align-self-center fontsmall m-3">Quantité</p>
+            </div>            
+				    <hr class="m-0">
+            {% for listeproducts in tablisteproduit %}
+              {% for product in listeproducts %}
+                <div class="grix xs6 ">
+                  {%  if (order.orderDetails == product.orderDetails)  %}
+                    <p class="m-3 fontsmall">{{product.product.name}}</p> 
+                    <p class="m-3 fontsmall">{{product.quantity }}</p>
                   {% endif %}
                 </div>
               {% endfor %} 

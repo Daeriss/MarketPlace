@@ -78,7 +78,7 @@ class ServiceController extends AbstractController
         //         compact('data')
         //     ]);
         // }
-
+            dump(compact('data'));
         return $this->render('service/appointment.html.twig', compact('data'));
     }
 

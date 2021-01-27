@@ -4,9 +4,115 @@
 
 
 {% block body %}
-  <body class="layout with-sidenav">
+<style>
+  .topnavsmall {
+    display : none;
+  }
+  .flexdir {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+  }
+  .mdiv {
+    margin-left : 7rem;
+  }
+
+  .h {
+    height: 30rem;
+  }
+
+  .mt {
+    margin-top: 5rem;
+  }
+
+@media screen and (max-width: 575.98px) {
+        h4 {
+          font-size: 1rem;
+        }
+
+        .fontsmall {
+          font-size: 0.75rem;
+        }
+
+        .topnavsmall {
+          display: block;
+         
+          overflow: hidden;
+        }
+        .margin15 {
+          margin : 0.15rem;
+          color : white;
+        }
+        .margin25 {
+          margin : 0.25rem
+        }
+        .marginleft {
+          margin-left: 0.5rem;
+        }
+        .grandscreen {
+          display :none;
+        }
+        .smallscreen {
+          display: block;
+        }
+
+        .card .card-header {
+            font-size: 1rem;
+            padding: 1rem;
+            background-color: var(--third-color);
+            color: white;
+
+        }
+        .card .card-footer {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .bordercard {
+          border: solid var(--third-color);
+        }
+
+        .flexdir {
+            justify-content: center;
+            display: block;
+            align-items: center;
+        }
+
+        .widthbtn {
+          width : 10rem;
+        }
+
+        .mdiv {
+          margin-left : 0rem;
+        }
+      }
+      
+      @media (min-width: 200px) and (max-width: 1000px) {
+        .border-form {
+            width: 300px;
+            max-height: 500px;
+            padding: 18px;
+        }
+      }
+
+      @media (min-width: 200px) and (max-width: 1000px) {
+      .btn-sign-in {
+          margin-top: 2rem !important;
+          margin-bottom: 0px !important;
+          margin-left: 3rem;
+      }
+      }
+    }
+</style>
+  <div class="layout with-sidenav row">
+  <div class="topnavsmall margin25">
+      <a  class="fontsmall bc btn p-1 margin15 "  href="{{ path('app_account')}}">Mon compte</a>
+      <a class="fontsmall bc btn p-1 margin15 "  href="{{ path('app_account_edit')}}">Mon profil</a>
+      <a  class="fontsmall bc btn p-1 margin15 " href="{{ path('app_account_orders')}}">Mes commandes</a>
+      <a  class="fontsmall bc btn p-1 margin15 " href="{{ path('app_account_rdv')}}">Mes rendez vous</a>
+    </div>
     <div class="container-fluid  d-flex flex-row">
-      <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
+      <div id="example-sidenav" data-ax="sidenav" class="grandscreen sidenav shadow-1 large fixed white">
         <div class="sidenav-header">
           <p>Bonjour, {{ app.user.name }} </p>
         </div>
@@ -15,20 +121,35 @@
         <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
         <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
       </div>
-      <section class="container-fluid shadow-2 p-3 m-3 border">
-        <div>
-        {% for message in app.flashes('message')%}
-          <div class="p-3 m-2 rounded-2 success"> {{message}} </div>
+      <section class="col-12 col-sm-12 col-md-9 background-sign-in bc mdiv flexdir">
+        <div class="border-form h  flex-column">
+          {% for message in app.flashes('message')%}
+            <div class="p-3 m-2 rounded-2 success"> {{message}} </div>
+          {% endfor %}  
+          
+          <h5 class=" mb-4 font-weight-normal">Editer mon profil</h5>
+    
+          {{form_start(form)}}
+          {{ form_widget(form) }}
+            <button class="btn btn-lg bc mt-3 btn-sign-in fontsmall widthbtn  ">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
+            {{ form_end(form) }} <br>
+            {# Ou <button class="btn btn-lg bc btn-sign-in my-5"> <a style="color: white" href="{{ path('app_account_edit_mdp') }}">Modifier le mot de passe </a></button> #}
         </div>
-        {% endfor %}  
-        <h2>Editer mon profil</h2>
-  
-        {{form_start(form)}}
-        {{ form_widget(form) }}
-          <button class="btn bc mt-3 text-white">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
-          {{ form_end(form) }} <br>
-          Ou <button class="btn bc mt-3 text-white"> <a style="color: white" href="{{ path('app_account_edit_mdp') }}">Modifier le mot de passe </a></button>
+     
+        <div class="border-form h flex-column">
+          {% for message in app.flashes('error')%}
+          <div class="p-3 m-2 rounded-2 error"> {{message}} </div>
+          {% endfor %}  
+       
+          <h5 class=" mb-4 font-weight-normal">Editer mon mot de passe</h5>
+
+          {{form_start(formPassword)}}
+          {{ form_widget(formPassword) }}
+          <button class="btn btn-lg bc mt widthbtn fontsmall  btn-sign-in">{{ button_label|default('Enregistrer Vos Modifications') }}</button>
+          {{ form_end(formPassword) }} <br>
+        </div>
       </section>
+    </div>
     </div>
 
 {% endblock %}

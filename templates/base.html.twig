@@ -71,7 +71,7 @@
 					height: auto;
 				} */
 
-				.navbar-toggler {
+				/* .navbar-toggler {
 				padding: .25rem .75rem;
 				font-size: 1.25rem;
 				line-height: 1;
@@ -80,7 +80,7 @@
 				border: 1px solid transparent;
 				border-radius: .25rem;
 				transition: box-shadow .15s ease-in-out;
-			}
+			} */
 
 			@media screen and (min-width: 1024px) {
 				.flexheader {
@@ -88,7 +88,19 @@
 					justify-content: flex-end;
 				}
 			}
-
+		.navbar {
+		
+			display: flex;
+			position: relative;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			flex-direction: row;
+			-webkit-box-align: center;
+			align-items: center;
+			
+			height: auto;
+			line-height: 3.5rem;
+		}
 		</style>
 		 {% block stylesheets %}
 		 {% endblock %}
@@ -115,9 +127,9 @@
 		</head>
 
 {% block header %}
-	<header class="container-fluid p-0">
+	<header class="p-0">
 		{# id="myTopnav" #}
-		<nav class="navbar topnav navbar-expand-lg w-100 p-0 m-0" >
+		<nav class="navbar navbar-expand-lg w-100 p-0 m-0" >
 			<div class="container-fluid d-flex justify-content-between">
 				{% if is_granted('ROLE_MEMBER') %}
 				<a class="navbar-brand marketplace imgContainer col-5 m-0" href="{{path('accueil')}}">
@@ -137,10 +149,10 @@
 				</button>
 
 				{# <div class="flex-center grix xs4" id="burgerContainer"> #}
-				<div class="collapse navbar-collapse container-fluid flexheader text-end" id="navbarTogglerDemo02">
+				<div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
 					{% if is_granted('ROLE_MEMBER') %}
-					<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
-					<a class="nav-link burgerElement" href="{{ path('app_account') }}">Mon Compte</a>
+					<a class="nav-link " href="{{ path('app_logout') }}">déconnexion</a>
+					<a class="nav-link " href="{{ path('app_account') }}">Mon Compte</a>
 					<div class="dropdown rounded-2 " id="example-dropdown" data-ax="dropdown">
 						<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">
 							<i id="cartLogo" class="fas fa-shopping-cart" ></i> <span id="cartValue" class="badge badge-light" style="color:black"> 0 </span>
@@ -151,18 +163,18 @@
 					</div>
 
 					{% elseif is_granted('ROLE_SHOPKEEPER') %}
-					<a class="nav-link  burgerElement" href="{{ path('accueilshopkeeper') }}">Ma boutique</a>
-					<a class="nav-link  burgerElement" href="{{ path('product_index') }}">Mes produits</a>
-					<a class="nav-link  burgerElement" href="{{ path('shopkeeperorders') }}">Mes commandes</a>
-					<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
+					<a class="nav-link  " href="{{ path('accueilshopkeeper') }}">Ma boutique</a>
+					<a class="nav-link  " href="{{ path('product_index') }}">Mes produits</a>
+					<a class="nav-link  " href="{{ path('shopkeeperorders') }}">Mes commandes</a>
+					<a class="nav-link " href="{{ path('app_logout') }}">déconnexion</a>
 					{% elseif is_granted('ROLE_SERVICE') %}
-					<a class="nav-link  burgerElement" href="{{ path('shop_index') }}">Ma boutique</a>
-					<a class="nav-link  burgerElement" href="{{ path('appointment') }}">Mes rendez-vous</a>
-					<a class="nav-link  burgerElement" href="{{ path('services_index') }}">Mes prestations</a>
-					<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
+					<a class="nav-link  " href="{{ path('shop_index') }}">Ma boutique</a>
+					<a class="nav-link  " href="{{ path('appointment') }}">Mes rendez-vous</a>
+					<a class="nav-link  " href="{{ path('services_index') }}">Mes prestations</a>
+					<a class="nav-link " href="{{ path('app_logout') }}">déconnexion</a>
 					{% else %}
-					<a class="nav-link burgerElement" href="{{ path('app_register') }}">inscription</a>
-					<a class="nav-link burgerElement" href="{{ path('app_login') }}">Connexion</a>
+					<a class="nav-link " href="{{ path('app_register') }}">inscription</a>
+					<a class="nav-link " href="{{ path('app_login') }}">Connexion</a>
 
 					<div class="dropdown  rounded-2" id="example-dropdown" data-ax="dropdown">
 						<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">

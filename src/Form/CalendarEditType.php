@@ -22,8 +22,11 @@ class CalendarEditType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Prestation'
             ])
-            ->add('client')
+            ->add('Nom' , null , [
+                'label' => 'Nom du client'
+            ])
              ->add('start', DateTimeType::class,[
+                 'label' => 'Date et heure',
                  'date_widget' => 'single_text'
              ])
             // ->add('end', DateTimeType::class,[
