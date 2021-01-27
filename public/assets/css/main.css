@@ -30,7 +30,7 @@ header{
 }
 
 header img {
-    width: 30%;
+    width: 100%;
 }
 
 /* .logo {
@@ -52,9 +52,9 @@ header img {
     color: white;
 }
 
-nav {
+/* nav {
     max-width: 1600px;
-}
+} */
 
 .nav-link {
     color: var(--third-color);
@@ -427,6 +427,8 @@ p + a {
 }
 
 
+/* register page  */
+
 /* login in page */
 
 .container-sign-in {
@@ -434,11 +436,13 @@ p + a {
 }
 
 .container-sign-in h1{
-    color: var(--primary-color);
+    color: var(--third-color);
 }
 
 .color-label{
-    color: var(--primary-color);
+    color: var(--third-color);
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .background-sign-in {
@@ -446,34 +450,42 @@ p + a {
 }
 
 .btn-sign-in {
-    color: white;
-    background-color: var(--primary-color);
-    
-    margin:auto;
-    transition-property: font-size;
-    transition-duration: 4s;
-
-    
+    color: var(--third-color);
+    border: 2px solid var(--third-color);
+    background: white; /* default color */
+    background: linear-gradient(to left, white 50%, var(--third-color) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+    margin:auto; 
+    font-size: 20px;   
 }
 
 .btn-sign-in:hover {
-    color: var(--secondary-color);
-    background-color: rgb(18, 18, 88);
-    -webkit-transform: scale(1.25);
-    transform-origin: top left;
+    color: white;
+    background-position: left;
 }
 
 .border-form {
-    border: 4px white solid;
-    box-shadow: 0px 1px 20px 6px #cccccc;
-    border-radius: 10%;
-    -webkit-border-radius: 10%;
-    -moz-border-radius: 10%;
-    -ms-border-radius: 10%;
-    -o-border-radius: 10%;
+    margin: 27px;
+    box-shadow:inset 0px 1px 27px 6px var(--shadow-color);
+    border-radius: 5%;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    -ms-border-radius: 5%;
+    -o-border-radius: 5%;
     padding: 50px;
     background-color: white;
     width: 400px;
+}
+
+.border-form:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 11px 4px rgba(186,190,204,0.34);
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
 }
 
 .input-custom input[type=email] {
@@ -486,17 +498,70 @@ p + a {
 
 .container-inscription {
     background-color: var(--secondary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-image: url(../img/tel-shop.png);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: contain;
+}
+
+.container-inscription h1{
+    color: var(--secondary-color);
+}
+
+.color-label{
+    color: var(--secondary-color);
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.background-inscription {
+    background-color: var(--secondary-color);
+}
+
+.btn-inscription {
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    background: white; /* default color */
+    background: linear-gradient(to left, white 50%, var(--secondary-color) 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+    margin:auto; 
+    font-size: 20px;   
+}
+
+.btn-inscription:hover {
+    color: white;
+    background-position: left;
+}
+
+.form-inscription {
+    width: 70%;
+    margin: 27px;
+    box-shadow:inset 0px 1px 20px 0px var(--shadow-color);
+    border-radius: 5%;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    -ms-border-radius: 5%;
+    -o-border-radius: 5%;
+    padding: 50px;
+    background-color: white;
+}
+
+.form-inscription:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 11px 4px rgba(186,190,204,0.34);
+    transition: 1s ease-in-out;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -ms-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+}
+
+.input-custom input[type=email] {
+    border: 2px solid  var(--primary-color);
 }
 
 /* flex css */
+.flex {
+    display: flex;
+}
+
 .flex-end {
     justify-content: flex-end;
     display: flex;
@@ -607,23 +672,23 @@ footer {
 footer h5 {
     line-height: 1.244;
     letter-spacing: 0.405px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--primary-color);
     font-style: normal;
-    font-weight: 200;
+    font-weight: bold;
 }
 
 footer p{
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 17px;
     color: var(--third-color);
     text-align: left;
 }
 
 footer a{
     line-height: 1.5;
-    font-size: 20px;
+    font-size: 17px;
     color: var(--third-color);
     text-align: left;
 }
@@ -675,9 +740,88 @@ footer a:hover{
     }
     .container-acceuil p {
         font-size: 16px;
+        padding: 0px 32px 0px 34px;
     }
     .bg-section-1 {
-        margin-top: 100px;
+        margin-top: 50px;
+    }
+    .container-acceuil {
+        height: initial;
+        padding-top: 50px;
+    }
+    .h--100 {
+        height: initial;
+    }
+    .container-raisons {
+        margin-top: 0px;
+        padding-bottom: 0px !important;
+    }
+    .text {
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+    }
+    .justify-content-around {
+        display: flex;
+        flex-direction: column;
+    }
+    .wmp {
+        width: 100%;
+        height: 100px;
+    }
+    .container-avantages p{
+        font-size: 16px;
+    }
+    .container-avantages h3 {
+        font-size: 20px;
+    }
+    .container-vendeur {
+        height: initial;
+        margin-top: 50px;
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+    }
+    .container-vendeur h2 {
+        font-size: 1.5rem;
+        margin-bottom: 50px;
+    }
+    .container-vendeur p {
+        font-size: 16px;
+        margin-bottom: 50px;
+    }
+    .container-client {
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem !important;
+    }
+    .container-client h2 {
+        font-size: 1.5rem;
+        margin-bottom: 50px;
+    }
+    .container-client p {
+        font-size: 16px;
+        margin-bottom: 50px;
+    }
+    .mh-100 {
+        max-height: 100% !important;
+    }
+    footer p {
+        font-size: 16px;
+    }
+    footer li {
+        text-align: left;
+    }
+
+    .form-inscription {
+        width: 100% !important;  
+        margin: 0px;
+        padding: 5px 55px;  
+    }
+    .background-inscription {
+        padding: 25px !important;
+    }
+    .responsive-form {
+        display: flex;
+        flex-direction: column-reverse;
     }
 }
 
@@ -701,7 +845,7 @@ footer a:hover{
     .border-form {
         width: 300px;
         max-height: 300px;
-        padding: 10px;
+        padding: 18px;
     }
     .btn-sign-in {
         margin-top: 0px !important;
