@@ -22,7 +22,7 @@ class CartType extends AbstractType
                 'widget' => 'choice',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
-                'label' => "Date de collect"
+                'label' => "Jour souhaité de collecte"
                 ])
             //->add('user')
             //->add('shop')
