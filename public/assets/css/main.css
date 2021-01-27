@@ -768,6 +768,14 @@ footer a:hover{
     color: var(--primary-color);
 }
 
+/* mon compte  */
+
+.margin-compte {
+    margin-top: 0px;
+}
+.margin-compte h5{
+    color: white!important;
+}
 /* responsive index */
 
 @media (min-width: 1000px) and (max-width: 1800px) {
