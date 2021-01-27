@@ -4,23 +4,26 @@
 
 {% block body %}
 <style>
-    .formW {
+    
+    
+    @media (min-width: 200px) and (max-width: 1000px) {
+        .border-form {
+            width: 300px;
+        max-height: 1000px;
+        padding: 18px;
+        }
+        .h {
+            height: 40rem;
+        }
+        .formW {
         flex : 0.1 1 auto;
     }
     .form-inline {
         flex : 1;
         flex-direction : row:
     }
-    .h {
-        height: 40rem;
     }
-    @media (min-width: 200px) and (max-width: 1000px) {
-    .border-form {
-        width: 300px;
-        max-height: 1000px;
-        padding: 18px;
-    }
-}
+
 </style>
     <div class="col-12  col-sm-12 col-md-12 bc flex-center">
         <div class="border-form h d-flex flex-column formW">

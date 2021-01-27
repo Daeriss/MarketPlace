@@ -156,10 +156,8 @@ table {
   
       <h4>Historique des rendez-vous :</h4>
   
-     
-      
-        {% for rdv in rdvs %}
-           <div class="card bordercard">
+      {% for rdv in rdvs %}
+        <div class="card bordercard">
           <p class="card-header fontsmall">Le {{ rdv.start|date('d/m/Y') }} à {{ rdv.start|date('h:i') }} h</p>
           <div class="card-body">
             <p class=" "> Chez {{ rdv.shop.name }} pour {{ rdv.client }}</p>

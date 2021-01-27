@@ -3,12 +3,48 @@
 {% block title %}Modifier le produit{% endblock %}
 
 {% block body %}
-    <h1>Modifier mon produit</h1>
-<div class="container">
-    {{ include('product/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+<style>
+    
+    .border-form {
+        width: 30rem;
+        max-height: 1000px;
+        padding: 18px;
+        }
+    @media (min-width: 200px) and (max-width: 1000px) {
+        .border-form {
+        width: 300px;
+        max-height: 1000px;
+        padding: 18px;
+        }
+        .h {
+            height: 45rem;
+        }
+        .formW {
+        flex : 0.1 1 auto;
+    }
+    .form-inline {
+        flex : 1;
+        flex-direction : row:
+    }
+    
+    }
+
+</style>
 
 
-    {{ include('product/_delete_form.html.twig') }}
-    <a class="btn btn-success" href="{{ path('product_index') }}">Retour à la liste</a>
-</div>
+
+<div class="col-12  col-sm-12 col-md-12 bc flex-center">
+        <div class="border-form h d-flex flex-column formW">
+            <h5 class=" mb-4 font-weight-normal">Modifier mon produit</h5>
+
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+        
+            <button class="btn btn-lg bc mt btn-sign-in align-self-center">{{ button_label|default('Modifier') }}</button>
+            {{ form_end(form) }}
+
+            <a href="{{ path('shop_index') }}" class="">Retour à la liste</a>
+        </div>
+    </div>
 {% endblock %}

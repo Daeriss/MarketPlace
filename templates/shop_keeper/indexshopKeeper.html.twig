@@ -32,6 +32,57 @@
 		width: 150px;
 		display: flex;
 	}
+	.smallscreen {
+        display : none;
+      }
+	@media screen and (max-width: 575.98px) {
+        h4 {
+          font-size: 1rem;
+        }
+
+        .fontsmall {
+          font-size: 0.75rem;
+        }
+
+        .topnavsmall {
+          display: block;
+         
+          overflow: hidden;
+        }
+        .margin15 {
+          margin : 0.15rem;
+          color : white;
+        }
+        .margin25 {
+          margin : 0.25rem
+        }
+        .marginleft {
+          margin-left: 0.5rem;
+        }
+        .grandscreen {
+          display :none;
+        }
+        .smallscreen {
+          display: block;
+        }
+
+        .card .card-header {
+            font-size: 1rem;
+            padding: 1rem;
+            background-color: var(--third-color);
+            color: white;
+
+        }
+        .card .card-footer {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .bordercard {
+          border: solid var(--third-color);
+        }
+			}
+	
 </style>
 {% endblock %}
 
@@ -115,50 +166,43 @@
 {% set counter = counter + order.checkout %}
 
 {% endfor %}
+<div class="container-fluid grandscreen text-center">
+    <h4 class="">Gestion de ma boutique</h4>
 
+    <div class="grix xs6 p-3 bc text-white shadow-2 align-items-center">
+        <h5 class="">Nom</h5>
+        <h5 class="">Arrondissement</h5>
+        <h5 class="">Photo</h5>
+        <h5 class="">Adresse</h5>
+		<h5 class="">Paiement Accepté</h5>
+		<h5 class="">actions</h5>
+    </div>
+        
+    <div class="grix xs6 p-3 shadow-2 align-items-center mt-3" >
+		<p class="m-0 ">{{ shop.name }}</p>
+		<p class="m-0 ">{{ shop.adress }}</p>
+		<p class="m-0 ">{{ shop.img }} €</p>
+		<p class="m-0 ">{{ shop.road }}</p>
+		<p class="m-0 ">{{ shop.paiement }}</p>
+		<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn bc rounded-1 text-white m-3">Modifier les informations</a>
+    </div>	 
+	<h3>Total TTC des commandes récupérées :{{ counter }} €</h3>
+	
+</div>
+  
 
-<h1>Gestion de ma boutique en ligne</h1>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>Nom</th>
-			<th>Arrondissement</th>
-			<th>Photo</th>
-			<th>
-				Adresse :
-			</th>
-			<th>Paiement Accepté</th>
-			<th>actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% if (shop)  %}
-		<tr>
-			<td>{{ shop.name }}</td>
-			<td>{{ shop.adress }}</td>
-			<td>{{ shop.img }}</td>
-			<td>
-				{{ shop.road }}
-			</td>
-			<td>{{shop.paiement}}</td>
-			<td>
-				<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="informations">Modifier les informations</a>
-			</td>
-		</tr>
-		{% else %}
-		<tr>
-			<td colspan="4">no records found</td>
-		</tr>
-		{% endif %}
-
-	</tbody>
-</table>
-
-Total TTC des commandes récupérées :
-{{ counter }}
-€
-
+<div class="card smallscreen bordercard m-2">
+          <p class="card-header fontsmall">{{ shop.name }}</p>
+          <div class="card-body">
+            <p class=" "> Adresse : {{ shop.road }}</p>
+			<p class=" "> Code postal : {{ shop.adress }}</p>
+            <p class=" "> Paiement(s) : {{ shop.paiement }}</p>
+          </div>
+          <div class="card-footer d-flex flex-row justify-content-center">
+            <a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn p-2 card-btn bc text-white text-center">Modifier les informations</a>
+          </div>
+      </div>
+       
 
 <script></script>
 {% endblock %}
