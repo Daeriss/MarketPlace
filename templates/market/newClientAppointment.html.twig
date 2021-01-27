@@ -33,20 +33,20 @@
 
 
 {% block body %}
-    <h1>Prendre rendez-vous</h1>
+    <h1 class="m-5">Prendre rendez-vous</h1>
     <div class="container-fluid ">
 
-        <div class=" container-fluid d-flex flex-colomn justify-content-center m-3">
+        <div class=" container-fluid d-flex flex-colomn  m-3">
         {% if error is defined %}
             <p class="p-3 my-2 rounded-2 error">{{error}}</p>
         {% endif %}
              <p>sélectionnez un crénaux et cliquez sur "Ajouter un rendez-vous"</p>
            {# <p> Pour modifer un rendez-vous sélectionnez un rendez-vous et cliquez sur "modifer un rendez-vous"</p> #}
-            <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_new')}}">Ajouter un Rendez-vous</a>
+            <a class="btn rounded-1 bc text-white press grix sx1 m-3" href="{{path('calendar_new')}}">Ajouter un Rendez-vous</a>
             {# <a class="btn rounded-1 blue press grix sx1 m-3" href="{{path('calendar_index', {'id': id() } ) }}"> modifier un Rendez-vous</a>               #}
             {# <p id="edit"></p> #}
         </div> 
-        <div class=" container-fluid m-3 col-8">
+        <div class=" container-fluid m-3 ">
             <div id="calendrier"></div>
         </div>
     </div>
@@ -60,6 +60,13 @@
             let calendar = new FullCalendar.Calendar(calendarElt, {
                 initialView: 'timeGridWeek',
                 locale: 'fr',
+                buttonText: {
+                    today:    'Aujourd\'hui',
+                    month:    'Mois',
+                    week:     'Semaine',
+                    day:      'Jour',
+                    list:     'Liste'
+                },
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
                     start: 'prev,next today',

@@ -11,6 +11,9 @@
   .marginleft {
           margin-left: 7rem;
         }
+        p {
+          color: black;
+        }
     @media screen and (max-width: 575.98px) {
         h4 {
           font-size: 1rem;
@@ -75,11 +78,11 @@
           <h4>Ma dernière commande</h4>
           <hr>
           {% if lastOrder is not null %}
-          <div class="grix xs4 p-3 bc text-white shadow-2 align-items-center">
-            <p class="fontsmall" >Nom du magasin</p>
-            <p class="fontsmall" >Numéro de commande</p>
-            <p class="fontsmall" >Total</p>
-            <p class="fontsmall" >Statut</p>
+          <div class="grix xs4 p-3 bc  shadow-2 align-items-center">
+            <p class="fontsmall text-white" >Nom du magasin</p>
+            <p class="fontsmall text-white" >Numéro de commande</p>
+            <p class="fontsmall text-white" >Total</p>
+            <p class="fontsmall text-white" >Statut</p>
           </div>
             <div class="grix xs4 p-3 shadow-2 align-items-center" >
               <p class="m-0 fontsmall">{{lastOrder.shop.name }}</p>
