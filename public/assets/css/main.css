@@ -758,6 +758,16 @@ footer a:hover{
     background-position: left;
 }
 
+/* shops */
+
+.container-shops {
+    background-color: var(--color-bg);
+}
+
+.container-shops h2, h5 {
+    color: var(--primary-color);
+}
+
 /* responsive index */
 
 @media (min-width: 1000px) and (max-width: 1800px) {
@@ -885,6 +895,8 @@ footer a:hover{
         flex-direction: column-reverse;
     }
 }
+
+
 
 /* se connecter */
 
