@@ -23,37 +23,44 @@
 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
 {% endfor %}
 
-<section class="container-fluid container-sign-in p-5">
-    <div class="col-12 col-sm-12 col-md-6 background-sign-in flex-center">
+<section>
+<div class="container-fluid container-inscription">
+    <div class="row responsive-form">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 background-inscription flex-center p-5">
 
-        <div class="container-form flex-column col-10">
-            {{ form_start(registrationForm) }}
-            <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
-            {{ form_row(registrationForm.name, {
-            label:'Nom'
-            }) }}
-            {{ form_row(registrationForm.firstname, {
-            label: 'Prénom'
-            }) }}
-            {{ form_row(registrationForm.email, {
-            label: 'E-mail'
-            }) }}
-            {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-            }) }}
-            {{form_row ( registrationForm.shopkeeper, {
-            label: 'Je m\'inscrit en tant que commerçant'
-            } ) }}
-            {{form_row ( registrationForm.service, {
-            label: 'Je m\'inscrit en tant que commerce de services'
-            } ) }}
-            {{ form_row(registrationForm.agreeTerms, {
-            label: 'Accepter les conditions d\'utilisation du site'
-            }) }}
+            <div class="form-inscription flex-column col-12 col-sm-6">
+                {{ form_start(registrationForm) }}
+                <h1 class="h3 mb-3 font-weight-normal">Créer un compte</h1>
+                {{ form_row(registrationForm.name, {
+                label:'Nom'
+                }) }}
+                {{ form_row(registrationForm.firstname, {
+                label: 'Prénom'
+                }) }}
+                {{ form_row(registrationForm.email, {
+                label: 'E-mail'
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe'
+                }) }}
+                {{form_row ( registrationForm.shopkeeper, {
+                label: 'Je m\'inscrit en tant que commerçant'
+                } ) }}
+                {{form_row ( registrationForm.service, {
+                label: 'Je m\'inscrit en tant que commerce de services'
+                } ) }}
+                {{ form_row(registrationForm.agreeTerms, {
+                label: 'Accepter les conditions d\'utilisation du site'
+                }) }}
 
-            <button type="submit" class="btn btn-lg btn-sign-in my-5">S'inscrire</button>
-            {{ form_end(registrationForm) }}
+                <button type="submit" class="btn btn-lg btn-inscription my-5">S'inscrire</button>
+                {{ form_end(registrationForm) }}
+            </div>   
         </div>
-    </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 no-padding flex">
+                <img src="{{ asset('assets/img/frenchie.jpeg') }}" class="img-fluid">
+        </div>
+    </div>    
+</div>
 </section>
 {% endblock %}
