@@ -5,151 +5,162 @@
 
 
 {% block stylesheets %}
-	<style>
-		.form-control {
-			position: relative;
-			display: block;
-			border: 1px solid #bbb8b8;
+<style>
+	.form-control {
+		position: relative;
+		display: block;
+		border: 1px solid #bbb8b8;
 
 
-			transition: border 0.2s ease, box-shadow 0.3s ease;
-			height: 2.5rem;
-			width: 50%;
+		transition: border 0.2s ease, box-shadow 0.3s ease;
+		height: 2.5rem;
+		width: 50%;
 
 
-			appearance: none;
-			line-height: 1.3;
-			color: inherit;
-			background-color: inherit;
-		}
+		appearance: none;
+		line-height: 1.3;
+		color: inherit;
+		background-color: inherit;
+	}
 
-		.form-inline {
-			flex: auto;
-			flex-direction: row;
-		}
-		.task_field {
-			width: 150px;
-			display: flex;
-		}
-	</style>
+	.form-inline {
+		flex: auto;
+		flex-direction: row;
+	}
+
+	.task_field {
+		width: 150px;
+		display: flex;
+	}
+</style>
 {% endblock %}
 
 {% block body %}
-	<h1>
-		Ma boutique
-	</h1>
-	<p>
-		Bienvenue dans votre boutique! 
-		    Vous pouvez ici modifier les horaires d'ouverture de votre boutique, ci dessous.
-	</p>
-	<div class="grix xs2">
-
-
-		<div>
-			<img class="img-test mt-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-6 bg-shop-img">
+			<img class="img-test img-fluid" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
 		</div>
-		<div class="container m-auto">
-			<h3>
-				Gestion Horaire
-			</h3>
+		<div class="col-12 col-sm-12 col-md-6 bg-shop-index">
+			<div class="col-12">
+				<h1>Ma boutique</h1>
+			</div>
+			<div class="col-12">
+				<p>
+					Bienvenue dans votre boutique!
+					Vous pouvez ici modifier les horaires d'ouverture de votre boutique, ci dessous.
+				</p>
+			</div>
+			<div class="col-12">
+				<h3>Gestion Horaire</h3>
+			</div>
 			{{form_start(form)}}
-            <label>lundi :</label>
-			<div class="row m-auto">
-				De : 
-				{{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} à
-				{{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
-			</div> <hr>
-            <label>Mardi :</label> <br>
+			<label>lundi :</label>
 			<div class="row m-auto">
 				De :
-				{{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
-			</div><hr>
-            <label>Mercredi :</label><br>
+				{{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} à
+				{{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Mardi :</label> <br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Mercredi :</label><br>
 			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} à :
 				{{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }}
-			</div><hr>
-            <label>Jeudi :</label><br>
+			</div>
+			<hr>
+			<label>Jeudi :</label><br>
 			<div class="row m-auto">
 				De :
 				{{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} à :
 				{{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }}
-			</div><hr>
-            <label>Vendredi :</label>
+			</div>
+			<hr>
+			<label>Vendredi :</label>
 			<div class="row m-auto">
 				De :
-				{{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
-			</div><hr>
-            <label>Samedi :</label><br>
-			<div class="row m-auto">
-				De : 
-				{{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
-			</div><hr>
-            <label>Dimanche :</label><br>
+				{{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Samedi :</label><br>
 			<div class="row m-auto">
 				De :
-				{{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} à :{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
+				{{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Dimanche :</label><br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
 			</div><br>
-			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
+			<button class="btn btn-shop">{{ button_label|default('Mettre à jour les horaires') }}</button>
 			{{ form_end(form) }}
-
 		</div>
 	</div>
-	<hr>
-	{% set counter = 0 %}
-	{% for order in orders %}
+</div>
+{% set counter = 0 %}
+{% for order in orders %}
 
 
-		{% set counter = counter + order.checkout %}
+{% set counter = counter + order.checkout %}
 
-	{% endfor %}
-
-
-	<h1>Gestion de ma boutique en ligne</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nom</th>
-				<th>Arrondissement</th>
-				<th>Photo</th>
-				<th>
-					Adresse :
-				</th>
-				<th>Paiement Accepté</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% if (shop)  %}
-				<tr>
-					<td>{{ shop.name }}</td>
-					<td>{{ shop.adress }}</td>
-					<td>{{ shop.img }}</td>
-					<td>
-						{{ shop.road }}
-					</td>
-					<td>{{shop.paiement}}</td>
-					<td>
-						<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn primary">Modifier les informations</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="4">no records found</td>
-				</tr>
-			{% endif %}
-
-		</tbody>
-	</table>
-
-	Total TTC des commandes récupérées :
-	{{ counter }}
-	€
+{% endfor %}
 
 
-	<script></script>
+<h1>Gestion de ma boutique en ligne</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Arrondissement</th>
+			<th>Photo</th>
+			<th>
+				Adresse :
+			</th>
+			<th>Paiement Accepté</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% if (shop)  %}
+		<tr>
+			<td>{{ shop.name }}</td>
+			<td>{{ shop.adress }}</td>
+			<td>{{ shop.img }}</td>
+			<td>
+				{{ shop.road }}
+			</td>
+			<td>{{shop.paiement}}</td>
+			<td>
+				<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="informations">Modifier les informations</a>
+			</td>
+		</tr>
+		{% else %}
+		<tr>
+			<td colspan="4">no records found</td>
+		</tr>
+		{% endif %}
+
+	</tbody>
+</table>
+
+Total TTC des commandes récupérées :
+{{ counter }}
+€
+
+
+<script></script>
 {% endblock %}
 
 {% block javascripts %}{% endblock %}
