@@ -13,7 +13,7 @@
       <a href="{{ path('app_account_orders')}}" class="sidenav-link">Mes commandes</a>
       <a href="{{ path('app_account_rdv')}}" class="sidenav-link">Mes rendez vous</a>
     </div>
-<section class="container">
+<section class="container margin-compte">
 <div>
   {% for message in app.flashes('error')%}
     <div class="p-3 m-2 rounded-2 error"> {{message}} </div>
