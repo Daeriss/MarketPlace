@@ -63,7 +63,7 @@
 			<div class="col-6 p-5">
 				<h3 class="mb-5 font-w600 text-white">{{ shop.name }} ( {{ shop.road }} | {{ shop.adress }} )</h3>
 				<p class="text-white">Paiements acceptés au retrait : {{ shop.paiement }}</p>
-				<p class="text-white"> numéro de téléphone : <strong> {{ shop.phone }} </strong> </p> 
+				<p class="text-white"> numéro de téléphone : <strong> 0{{ shop.phone }} </strong> </p> 
 				<div>
 					<h4 class="text-white"> Horaires d'ouverture </h4>
 					<p class="text-white"> Lundi : de {{ shop.lundi|date("H:i") }} à {{ shop.lundiclose|date("H:i") }} </p>
