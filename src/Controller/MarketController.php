@@ -277,9 +277,7 @@ class MarketController extends AbstractController
 
                     ->setFrom('clickncommerce@gmail.com')
                     
-                    //->setTo($user->getEmail())
-                    
-                    ->setTo("oli.vallet0@gmail.com")
+                    ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView(
                             // templates/emails/registration.html.twig
