@@ -51,7 +51,7 @@ class CalendarController extends AbstractController
     }
 
     /**
-     * @Route("/nouveau/appointment", name="new_appointment", methods={"GET","PUT"})
+     * @Route("/new/appointment", name="new_appointment", methods={"GET","PUT"})
      */
     public function new_appointment(?Calendar $calendar, Request $request): Response
     {
