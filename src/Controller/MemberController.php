@@ -17,7 +17,7 @@ use App\Repository\SubOrderRepository;
 class MemberController extends AbstractController
 {
     /**
-     * @Route("/mon-compte", name="app_account")
+     * @Route("/my-account", name="app_account")
      */
     public function index(OrderRepository $orderRepository): Response
     {
@@ -31,7 +31,7 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/mon-compte/mes-commandes", name="app_account_orders")
+     * @Route("/my-account/my-orders", name="app_account_orders")
      */
     public function commandes(OrderRepository $orderRepository, SubOrderRepository $subOrderRepository): Response
     {
@@ -60,7 +60,7 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/mon-compte/mes-rendez-vous", name="app_account_rdv")
+     * @Route("/my-account/my-appointments", name="app_account_rdv")
      */
     public function rendezVous(CalendarRepository $calendarRepository): Response
     {
@@ -77,7 +77,7 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/mon-compte/modifier", name="app_account_edit" , methods={"GET","POST"})
+     * @Route("/my-account/edit", name="app_account_edit" , methods={"GET","POST"})
      */
     public function edit(request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {

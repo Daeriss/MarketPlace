@@ -91,7 +91,7 @@ class MarketController extends AbstractController
     }
 
     /**
-     * @Route("/shops/{id}", name="shop", methods={"GET"})
+     * @Route("/shop/{id}", name="shop", methods={"GET"})
      */
     public function shop(Shop $shop, ProductRepository $productRepository, ServicesRepository $servicesRepository, CalendarRepository $calendarRepository): Response
     {
