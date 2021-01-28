@@ -28,9 +28,6 @@ class ShopController extends AbstractController
         $shopUser = $user->getShop();
         $idShop = $shopUser->getId();
         $shop = $shopRepository->findOneBy(['id' => $idShop]);
-        dump($idShop);
-
-        dump($shop);
 
         return $this->render('shop/index.html.twig', [
             'shop' => $shop,
@@ -47,7 +44,6 @@ class ShopController extends AbstractController
         $shop = new Shop();
         $form = $this->createForm(ShopType::class, $shop);
         $form->handleRequest($request);
-        dump($user->getShop());
 
         if ($user->getShop() == null) {
 
@@ -80,7 +76,6 @@ class ShopController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($shop);
                 $entityManager->flush();
-                dump($shop);
 
                 if (in_array('ROLE_SHOPKEEPER', $user->getRoles())) {
 
@@ -154,7 +149,6 @@ class ShopController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($shop);
                 $entityManager->flush();
-                dump($shop);
 
                 return $this->redirectToRoute('shop_index');
             }
