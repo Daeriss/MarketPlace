@@ -268,6 +268,59 @@ class MarketController extends AbstractController
             
                 $mailer->send($message);
 
+
+                    $vendeur=$shop->getUser()->getEmail();
+                    var_dump($vendeur);
+
+
+                    $message = (new \Swift_Message('Confirmation de commande'))
+
+                    ->setFrom('clickncommerce@gmail.com')
+                    
+                    //->setTo($user->getEmail())
+                    
+                    ->setTo("oli.vallet0@gmail.com")
+                    ->setBody(
+                        $this->renderView(
+                            // templates/emails/registration.html.twig
+                            'email/commandeValidationCommercant.html.twig',
+                            ['name' => $user->getUsername(),
+                            'order'=> $order,
+                            'date'=> $collectDate->format('D/M/Y'),
+                            'listePdt'=> $tablisteproduit]
+                        ),
+                        'text/html'
+                    );
+            
+                $mailer->send($message);
+
+
+                
+                $message = (new \Swift_Message('Confirmation de commande'))
+
+                ->setFrom('clickncommerce@gmail.com')
+                
+                //->setTo($user->getEmail())
+                
+                ->setTo($vendeur)
+                ->setBody(
+                    $this->renderView(
+                        // templates/emails/registration.html.twig
+                        'email/commandeValidationCommercant.html.twig',
+                        ['name' => $user->getUsername(),
+                        'order'=> $order,
+                        'date'=> $collectDate->format('D/M/Y'),
+                        'listePdt'=> $tablisteproduit]
+                    ),
+                    'text/html'
+                );
+        
+            $mailer->send($message);
+
+
+
+
+
                 return $this->redirectToRoute('cartValidator');
                 
             }
@@ -289,23 +342,7 @@ class MarketController extends AbstractController
     public function cartValidator(Request $request, OrderRepository $orderRepository ,\Swift_Mailer $mailer)
     {
 
-         $user = $this->getUser();
 
-
-         $message = (new \Swift_Message('Hello Email'))
-         ->setFrom('send@example.com')
-         ->setTo('recipient@example.com')
-         ->setBody(
-             $this->renderView(
-                 // templates/emails/panierConfirmation.html.twig
-                 'email/panierConfirmation.html.twig',
-             ),
-             'text/html'
-         )
-     ;
- 
-    //  $mailer->send($message);
- 
 
 
         // if($request->isXmlHttpRequest()){

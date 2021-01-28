@@ -1,2 +1,14 @@
-Vous avez recu une commande de la part d'un de vos client!
-rendez vous dans votre espace boutique pour obtenir les détails de la commande et le jour de passage du client
+Bonjour cher commercant
+
+ {{name}} a effecctué une commande auprès de votre boutique,
+
+il souhaite aller chercher votre commande à ce jour : {{date}}
+
+Voici la liste des produits qui composent la commmande. (Vous pourrez avoir plus de précisions sur la commande dans votre espace commercant sur votre espace clickncommerce)
+
+{% for product in listePdt %}
+
+  <td>{{ product.product.name }}   {{ product.quantity }}</td>
+{% endfor %}
+
+</table>
