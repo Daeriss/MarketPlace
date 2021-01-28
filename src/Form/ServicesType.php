@@ -14,10 +14,15 @@ class ServicesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('price')
+            ->add('name',null, [
+                'label' => 'Nom'
+            ])
+            ->add('price',null, [
+                'label' => 'Prix'
+            ])
             ->add('duration', TimeType::class, [
                 //'input'  => 'timestamp',
+                'label' => 'durée',
                 'widget' => 'choice',
             ]);
     }

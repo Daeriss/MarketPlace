@@ -20,7 +20,9 @@ class ProductType extends AbstractType
             ->add('name', null, [
                 'label' => 'Nom du produit'
             ])
-            ->add('description')
+            ->add('description', null, [
+                'help' => 'Ingrédients, marque, poids, prix/kilo, prix/litre...',
+            ])
             ->add('price', null, [
                 'label' => 'Prix'
             ])
@@ -28,6 +30,7 @@ class ProductType extends AbstractType
                 'label' => 'photo à uploader',
                 'mapped' => false,
                 'required' => true,
+                'help' => 'Une image représentant au mieux votre produit. Attention, une mauvaise image peut induire en erreur.',
                 'constraints' => [
                     new File([
                         'maxSize' => '10240k',      // 10 Mo ?
@@ -40,6 +43,7 @@ class ProductType extends AbstractType
             ])
             ->add('is_available', CheckboxType::class, [
                 'label' => 'En stock ?',
+                'help' => 'Votre produit est-il actuellement disponible ? Vous pourrez changer ce paramètre à tout moment.',
                 'required' => false,
             ])
             // ->add('shop', EntityType::class, [ "class" => Shop::class, "choice_label" => "name" ])

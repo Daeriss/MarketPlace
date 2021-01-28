@@ -91,7 +91,7 @@ class MarketController extends AbstractController
     }
 
     /**
-     * @Route("/shops/{id}", name="shop", methods={"GET"})
+     * @Route("/shop/{id}", name="shop", methods={"GET"})
      */
     public function shop(Shop $shop, ProductRepository $productRepository, ServicesRepository $servicesRepository, CalendarRepository $calendarRepository): Response
     {
@@ -138,12 +138,12 @@ class MarketController extends AbstractController
     
             $data = json_encode($rdvs);
            
-            dump($data);
+            dump(compact('data'));
 
-            return $this->render('market/shop.html.twig', [
+            return $this->render('market/shop.html.twig',[
                 'shop' => $shop,
                 'services' => $listeServices,
-                'data' => compact('data')
+            
             ]);
         } 
 

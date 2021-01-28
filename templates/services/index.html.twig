@@ -23,11 +23,11 @@
 				<h5>Actions</h5>
 		</div>
         {% for service in services %}
-            <div class="grix xs4 p-3 shadow-2 align-items-center" >
+            <div class="grix xs4 mt-3 p-3 shadow-2 align-items-center" >
 					<p class="m-0">{{ service.name }}</p>
 					<p class="m-0">{{ service.price }} €</p>
 					<p class="m-0">{{ service.duration ? service.duration|date('H:i') : '' }} </p>
-                    <a href="{{ path('services_edit', {'id': service.id}) }}">Modifier</a>
+                    <a class="btn bc rounded-1 tx-w m-3" href="{{ path('services_edit', {'id': service.id}) }}">Modifier</a>
 
             </div>
                 {% else %}

@@ -24,7 +24,9 @@ class CalendarType extends AbstractType
                 'class' => Services::class,
                 'choice_label' => 'name'
             ])
-            ->add('client')
+            ->add('client', null, [
+                'label'=> 'Nom du client'
+            ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 
                 $calendar = $event->getData();
@@ -32,7 +34,8 @@ class CalendarType extends AbstractType
                 if(null !== $calendar->getId()) {
     
                      $form->add('start', DateTimeType::class,[
-                         'date_widget' => 'single_text'
+                         'date_widget' => 'single_text',
+                         'label' => 'Date et heure'
                      ]);
                 }
             })

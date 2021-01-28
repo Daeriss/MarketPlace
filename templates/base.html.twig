@@ -21,83 +21,38 @@
 			.cart-btn {
 				background-color: #884A65;
 			}
-			.topnav {
+			/* .topnav {
   				overflow: hidden;
-			}
-			.icon {
+			} */
+			/* .icon {
 				  display: none;
 				 
-			}
+			} */
 
 			.bc {
 				background-color: var(--third-color);
 			}
 
-			.burgerElement {
+			/* .burgerElement {
   				float: left;
   				display: block;
-  				
+
   				text-align: center;
-				
-				
-				
-			}
-
-			@media screen and (max-width: 600px) {
-  				.burgerElement {display: none;}
-				.icon {
-					float: right;
-					display: block;
-				}
-				.header {
 					
-				}
-				.nav {
-				}
-				.imgContainer {
-					width : 10rem;
-				}
-
 			}
 
-			@media screen and (max-width: 600px) {
-				.topnav.responsive {position: relative;}
-				.icon {
-					position: absolute;
-					right: 8%;
-					top: 2%;
-					text-decoration: none;
-					padding : 2px;
-					width : 30px;
-					height : 30px;
-				}
-				.nav {
-				}
-				.header {
-					
-				}
-				.imgContainer {
-					width : 10rem;
-				}
+			justify-content-between
 
-			}
-
-			@media screen and (max-width: 769px) {
-				.nav {
-				}
-				.imgContainer {
-						width : 10rem;
-						margin-right: 10rem;
-				}
-			}
+			
+		
 
 
-			.burgerElement {
+			/* .burgerElement {
 				float: none;
 				display: block;
 				text-align: right;
-			}
-			.img {
+			} */
+			/* .img {
 				width: 100%;
 			}
 			.imgContainer {
@@ -114,8 +69,38 @@
 			}
 			.nav {
 					height: auto;
-				}
+				} */
 
+				/* .navbar-toggler {
+				padding: .25rem .75rem;
+				font-size: 1.25rem;
+				line-height: 1;
+				color: var(--third-color);
+				background-color: transparent;
+				border: 1px solid transparent;
+				border-radius: .25rem;
+				transition: box-shadow .15s ease-in-out;
+			} */
+
+			@media screen and (min-width: 1024px) {
+				.flexheader {
+					flex: auto;
+					justify-content: flex-end;
+				}
+			}
+		.navbar {
+		
+			display: flex;
+			position: relative;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			flex-direction: row;
+			-webkit-box-align: center;
+			align-items: center;
+			
+			height: auto;
+			line-height: 3.5rem;
+		}
 		</style>
 		 {% block stylesheets %}
 		 {% endblock %}
@@ -123,82 +108,84 @@
 		  {% block javascripts %}
 		  <script src="{{ asset('assets/js/panier.js') }}"></script>
 		  <script>
-			  function myFunction() {
-				var x = document.getElementById("myTopnav");
-				var burgerContainer = document.getElementById("burgerContainer");
-				var img = document.getElementById("img");
+			//   function myFunction() {
+			// 	var x = document.getElementById("myTopnav");
+			// 	var burgerContainer = document.getElementById("burgerContainer");
+			// 	var img = document.getElementById("img");
 
-				if (x.className === "topnav") {
-				x.className += " responsive";
-				} else {
-				x.className = "topnav p-2";
-				}
-				burgerContainer.className = "flex-colomn m-2";
-				img.className += "imgSmallScreen";
-			}
+			// 	if (x.className === "topnav") {
+			// 	x.className += " responsive";
+			// 	} else {
+			// 	x.className = "topnav p-2";
+			// 	}
+			// 	burgerContainer.className = "flex-colomn m-2";
+			// 	img.className += "imgSmallScreen";
+			// }
 		  </script>
 		  
 		  {% endblock %} 
 		</head>
 
 {% block header %}
-	<header class="container-fluid p-0">
-
-		<nav class="navbar navbar-expand-lg navbar-dark  p-0 m-3" id="myTopnav">
-
-            {% if is_granted('ROLE_MEMBER') %}
-			<a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueil')}}">
-            {% elseif is_granted('ROLE_SHOPKEEPER') %}
-            <a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueilshopkeeper')}}">
-			{% elseif is_granted('ROLE_SERVICE') %}
-            <a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueilservice')}}">
-            {% else %}
-            <a class="navbar-brand marketplace imgContainer col-3" href="{{path('accueil')}}">
-
-
-            {% endif %}
-				<img src="{{ asset('assets/img/logo_noir.png') }}" class="img">
-			</a> 
-			
-			<div class="flex-center grix xs4" id="burgerContainer">
-			{% if is_granted('ROLE_MEMBER') %}
-				<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
-				<a class="nav-link burgerElement" href="{{ path('app_account') }}">Mon Compte</a>					
-				<div class="dropdown rounded-2 burgerElement" id="example-dropdown" data-ax="dropdown">
-  					<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">
-      					<i id="cartLogo" class="fas fa-shopping-cart" ></i> <span id="cartValue" class="badge badge-light" style="color:black"> 0 </span>
-  					</button>
- 					<div id="dropDownContent"class="dropdown-content z-index-3 white right-aligned shadow-1 rounded-3 p-2">
-						<a class="dropdown-item btn-rechercher btn rounded-1  press m-auto mt-2"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
-					</div>
-				</div>
-			
+	<header class="p-0">
+		{# id="myTopnav" #}
+		<nav class="navbar navbar-expand-lg w-100 p-0 m-0" >
+			<div class="container-fluid d-flex justify-content-between">
+				{% if is_granted('ROLE_MEMBER') %}
+				<a class="navbar-brand marketplace imgContainer col-5 m-0" href="{{path('accueil')}}">
 				{% elseif is_granted('ROLE_SHOPKEEPER') %}
-				<a class="nav-link  burgerElement" href="{{ path('accueilshopkeeper') }}">Ma boutique</a>
-				<a class="nav-link  burgerElement" href="{{ path('product_index') }}">Mes produits</a>
-				<a class="nav-link  burgerElement" href="{{ path('shopkeeperorders') }}">Mes commandes</a>
-				<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
+				<a class="navbar-brand marketplace imgContainer col-5  m-0" href="{{path('accueilshopkeeper')}}">
 				{% elseif is_granted('ROLE_SERVICE') %}
-				<a class="nav-link  burgerElement" href="{{ path('shop_index') }}">Ma boutique</a>
-				<a class="nav-link  burgerElement" href="{{ path('appointment') }}">Mes rendez-vous</a>
-				<a class="nav-link  burgerElement" href="{{ path('services_index') }}">Mes prestations</a>
-				<a class="nav-link burgerElement" href="{{ path('app_logout') }}">déconnexion</a>
+				<a class="navbar-brand marketplace imgContainer col-5  m-0" href="{{path('accueilservice')}}">
 				{% else %}
-				<a class="nav-link burgerElement" href="{{ path('app_register') }}">inscription</a>
-				<a class="nav-link burgerElement" href="{{ path('app_login') }}">Connexion</a>   
+				<a class="navbar-brand marketplace imgContainer col-5  m-0" href="{{path('accueil')}}">
 
-				<div class="dropdown burgerElement rounded-2" id="example-dropdown" data-ax="dropdown">
-					<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">
-						<i id="cartLogo" class="fas fa-shopping-cart " ></i> <span id="cartValue" class="badge badge-light" style="color:black"> 0 </span>
-					</button>
-					<div id="dropDownContent"class="dropdown-content z-index-3 white right-aligned shadow-1 rounded-3 p-2">
-						<a class="dropdown-item btn-rechercher btn rounded-1  press m-auto mt-2"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
+				{% endif %}
+					<img src="{{ asset('assets/img/logo_noir.png') }}" class="img">
+				</a>
+
+				<button class="navbar-toggler color-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"  aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="navbar-toggler-icon  fas fa-bars"></i>
+				</button>
+
+				{# <div class="flex-center grix xs4" id="burgerContainer"> #}
+				<div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+					{% if is_granted('ROLE_MEMBER') %}
+					<a class="nav-link " href="{{ path('app_logout') }}">déconnexion</a>
+					<a class="nav-link " href="{{ path('app_account') }}">Mon Compte</a>
+					<div class="dropdown rounded-2 " id="example-dropdown" data-ax="dropdown">
+						<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">
+							<i id="cartLogo" class="fas fa-shopping-cart" ></i> <span id="cartValue" class="badge badge-light" style="color:black"> 0 </span>
+						</button>
+						<div id="dropDownContent"class="dropdown-content z-index-3 white right-aligned shadow-1 rounded-3 p-2">
+							<a class="dropdown-item btn-rechercher btn rounded-1  press m-auto mt-2"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
+						</div>
 					</div>
+
+					{% elseif is_granted('ROLE_SHOPKEEPER') %}
+					<a class="nav-link  " href="{{ path('accueilshopkeeper') }}">Ma boutique</a>
+					<a class="nav-link  " href="{{ path('product_index') }}">Mes produits</a>
+					<a class="nav-link  " href="{{ path('shopkeeperorders') }}">Mes commandes</a>
+					<a class="nav-link " href="{{ path('app_logout') }}">déconnexion</a>
+					{% elseif is_granted('ROLE_SERVICE') %}
+					<a class="nav-link  " href="{{ path('accueilservice') }}">Ma boutique</a>
+					<a class="nav-link  " href="{{ path('appointment') }}">Mes rendez-vous</a>
+					<a class="nav-link  " href="{{ path('services_index') }}">Mes prestations</a>
+					<a class="nav-link " href="{{ path('app_logout') }}">déconnexion</a>
+					{% else %}
+					<a class="nav-link " href="{{ path('app_register') }}">inscription</a>
+					<a class="nav-link " href="{{ path('app_login') }}">Connexion</a>
+
+					<div class="dropdown  rounded-2" id="example-dropdown" data-ax="dropdown">
+						<button type="button" class="btn shadow-1 rounded-1  dropdown-trigger">
+							<i id="cartLogo" class="fas fa-shopping-cart " ></i> <span id="cartValue" class="badge badge-light" style="color:black"> 0 </span>
+						</button>
+						<div id="dropDownContent"class="dropdown-content z-index-3 white right-aligned shadow-1 rounded-3 p-2">
+							<a class="dropdown-item btn-rechercher btn rounded-1  press m-auto mt-2"  id="ValiderPanier"  href="{{ path('cart') }}">  Valider le panier  </a>
+						</div>
+					</div>
+					{% endif %}
 				</div>
-				<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    				<i class="fa fa-bars bc text-white p-2"></i>
-  				</a>		
-			{% endif %}
 			</div>
 		</nav>
 	
@@ -236,7 +223,7 @@
 
 							<ul class="list-unstyled">
 								<li>
-									<a href="{{ path('faq') }}" class="">Aide / FaQ</a>
+									{# <a href="{{ path('faq') }}" class="">Aide / FaQ</a> #}
 								</li>
 								<li>
 									<a href="{{ path('cgdv') }}" class="">Conditions générales d'utilisation</a>

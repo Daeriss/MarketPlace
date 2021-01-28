@@ -31,33 +31,172 @@
             width : 150px;
             display : flex;
         }
+
+        .smallscreen {
+        display : none;
+      }
+	@media screen and (max-width: 575.98px) {
+        h4 {
+          font-size: 1rem;
+        }
+
+        .fontsmall {
+          font-size: 0.75rem;
+        }
+
+        .topnavsmall {
+          display: block;
+         
+          overflow: hidden;
+        }
+        .margin15 {
+          margin : 0.15rem;
+          color : white;
+        }
+        .margin25 {
+          margin : 0.25rem
+        }
+        .marginleft {
+          margin-left: 0.5rem;
+        }
+        .grandscreen {
+          display :none;
+        }
+        .smallscreen {
+          display: block;
+        }
+
+        .card .card-header {
+            font-size: 1rem;
+            padding: 1rem;
+            background-color: var(--third-color);
+            color: white;
+
+        }
+        .card .card-footer {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .bordercard {
+          border: solid var(--third-color);
+        }
+			}
     
     </style>
 {% endblock %}
 
 {% block body %}
     <h1> Ma boutique </h1>
-	<div class="container grix xs2 m-5">
-		<div>
-			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
-		</div>
-        <div class="container">
-                <h4>Nom de l'enseigne :  {{ app.user.shop.name }}</h4>
-                <h4>Adresse :  {{ app.user.shop.road }} </h4>
-                <h4>CP :  {{ app.user.shop.adress }} </h4>
-                <h4>Paiement acceptés :  {{ app.user.shop.paiement }}</h4>
-                <h4>Contact :  {{ app.user.shop.phone }}</h4>
-                <a class="btn btn-success" href="{{ path('shop_edit', {'id': app.user.shop.id}) }}">Modifier les informations</a>
+	<div class="container-fluid">
+		<div class="row">
+            <div class="col-12 col-sm-12 col-md-6 bg-shop-img">
+                <img class="img-test img-fluid" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 bg-shop-index">
+                <div class="col-12">
+                    <h1>Ma boutique</h1>
+                </div>
+                <div class="col-12">
+                    <p>
+                        Bienvenue dans votre boutique!
+                        Vous pouvez ici modifier les horaires d'ouverture de votre boutique, ci dessous.
+                    </p>
+                </div>
+                <div class="col-12">
+                    <h3>Gestion Horaire</h3>
+                </div>
+                {{form_start(form)}}
+                <label>lundi :</label>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} à
+                    {{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
+                </div>
+                <hr>
+                <label>Mardi :</label> <br>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} à
+                    :{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
+                </div>
+                <hr>
+                <label>Mercredi :</label><br>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} à :
+                    {{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }}
+                </div>
+                <hr>
+                <label>Jeudi :</label><br>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} à :
+                    {{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }}
+                </div>
+                <hr>
+                <label>Vendredi :</label>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} à
+                    :{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
+                </div>
+                <hr>
+                <label>Samedi :</label><br>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} à
+                    :{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
+                </div>
+                <hr>
+                <label>Dimanche :</label><br>
+                <div class="row m-auto">
+                    De :
+                    {{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} à
+                    :{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
+                </div><br>
+                <button class="btn btn-shop">{{ button_label|default('Mettre à jour les horaires') }}</button>
+                {{ form_end(form) }}
+            </div>
         </div>
 	</div>
 
-    <h1>Gestion de ma boutique en ligne</h1>
-    
+    <div class="container-fluid grandscreen text-center">
+    <h4 class="">Gestion de ma boutique</h4>
 
+    <div class="grix xs6 p-3 bc text-white shadow-2 align-items-center">
+        <h5 class="">Nom</h5>
+        <h5 class="">Arrondissement</h5>
+        <h5 class="">Photo</h5>
+        <h5 class="">Adresse</h5>
+		<h5 class="">Paiement Accepté</h5>
+		<h5 class="">actions</h5>
+    </div>
         
-        </tbody>
-    </table>
+    <div class="grix xs6 p-3 shadow-2 align-items-center mt-3" >
+		<p class="m-0 ">{{ shop.name }}</p>
+		<p class="m-0 ">{{ shop.adress }}</p>
+		<p class="m-0 ">{{ shop.img }} €</p>
+		<p class="m-0 ">{{ shop.road }}</p>
+		<p class="m-0 ">{{ shop.paiement }}</p>
+		<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn bc rounded-1 text-white m-3">Modifier les informations</a>
+    </div>	 
 	
+</div>
+  
+
+<div class="card smallscreen bordercard m-2">
+          <p class="card-header fontsmall">{{ shop.name }}</p>
+          <div class="card-body">
+            <p class=" "> Adresse : {{ shop.road }}</p>
+			<p class=" "> Code postal : {{ shop.adress }}</p>
+            <p class=" "> Paiement(s) : {{ shop.paiement }}</p>
+          </div>
+          <div class="card-footer d-flex flex-row justify-content-center">
+            <a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn p-2 card-btn bc text-white text-center">Modifier les informations</a>
+          </div>
+      </div>
+
 
 <script>
    

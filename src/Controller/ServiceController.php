@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\HorairesType;
 use App\Repository\CalendarRepository;
 use App\Entity\Calendar;
 use DateTime;
@@ -17,11 +18,33 @@ class ServiceController extends AbstractController
     /**
      * @Route("/service", name="accueilservice")
      */
-    public function accueilservice(): Response
+    public function accueilservice(request $request): Response
     {
+        $user = $this->getUser();
+        $shop = $user->getShop();
+        $form = $this->createForm(HorairesType::class, $shop);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $this->addFlash('message', 'Horaires à jour');
+
+        };
+        
+        $user = $this->getUser();
+        $shopUser = $user->getShop();
+        $idShop = $shopUser->getId();
+       
+        dump($idShop);
+
+        dump($shop);
+
         return $this->render('service/accueilservice.html.twig', [
-            'controller_name' => 'ServiceController',
+            'form' => $form->createView(),
+            'shop' => $shop,
         ]);
+      
     }
 
     /**
@@ -78,7 +101,7 @@ class ServiceController extends AbstractController
         //         compact('data')
         //     ]);
         // }
-
+            dump(compact('data'));
         return $this->render('service/appointment.html.twig', compact('data'));
     }
 

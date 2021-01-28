@@ -5,116 +5,206 @@
 
 
 {% block stylesheets %}
-    <style>
-        .form-control {
-            position: relative;
-            display: block;
-            border: 1px solid #bbb8b8;
-            
-           
-            transition: border .2s ease,box-shadow .3s ease;
-            height: 2.5rem;
-            width: 50%;
-            
-           
-            appearance: none;
-            line-height: 1.3;
-            color: inherit;
-            background-color: inherit;
+<style>
+	.form-control {
+		position: relative;
+		display: block;
+		border: 1px solid #bbb8b8;
+
+
+		transition: border 0.2s ease, box-shadow 0.3s ease;
+		height: 2.5rem;
+		width: 50%;
+
+
+		appearance: none;
+		line-height: 1.3;
+		color: inherit;
+		background-color: inherit;
+	}
+
+	.form-inline {
+		flex: auto;
+		flex-direction: row;
+	}
+
+	.task_field {
+		width: 150px;
+		display: flex;
+	}
+	.smallscreen {
+        display : none;
+      }
+	@media screen and (max-width: 575.98px) {
+        h4 {
+          font-size: 1rem;
         }
 
-        .form-inline {
-            flex : auto;
-            flex-direction: row;
+        .fontsmall {
+          font-size: 0.75rem;
         }
-        .task_field {
-            width : 150px;
-            display : flex;
+
+        .topnavsmall {
+          display: block;
+         
+          overflow: hidden;
         }
-    
-    </style>
+        .margin15 {
+          margin : 0.15rem;
+          color : white;
+        }
+        .margin25 {
+          margin : 0.25rem
+        }
+        .marginleft {
+          margin-left: 0.5rem;
+        }
+        .grandscreen {
+          display :none;
+        }
+        .smallscreen {
+          display: block;
+        }
+
+        .card .card-header {
+            font-size: 1rem;
+            padding: 1rem;
+            background-color: var(--third-color);
+            color: white;
+
+        }
+        .card .card-footer {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .bordercard {
+          border: solid var(--third-color);
+        }
+			}
+	
+</style>
 {% endblock %}
 
 {% block body %}
-    <h1> Ma boutique </h1>
-	<div class="container grix xs2 m-5">
-
-    Bienvenue dans votre boutique! 
-    Vous pouvez ici modifier les horraires d'ouverture de votre boutique, ci dessous.
-
-		<div>
-			<img class="img-test mr-5" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-6 bg-shop-img">
+			<img class="img-test img-fluid" src="{{ asset('assets/uploads/' ~ app.user.shop.img ) }}">
 		</div>
-		<div class="container">
-        <h3> Gestion Horaire </h3>
+		<div class="col-12 col-sm-12 col-md-6 bg-shop-index">
+			<div class="col-12">
+				<h1>Ma boutique</h1>
+			</div>
+			<div class="col-12">
+				<p>
+					Bienvenue dans votre boutique!
+					Vous pouvez ici modifier les horaires d'ouverture de votre boutique, ci dessous.
+				</p>
+			</div>
+			<div class="col-12">
+				<h3>Gestion Horaire</h3>
+			</div>
 			{{form_start(form)}}
-		<div class="row"> Lundi : {{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} - Fermeture : {{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }} </div>
-		<div class="row"> Mardi : {{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }} </div>
-		<div class="row"> Mercredi : {{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} -Fermeture : {{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }} </div>
-		<div class="row"> Jeudi : {{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} - Fermeture : {{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }} </div>
-		<div class="row"> Vendredi : {{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }} </div>
-		<div class="row"> Samedi : {{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }} </div>
-		<div class="row"> Dimanche : {{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} - Fermeture :{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }} </div>
-			<button class="btn btn-primary">{{ button_label|default('Mettre à jour les horaires') }}</button>
+			<label>lundi :</label>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Lundi, {'attr': {'class': 'task_field'}}) }} à
+				{{ form_widget(form.Lundiclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Mardi :</label> <br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Mardi, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Mardiclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Mercredi :</label><br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Mercredi, {'attr': {'class': 'task_field'}}) }} à :
+				{{ form_widget(form.Mercrediclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Jeudi :</label><br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Jeudi, {'attr': {'class': 'task_field'}}) }} à :
+				{{ form_widget(form.Jeudiclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Vendredi :</label>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Vendredi, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Vendrediclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Samedi :</label><br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Samedi, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Samediclose, {'attr': {'class': 'task_field'}}) }}
+			</div>
+			<hr>
+			<label>Dimanche :</label><br>
+			<div class="row m-auto">
+				De :
+				{{ form_widget(form.Dimanche, {'attr': {'class': 'task_field'}}) }} à
+				:{{ form_widget(form.Dimancheclose, {'attr': {'class': 'task_field'}}) }}
+			</div><br>
+			<button class="btn btn-shop">{{ button_label|default('Mettre à jour les horaires') }}</button>
 			{{ form_end(form) }}
-                
 		</div>
 	</div>
-<hr>
+</div>
 {% set counter = 0 %}
-{% for order in orders %} 
+{% for order in orders %}
 
 
 {% set counter = counter + order.checkout %}
 
 {% endfor %}
+<div class="container-fluid grandscreen text-center">
+    <h4 class="">Gestion de ma boutique</h4>
 
-
-
-<h1>Gestion de ma boutique en ligne</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Arrondissement</th>
-                <th>Photo</th>
-                <th> Adresse : </th>
-                <th>Paiement Accepté</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% if (shop)  %}
-            <tr>
-                <td>{{ shop.name }}</td>
-                <td>{{ shop.adress }}</td>
-                <td>{{ shop.img }}</td>
-                <td> {{ shop.road }} </td>
-                <td>{{shop.paiement}}</td>
-                <td>
-                    <a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn primary">Modifier les informations</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endif %}
+    <div class="grix xs6 p-3 bc text-white shadow-2 align-items-center">
+        <h5 class="">Nom</h5>
+        <h5 class="">Arrondissement</h5>
+        <h5 class="">Photo</h5>
+        <h5 class="">Adresse</h5>
+		<h5 class="">Paiement Accepté</h5>
+		<h5 class="">actions</h5>
+    </div>
         
-        </tbody>
-    </table>
-
-Total TTC des commandes récupérées : {{ counter }} €
+    <div class="grix xs6 p-3 shadow-2 align-items-center mt-3" >
+		<p class="m-0 ">{{ shop.name }}</p>
+		<p class="m-0 ">{{ shop.adress }}</p>
+		<p class="m-0 ">{{ shop.img }} €</p>
+		<p class="m-0 ">{{ shop.road }}</p>
+		<p class="m-0 ">{{ shop.paiement }}</p>
+		<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn bc rounded-1 text-white m-3">Modifier les informations</a>
+    </div>	 
+	<h3>Total TTC des commandes récupérées :{{ counter }} €</h3>
 	
+</div>
+  
 
-<script>
-   
-   
- 
+<div class="card smallscreen bordercard m-2">
+          <p class="card-header fontsmall">{{ shop.name }}</p>
+          <div class="card-body">
+            <p class=" "> Adresse : {{ shop.road }}</p>
+			<p class=" "> Code postal : {{ shop.adress }}</p>
+            <p class=" "> Paiement(s) : {{ shop.paiement }}</p>
+          </div>
+          <div class="card-footer d-flex flex-row justify-content-center">
+            <a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn p-2 card-btn bc text-white text-center">Modifier les informations</a>
+          </div>
+      </div>
+       
 
-</script>
+<script></script>
 {% endblock %}
 
 {% block javascripts %}{% endblock %}
-

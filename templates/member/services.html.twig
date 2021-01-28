@@ -22,15 +22,79 @@ table {
 
   .card-btn {
 		background-color: var(--third-color);
-	}
+  }
+  .grix {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: .25rem;
+}
+  .smallscreen {
+    display : none;
+  }
+  .topnavsmall {
+      display : none;
+    }
+
+@media screen and (max-width: 575.98px) {
+        h4 {
+          font-size: 1rem;
+        }
+
+        .fontsmall {
+          font-size: 0.75rem;
+        }
+
+        .topnavsmall {
+          display: block;
+         
+          overflow: hidden;
+        }
+        .margin15 {
+          margin : 0.15rem;
+          color : white;
+        }
+        .margin25 {
+          margin : 0.25rem
+        }
+        .marginleft {
+          margin-left: 0.5rem;
+        }
+        .grandscreen {
+          display :none;
+        }
+        .smallscreen {
+          display: block;
+        }
+
+        .card .card-header {
+            font-size: 1rem;
+            padding: 1rem;
+            background-color: var(--third-color);
+            color: white;
+
+        }
+        .card .card-footer {
+            padding: 1.5rem;
+            background-color: white;
+        }
+
+        .bordercard {
+          border: solid var(--third-color);
+        }
+			}
 </style>
 
 <body class="layout with-sidenav">
-  <div class="container-fluid  d-flex flex-row">
+<div class="topnavsmall margin25">
+      <a  class="fontsmall bc btn p-1 margin15 "  href="{{ path('app_account')}}">Mon compte</a>
+      <a class="fontsmall bc btn p-1 margin15 "  href="{{ path('app_account_edit')}}">Mon profil</a>
+      <a  class="fontsmall bc btn p-1 margin15 " href="{{ path('app_account_orders')}}">Mes commandes</a>
+      <a  class="fontsmall bc btn p-1 margin15 " href="{{ path('app_account_rdv')}}">Mes rendez vous</a>
+    </div>
+  <div class="container-fluid margin-compte d-flex flex-row">
     <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
       <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+        <p>Bonjour, {{ app.user.name }} </p>
       </div>
         <a href="{{ path('app_account')}}" class="sidenav-link">Mon compte</a>
         <a href="{{ path('app_account_edit')}}" class="sidenav-link">Modifier mon profil</a>
@@ -38,46 +102,87 @@ table {
         <a href="{{ path('app_account_rdv')}}" class="sidenav-link active">Mes rendez vous</a>
     </div>
   
-    <div class="example-wrapper container">
+    <div class="container-fluid grandscreen">
   
-      <h2>Mes rendez-vous :</h2>
+      <h2>Historique des rendez-vous :</h2>
   
-      <table>
-        <tr>
-          <th>Prestataire</th>
-          <th>Prestation</th>
-          <th>Date du rendez vous</th>
-          <th>Fin prévue</th>
-          <th>Description</th>
-          <th>Prix</th>
-          <th>Action</th>
-        </tr>
+      <div class="grix xs7 p-3 bc text-white shadow-2 align-items-center">
+          <h5>Prestataire</h5>
+          <h5>Prestation</h5>
+          <h5>Date</h5>
+          <h5>Fin prévue</h5>
+          <h5>Description</h5>
+          <h5>Prix</h5>
+          <h5>Action</h5>
+      </div>
+      
         {% for rdv in rdvs %}
+          <div class="grix xs7 p-3 mt-3 shadow-2 align-items-center" >
+							<p class="m-0">{{ rdv.shop.name }}</p>
+							<p class="m-0">{{ rdv.title }}</p>
+							<p class="m-0">{{ rdv.start|date('d/m/Y h:i') }}</p>
+							<p class="m-0">{{ rdv.end|date('d/m/Y h:i') }}</p>
+              <p class="m-0">{{ rdv.description }}</p>
+              {% for service in rdv.shop.services %}
+                {% if service.name == rdv.title %}
+                  <p class="m-0">{{ service.price}} €</p>
+                {% endif %}
+              {% endfor %}
+              <div class="grix sx-2 ">
+                  {% if rdv.start|date('d/m/Y h:i') <= "now"|date("d/m/Y h:i") %}
+                  Rdv passé
+                  {% else %}
+                  <a class="p-2 btn card-btn text-white text-center mb-1" href="{{path('calendar_edit', {'id': rdv.id } ) }}">Modifier</a>
+                  <form method="post" class="" action="{{ path('calendar_delete', {'id': rdv.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer ce rendez-vous ?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
+                    <button class="btn p-2 card-btn text-white text-center">Annuler</button>
+                  </form>
+                  {# <a class="p-2 card-btn text-white text-center" href="{{path('calendar_delete', {'id': rdv.id } ) }}">Supprimer</a> #}
+                {% endif %}
+              </div>
+						</div>
+            
+          
+        {% else %}
           <tr>
-            <td>{{ rdv.shop.name }}</td>
-            <td>{{ rdv.title }}</td>
-            <td>{{ rdv.start|date('d-m-Y h:i') }}</td>
-            <td>{{ rdv.end|date('d-m-Y h:i') }}</td>
-            <td>{{ rdv.description }}</td>
-            {% for service in rdv.shop.services %}
-              {% if service.name == rdv.title %}
-                <td>{{ service.price}} €</td>
-              {% endif %}
-            {% endfor %}
-            <td>
-              {% if rdv.start|date('d/m/Y h:i') <= "now"|date("d-m-Y h:i") %}
-                Rdv passé
-                {% else %}
-                <a class="p-2 btn card-btn text-white text-center mb-1" href="{{path('calendar_edit', {'id': rdv.id } ) }}">Modifier</a>
-                <form method="post" class="" action="{{ path('calendar_delete', {'id': rdv.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
-                  <button class="btn p-2 card-btn text-white text-center">Delete</button>
-                </form>
-                {# <a class="p-2 card-btn text-white text-center" href="{{path('calendar_delete', {'id': rdv.id } ) }}">Supprimer</a> #}
-              {% endif %}
-            </td>
+            <td colspan="6"> Pas encore de rendez-vous</td>
           </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <div class="container-fluid smallscreen">
+  
+      <h4>Historique des rendez-vous :</h4>
+  
+      {% for rdv in rdvs %}
+        <div class="card bordercard">
+          <p class="card-header fontsmall">Le {{ rdv.start|date('d/m/Y') }} à {{ rdv.start|date('h:i') }} h</p>
+          <div class="card-body">
+            <p class=" "> Chez {{ rdv.shop.name }} pour {{ rdv.client }}</p>
+              {% for service in rdv.shop.services %}
+                {% if service.name == rdv.title %}
+                  <p class="m-0 fontsmall">Total :{{ service.price}} €</p>
+                {% endif %}
+              {% endfor %}
+          </div>
+          <div class="card-footer d-flex flex-row justify-content-center">
+             {% if rdv.start|date('d/m/Y h:i') <= "now"|date("d-m-Y h:i") %}
+                  Rdv passé
+                  {% else %}
+                  <a class="p-2 btn card-btn text-white text-center mr-3" href="{{path('calendar_edit', {'id': rdv.id } ) }}">Modifier</a>
+                  <form method="post" class="" action="{{ path('calendar_delete', {'id': rdv.id}) }}" onsubmit="return confirm('Etes-vous sur de vouloir supprimer ce rendez-vous ?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rdv.id) }}">
+                    <button class="btn p-2 card-btn text-white text-center">Annuler</button>
+                  </form>
+                  {# <a class="p-2 card-btn text-white text-center" href="{{path('calendar_delete', {'id': rdv.id } ) }}">Supprimer</a> #}
+                {% endif %}
+          </div>
+      </div>
+            
+          
         {% else %}
           <tr>
             <td colspan="6"> Pas encore de rendez-vous</td>
