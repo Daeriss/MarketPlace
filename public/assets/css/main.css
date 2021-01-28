@@ -764,8 +764,16 @@ footer a:hover{
     background-color: var(--color-bg);
 }
 
-.container-shops h2, h5 {
+.container-shops h2, .container-shops h5 {
     color: var(--primary-color);
+}
+
+.title-gestion {
+    color: var(--third-color);
+}
+
+.tilte-prestations {
+    color: white!important;
 }
 
 /* mon compte  */
@@ -941,5 +949,8 @@ footer a:hover{
     td {
     display: block;
     width: auto!important;
+    }
+    .task_field {
+        width: 100% !important;
     }
   }

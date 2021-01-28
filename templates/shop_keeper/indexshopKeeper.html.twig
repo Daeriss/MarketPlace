@@ -166,8 +166,8 @@
 {% set counter = counter + order.checkout %}
 
 {% endfor %}
-<div class="container-fluid grandscreen text-center">
-    <h4 class="">Gestion de ma boutique</h4>
+<div class="container-fluid container-gestion-boutique grandscreen text-center">
+    <h4 class="title-gestion">Gestion de ma boutique</h4>
 
     <div class="grix xs6 p-3 bc text-white shadow-2 align-items-center">
         <h5 class="">Nom</h5>
@@ -186,7 +186,7 @@
 		<p class="m-0 ">{{ shop.paiement }}</p>
 		<a href="{{ path('shop_edit', {'id': shop.id}) }}" class="btn bc rounded-1 text-white m-3">Modifier les informations</a>
     </div>	 
-	<h3>Total TTC des commandes récupérées :{{ counter }} €</h3>
+	<h3 class="title-gestion">Total TTC des commandes récupérées :{{ counter }} €</h3>
 	
 </div>
   
